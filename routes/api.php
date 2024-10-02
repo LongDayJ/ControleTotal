@@ -15,8 +15,8 @@ Route::prefix('v1')->group(function() {
     
 });
 
-Route::prefix('v1')->group(function() {
-  Route::get('/agendamento', [AgendamentoController::class, 'index']);
-  Route::get('/agendamento/{id}', [AgendamentoController::class, 'show']);
+// Route::prefix('v1')->group(function() {
+//   Route::get('/agendamento', [AgendamentoController::class, 'index']);
+//   Route::get('/agendamento/{id}', [AgendamentoController::class, 'show']);
   
-});
+// });
