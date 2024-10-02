@@ -17,8 +17,8 @@ class EstoqueFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => fake()->name(),
             'quantidade' => $this->faker->numerify('###'),
+            'quantidadeMinima' =>$this->numerify('#'),
             'produto_id/' => \App\Models\Produto::factory(),
         ];
     }
