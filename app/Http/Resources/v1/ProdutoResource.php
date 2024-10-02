@@ -16,7 +16,7 @@ class ProdutoResource extends JsonResource
     {
         return [
             'id' => $this ->id,
-            'nome' => $this ->nome
+            'nome' => $this ->nome,
         ];
     }
     public function infoProdutoEstoque()
