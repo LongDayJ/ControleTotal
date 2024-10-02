@@ -11,15 +11,14 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('register.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        //
+        return view('register.create');
     }
 
     /**

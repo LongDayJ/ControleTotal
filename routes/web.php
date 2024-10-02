@@ -35,8 +35,8 @@ Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
 
 Route::get(
     '/register-colaborador',
-    [RegisterCollaboratorController::class, 'index']
-)->name('registerCollaborator.index');
+    [RegisterCollaboratorController::class, 'create']
+)->name('registerCollaborator.create');
 // ->middleware(Autenticador::class);
 
 Route::get('/equipe', function () {

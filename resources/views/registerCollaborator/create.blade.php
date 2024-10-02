@@ -59,12 +59,12 @@
 							<label for="cpf" class="form-label">CPF:</label>
 							<input type="text" class="form-control" id="cpf" name="cpf" required>
 						</div>
-						<div class="col-md-6 mb-3">
+						<!-- <div class="col-md-6 mb-3">
 							<div class="mb-3">
 								<label for="phone" class="form-label">Telefone:</label>
 								<input type="text" class="form-control" id="phone" name="phone" required>
 							</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
@@ -80,7 +80,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="row">
+					<!-- <div class="row">
 						<div class="col-md-6 mb-3">
 							<div class="mb-3">
 								<label for="cep" class="form-label">CEP:</label>
@@ -130,7 +130,7 @@
 									<input type="text" class="form-control" id="uf" name="uf" required>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<div class="d-grid gap-2">
 							<button type="submit" class="btn btn-primary">Cadastrar</button>
 						</div>
