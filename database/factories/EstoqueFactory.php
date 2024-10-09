@@ -18,7 +18,7 @@ class EstoqueFactory extends Factory
     {
         return [
             'quantidade' => $this->faker->numerify('###'),
-            'quantidadeMinima' =>$this->numerify('#'),
+            'quantidadeMinima' =>$this->faker->numerify('#'),
             'produto_id/' => \App\Models\Produto::factory(),
         ];
     }

@@ -15,10 +15,10 @@ class EstoqueResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
+            'produto' => (new DentistaResource($this->produto))->infoProdutoEstoque(),
             'quantidade' => $this ->quantidade,
             'quantidadeMinima' => $this ->quantidadeMinima,
-            'update_at' => $this ->update_at,
-            'produto' => (new DentistaResource($this->produto))->infoProdutoEstoque()
+            'update_at' => $this ->update_at
         ];
     }
 }
