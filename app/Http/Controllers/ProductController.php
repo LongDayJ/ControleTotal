@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Produto;
+use App\Http\Resources\v1\EstoqueResource;
 
 class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('product.index');
+        $search = $request->input('search');
+        $products = Produto::query()
+            ->when($search, function ($query, $search) {
+                return $query->where('nome', 'like', "%{$search}%");
+            })
+            ->get();
+    
+        return view('product.index', compact('products'));
     }
 
     /**

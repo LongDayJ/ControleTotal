@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('perfils', function (Blueprint $table) {
         
             $table->id();
-            $table->string('nome');
+            $table->enum('nome', ['ADM', 'COLABORADOR' , 'CLIENTE'])->default('CLIENTE');
             $table->string('descricao')->nullable();
-            $table->enum('status', ['ADMIN', 'CLIENTE'])->default('CLIENTE');
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable();
         });

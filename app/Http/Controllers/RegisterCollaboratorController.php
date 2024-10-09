@@ -11,14 +11,14 @@ class RegisterCollaboratorController extends Controller
      */
     public function index()
     {
-        return view('registerCollaborator.index');
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
+        return view('registerCollaborator.create');
         //
     }
 

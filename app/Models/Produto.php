@@ -13,4 +13,9 @@ class Produto extends Model
         'id',
         'nome',
     ];
+
+    public function estoque()
+    {
+        return $this->hasOne(Estoque::class, 'produto_id');
+    }
 }

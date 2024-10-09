@@ -20,7 +20,8 @@ class AgendamentoResource extends JsonResource
             'hora' => $this->hora,
             'status' => $this->status,
             'user' => (new UserResource($this->user))->infoUserAgendamento(),
-            
+            'dentista' => (new DentistaResource($this->dentista))->infoDentistaAgendamento(),
+            'procedimento' => (new ProcedimentoResource($this->procedimento))->infoProcedimentoAgendamento()
               ];
         }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class loginController extends Controller
 {
@@ -27,7 +28,10 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd(Auth::attempt($request->all()));
+        if (!Auth::attempt($request->all())) {
+            return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
+        }
     }
 
     /**
