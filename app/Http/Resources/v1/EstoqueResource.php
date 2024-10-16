@@ -18,7 +18,7 @@ class EstoqueResource extends JsonResource
             'produto' => (new DentistaResource($this->produto))->infoProdutoEstoque(),
             'quantidade' => $this ->quantidade,
             'quantidadeMinima' => $this ->quantidadeMinima,
-            'update_at' => $this ->update_at
+            'updated_at' => $this ->updated_at
         ];
     }
 }

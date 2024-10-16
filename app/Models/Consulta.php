@@ -12,7 +12,8 @@ class Consulta extends Model
     protected $fillable = [
         'diagnostico',
         'receita',
-        'codigoConsulta'
+        'codigoConsulta',
+        'agendamento_id'
     ];
 
     public function agendamento()

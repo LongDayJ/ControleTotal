@@ -11,6 +11,5 @@ class Perfil extends Model
     protected $table = 'perfils';
     protected $fillable = [
         'nome',
-        'descricao',
     ];
 }

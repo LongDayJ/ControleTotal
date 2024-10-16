@@ -18,7 +18,7 @@ class ConsultaResource extends JsonResource
             'id' => $this->id,
             'diagnostico' => $this->diagnostic,
             'codigoConsulta' =>$this->codigoConsulta,
-            'agendament_id' =>$this->agendamento_id
+            'agendamento_id' =>$this->agendamento_id
         ];
     }
 }

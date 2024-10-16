@@ -14,7 +14,9 @@ class Agendamento extends Model
         'hora',
         'status',
         'observacao',
-        'user_id'
+        'user_id',
+        'dentista_id',
+        'procedimento_id'
     ];
 
     public function user()
