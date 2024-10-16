@@ -1,4 +1,13 @@
 <x-appBarAdmin title="Produtos">
+	@if ($errors->any())
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+			<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
 	<!-- Modal -->
 	<div class="modal fade" id="createProductModal" tabindex="-1" aria-labelledby="createProductModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -8,7 +17,7 @@
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<form action="/produtos" method="POST">
+					<form action="{{ route('products.store') }}" method="POST">
 						@csrf
 						<div class="mb-3">
 							<label for="nome" class="form-label">Nome do Produto:</label>
@@ -16,12 +25,12 @@
 						</div>
 						<div class="row">
 							<div class="mb-3 col-6">
-								<label for="qtyMin" class="form-label">Quantidade Mínima:</label>
-								<input type="number" id="qtyMin" name="qtyMin" class="form-control" step="1" required>
+								<label for="quantidadeMinima" class="form-label">Quantidade Mínima:</label>
+								<input type="number" id="quantidadeMinima" name="quantidadeMinima" class="form-control" step="1" required>
 							</div>
 							<div class="mb-3 col-6">
-								<label for="qtyAtual" class="form-label">Quantidade Atual:</label>
-								<input type="number" id="qtyAtual" name="qtyAtual" class="form-control" step="1" required>
+								<label for="quantidade" class="form-label">Quantidade Atual:</label>
+								<input type="number" id="quantidade" name="quantidade" class="form-control" step="1" required>
 							</div>
 						</div>
 						<div class="mb-3 d-grid gap-2 pb-5">
@@ -52,7 +61,7 @@
 						</button>
 					</div>
 					<div class="col-4">
-						<form class="d-flex" role="search" method="GET" action="{{ route('product.index') }}">
+						<form class="d-flex" role="search" method="GET" action="{{ route('products.index') }}">
 							<input class="form-control me-2" type="search" name="search" placeholder="Digite o nome do Produto" aria-label="Search" value="{{ request('search') }}">
 							<button class="btn btn-outline-success" type="submit">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -77,10 +86,26 @@
 								<tbody>
 									@foreach($products as $product)
 									<tr>
-										<td>{{ $product['nome'] }}</td>
-										<td>{{ $product['quantidadeMinima'] }}</td>
-										<td>{{ $product['quantidade'] }}</td>
-										<td>{{ $product['updated_at'] }}</td>
+										<td>{{ $product->nome }}</td>
+										<td>{{ $product->estoque ? $product->estoque->quantidadeMinima : 'N/A' }}</td>
+										<td>{{ $product->estoque ? $product->estoque->quantidade : 'N/A' }}</td>
+										<td>{{ $product->updated_at }}</td>
+										<td>
+											<a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">
+												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
+													<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001" />
+												</svg>
+											</a>
+											<form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Tem certeza que deseja excluir este produto?');" style="display:inline;">
+												@csrf
+												@method('DELETE')
+												<button type="submit" class="btn btn-danger">
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+														<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+													</svg>
+												</button>
+											</form>
+										</td>
 									</tr>
 									@endforeach
 								</tbody>
@@ -91,4 +116,4 @@
 			</div>
 		</div>
 	</div>
-	</x-layout>
+</x-appBarAdmin>

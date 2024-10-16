@@ -19,7 +19,6 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('cpf');
-            $table->string('codigoPaciente')->nullable();
             $table->foreignId('perfil_id')->constrained('perfils')->onDelete('cascade');
             $table->rememberToken();
             $table->timestamps();
