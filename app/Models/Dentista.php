@@ -14,5 +14,6 @@ class Dentista extends Model
         'descricao',
         'status',
         'cro',
+        'created_at'
     ];
 }

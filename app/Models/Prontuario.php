@@ -12,6 +12,7 @@ class Prontuario extends Model
     protected $fillable = [
         'historico',
         'observacao',
+        'consulta_id'
         
     ];
 
