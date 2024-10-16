@@ -35,7 +35,6 @@ class RegisterCollaboratorController extends Controller
         $data['confirmPassword'] = Hash::make($data['confirmPassword']);
         $data['perfil_id'] = 2;
         $user = User::create($data);
-        Auth::login($user);
         return to_route('registerCollaborator.create');
     }
 
