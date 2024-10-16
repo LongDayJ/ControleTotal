@@ -30,7 +30,6 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'cpf' => $this->faker->numerify('###.###.###-##'),
-            'codigoPaciente' => $this->faker->numerify('##########'),
             'created_at' => now(),
             'updated_at' => now(),
             'remember_token' => Str::random(10),

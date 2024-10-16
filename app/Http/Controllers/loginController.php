@@ -28,10 +28,13 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(Auth::attempt($request->all()));
-        if (!Auth::attempt($request->all())) {
+        // Tentativa de autenticação
+        if (!Auth::attempt($request->only(['email', 'password']))) {
             return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
         }
+
+        // Redireciona para o dashboard se a autenticação for bem-sucedida
+        return to_route('dashboard.index');
     }
 
     /**

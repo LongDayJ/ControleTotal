@@ -7,7 +7,7 @@
 		</div>
 		<div class="row justify-content-center align-items-center align-content-center d-flex">
 			<div class="col-4">
-				<form action="/login" method="POST">
+				<form action="{{ route('login.store') }}" method="POST">
 					@csrf
 					<div class="mb-3">
 						<label for="email" class="form-label">Email</label>
@@ -33,9 +33,7 @@
 						</div>
 					</div>
 					<div class="d-grid gap-2">
-						<!-- <button type="submit" class="btn btn-primary">Entrar</button> -->
-						<!-- <a href="/register-colaborador" class="btn btn-primary">Registrar</a> -->
-						<a href="/dashboard" class="btn btn-primary">Entrar</a>
+						<button type="submit" class="btn btn-primary">Entrar</button>
 						<a href="/patient/1" class="btn-btn-prim">Entrar Paciente</a>
 					</div>
 				</form>

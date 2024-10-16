@@ -15,7 +15,6 @@ return new class extends Migration
         
             $table->id();
             $table->enum('nome', ['ADM', 'COLABORADOR' , 'CLIENTE'])->default('CLIENTE');
-            $table->string('descricao')->nullable();
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable();
         });

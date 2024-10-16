@@ -31,8 +31,8 @@ Route::get('/equipe', function () {
 
 // Rota do Paciente 
 Route::get('/patient/{id}', [PatientController::class, 'show'])
-->name('patient.show')
-->middleware(Autenticador::class);
+    ->name('patient.show');
+// ->middleware(Autenticador::class);
 
 // Rotas do Admin
 Route::get('/register-colaborador', [RegisterCollaboratorController::class, 'create'])
@@ -48,7 +48,7 @@ Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-})
+})->name('dashboard.index')
 ->middleware(Autenticador::class);
 
 Route::get('/agendamento', [CalendarController::class, 'index'])

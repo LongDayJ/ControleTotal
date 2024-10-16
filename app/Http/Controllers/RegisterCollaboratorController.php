@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Queue\Failed\PrunableFailedJobProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterCollaboratorController extends Controller
@@ -32,7 +33,10 @@ class RegisterCollaboratorController extends Controller
         $data = $request->except('_token');
         $data['password'] = Hash::make($data['password']);
         $data['confirmPassword'] = Hash::make($data['confirmPassword']);
-        dd($data);
+        $data['perfil_id'] = 2;
+        $user = User::create($data);
+        Auth::login($user);
+        return to_route('registerCollaborator.create');
     }
 
     /**

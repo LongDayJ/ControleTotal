@@ -17,9 +17,7 @@ class PerfilFactory extends Factory
     public function definition(): array
     {
         return [
-            'nome' => $this->faker->name(),
-            'descricao' => $this->faker->sentence(),
-            'status' => $this->faker->randomElement(['ADMIN', 'CLIENTE']),
+            'nome' => $this->faker->randomElement(['ADM', 'COLABORADOR' , 'CLIENTE']),
             'created_at' => now(),
             
         ];
