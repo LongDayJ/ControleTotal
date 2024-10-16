@@ -16,7 +16,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'nome',
+        'name',
+        'descricao',
         'email',
         'password', // Alterado para 'password' que é o campo padrão do Laravel
         'cpf',
