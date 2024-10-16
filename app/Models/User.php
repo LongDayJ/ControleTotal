@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -19,15 +18,17 @@ class User extends Authenticatable
     protected $fillable = [
         'nome',
         'email',
-        'senha',
+        'password', // Alterado para 'password' que é o campo padrão do Laravel
         'cpf',
-        'codigo_paciente',
         'perfil_id'
     ];
 
+    /**
+     * Relationship with Perfil model.
+     */
     public function perfil()
     {
-        return $this->hasOne(User::class, 'id', 'perfil_id');
+        return $this->belongsTo(Perfil::class, 'perfil_id');
     }
 
     /**
@@ -41,19 +42,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
+     * The attributes that should be cast to native types.
      *
-     * @return array<string, string>
+     * @var array<string, string>
      */
-    protected function casts(): array
-    {
-        return [
-            'name',
-            'descricao',
-            'cpf',
-            'CodigoPaciente',
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'password' => 'hashed',
+    ];
 }

@@ -11,7 +11,9 @@ class Estoque extends Model
     protected $table = 'estoques';
     protected $fillable = [
         'quantidade',
-        'quantidadeMinima'
+        'quantidadeMinima',
+        'updated_at',
+        'produto_id'
     ];
     public function produto()
     {

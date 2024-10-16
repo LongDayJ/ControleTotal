@@ -18,6 +18,7 @@ class Endereco extends Model
         'cep',
         'numeroCasa',
         'complemento',
+        'user_id'
     ];
 
     public function usuario()

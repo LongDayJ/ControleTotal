@@ -17,6 +17,7 @@ class DentistaResource extends JsonResource
         return [
             'id' => $this->id,
             'nome' => $this->nome,
+            'descricao' => $this->descricao,
             'cro' => $this->cro
         ];
     }
