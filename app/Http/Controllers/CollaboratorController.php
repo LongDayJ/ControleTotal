@@ -3,25 +3,23 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Queue\Failed\PrunableFailedJobProvider;
-use Illuminate\Support\Facades\Hash;
 
-class RegisterCollaboratorController extends Controller
+class CollaboratorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        //
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         return view('registerCollaborator.create');
-        //
     }
 
     /**
@@ -30,8 +28,6 @@ class RegisterCollaboratorController extends Controller
     public function store(Request $request)
     {
         $data = $request->except('_token');
-        $data['password'] = Hash::make($data['password']);
-        $data['confirmPassword'] = Hash::make($data['confirmPassword']);
         dd($data);
     }
 

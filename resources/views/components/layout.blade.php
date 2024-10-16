@@ -41,9 +41,9 @@
 							<li class="nav-item">
 								<a href="/equipe" class="nav-link mx-1">Equipe</a>
 							</li>
-							<!-- <li class="nav-item">
-								<a href="/patient/1" class="nav-link mx-1">Prontuario Teste</a>
-							</li> -->
+							<li class="nav-item">
+								<a href="{{ route('registerCollaborator.create') }}" class="btn btn-light text-dark mx-1">Funcionário</a>
+							</li>
 							<li class="nav-item">
 								<a href="/login" class="btn btn-light text-black mx-1">Login</a>
 							</li>

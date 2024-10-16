@@ -30,30 +30,34 @@ Route::get('/equipe', function () {
 });
 
 // Rota do Paciente 
-Route::get('/patient/{id}', [PatientController::class, 'show'])->name('patient.show');
+Route::get('/patient/{id}', [PatientController::class, 'show'])
+->name('patient.show')
+->middleware(Autenticador::class);
 
 // Rotas do Admin
-Route::get(
-    '/register-colaborador',
-    [RegisterCollaboratorController::class, 'create']
-    )->name('registerCollaborator.create');
-    // ->middleware(Autenticador::class);
+Route::get('/register-colaborador', [RegisterCollaboratorController::class, 'create'])
+    ->name('registerCollaborator.create');
+// ->middleware(Autenticador::class);
+Route::post('/register-colaborador', [RegisterCollaboratorController::class, 'store'])
+    ->name('registerCollaborator.store');
 
 // Rotas do Colaborador + Admin
 Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
-->name('registerPatient.index');
-// ->middleware(Autenticador::class);
+->name('registerPatient.index')
+->middleware(Autenticador::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
-});
-// ->middleware(Autenticador::class);
+})
+->middleware(Autenticador::class);
 
 Route::get('/agendamento', [CalendarController::class, 'index'])
-->name('schedule.index');
-// ->middleware(Autenticador::class);
+->name('schedule.index')
+->middleware(Autenticador::class);
 
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+// Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::resource('products', ProductController::class)
+->middleware(Autenticador::class);
 
 // Route::resource('/products', ProductController::class)
 // ->only(['index', 'create']);

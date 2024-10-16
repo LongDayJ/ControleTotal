@@ -49,7 +49,7 @@
 								<a href="/registrar-paciente" class="btn btn-light text-dark mx-1">Paciente</a>
 							</li>
 							<li class="nav-item">
-								<a href="/register-colaborador" class="btn btn-light text-dark mx-1">Funcionário</a>
+								<a href="{{ route('registerCollaborator.create') }}" class="btn btn-light text-dark mx-1">Funcionário</a>
 							</li>
 							<li class="nav-item">
 								<a href="/" class="btn btn-danger mx-1">Sair</a>
