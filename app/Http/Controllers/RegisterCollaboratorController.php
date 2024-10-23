@@ -19,9 +19,10 @@ class RegisterCollaboratorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('registerCollaborator.create');
+        $cadastroSuccesso = $request->session()->get('cadastrado.sucesso');
+        return view('registerCollaborator.create')->with('cadastroSuccesso', $cadastroSuccesso);
         //
     }
 
@@ -35,7 +36,8 @@ class RegisterCollaboratorController extends Controller
         $data['confirmPassword'] = Hash::make($data['confirmPassword']);
         $data['perfil_id'] = 2;
         $user = User::create($data);
-        return to_route('registerCollaborator.create');
+        return to_route('registerCollaborator.create')
+        ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
     }
 
     /**

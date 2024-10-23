@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AgendamentoController;
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegisterCollaboratorController;
@@ -51,9 +53,11 @@ Route::get('/dashboard', function () {
 })->name('dashboard.index')
 ->middleware(Autenticador::class);
 
-Route::get('/agendamento', [CalendarController::class, 'index'])
-->name('schedule.index')
-->middleware(Autenticador::class);
+// Route::get('/agendamento', [CalendarController::class, 'index'])
+// ->name('schedule.index')
+// ->middleware(Autenticador::class);
+
+Route::resource('agendamento', CalendarController::class)->middleware(Autenticador::class);
 
 // Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 Route::resource('products', ProductController::class)

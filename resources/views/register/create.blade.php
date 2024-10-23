@@ -95,7 +95,7 @@
 		@endisset
 		<div class="row justify-content-center align-items-center align-content-center d-flex pb-5">
 			<div class="col-8">
-				<form action="{{ route('registerCollaborator.store') }}" method="POST">
+				<form action="{{ route('register.store') }}" method="POST">
 					@csrf
 					<div class="row">
 						<div class="col-md-6 mb-3">
@@ -114,8 +114,8 @@
 						</div>
 						<div class="col-md-6 mb-3">
 							<div class="mb-3">
-								<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
-								<input type="text" class="form-control" id="cro" name="cro">
+								<label for="cro" class="form-label">CRO:</label>
+								<input type="text" class="form-control" id="cro" name="cro" required>
 							</div>
 						</div>
 					</div>

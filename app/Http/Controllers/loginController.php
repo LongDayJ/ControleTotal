@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -33,8 +34,17 @@ class loginController extends Controller
             return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
         }
 
-        // Redireciona para o dashboard se a autenticação for bem-sucedida
-        return to_route('dashboard.index');
+        // pegar o usuário do banco de dados
+        $user = User::where('email', $request['email'])->first();
+
+        // redirecionar para a página correta
+        if ($user['perfil_id'] == 1 || $user['perfil_id'] == 2) {
+            return to_route('dashboard.index');
+        } else if ($user['perfil_id'] == 3) {
+            return to_route('patient.show', ['id' => $user['id']]);
+        } else {
+            return to_route('login.index');
+        }
     }
 
     /**

@@ -51,26 +51,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Consulta</td>
-							<td>01/01/2021</td>
-							<td>R$ 100,00</td>
-							<td>Pendente</td>
-						</tr>
-						<tr>
-							<td>Manutenção de Aparelho</td>
-							<td>01/01/2021</td>
-							<td>R$ 150,00</td>
-							<td>Pago</td>
-						</tr>
-						<tr>
-							<td>Limpeza de Tartáro</td>
-							<td>01/01/2021</td>
-							<td>R$ 350,00</td>
-							<td>Pago</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-</x-layout>
+	</x-layout>
