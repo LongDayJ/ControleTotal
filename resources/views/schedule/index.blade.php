@@ -50,7 +50,7 @@
             </div>
             <div class="form-group">
               <label for="eventDescription">Observação</label>
-              <textarea class="form-control" id="eventDescription" rows="3" style="resize: none;"></textarea>
+              <textarea class="form-control" id="eventDescription" rows="3" style="resize: none;" required></textarea>
             </div>
             <div class="form-group">
               <label for="eventDate">Data</label>
@@ -58,11 +58,11 @@
             </div>
             <div class="form-group">
               <label for="eventStartTime">Hora de Início</label>
-              <input type="time" class="form-control" id="eventStartTime" required>
+                <input type="time" class="form-control" id="eventStartTime" step="900" required>
             </div>
             <div class="form-group">
               <label for="eventEndTime">Hora de Fim</label>
-              <input type="time" class="form-control" id="eventEndTime" required>
+              <input type="time" class="form-control" id="eventEndTime" step="900" required>
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </form>
@@ -135,11 +135,26 @@
           week: 'Semana',
           day: 'Dia'
         },
-        events: [{
-          title: 'Evento de Exemplo',
-          start: '2023-10-01T10:00:00',
-          end: '2023-10-01T12:00:00'
-        }],
+        events: function(fetchInfo, successCallback, failureCallback) {
+          $.ajax({
+            url: '/events',
+            method: 'GET',
+            success: function(data) {
+              var events = data.map(function(event) {
+                return {
+                  id: event.id,
+                  title: event.title, // Usando o campo correto para o título
+                  start: event.start, // Usando o campo correto para o início
+                  end: event.end // Usando o campo correto para o fim
+                };
+              });
+              successCallback(events);
+            },
+            error: function() {
+              failureCallback();
+            }
+          });
+        },
         select: function(info) {
           // Função de seleção de data
           $('#eventDate').val(info.startStr);
@@ -149,8 +164,10 @@
             var dateStr = $('#eventDate').val();
             var startTime = $('#eventStartTime').val();
             var endTime = $('#eventEndTime').val();
-            var start = new Date(dateStr + 'T' + startTime);
-            var end = new Date(dateStr + 'T' + endTime);
+            var start = new Date(dateStr + ' ' + startTime);
+            var end = new Date(dateStr + ' ' + endTime);
+
+            console.log('Title:', title);
 
             if (title && !isNaN(start) && !isNaN(end)) {
               calendar.addEvent({
@@ -180,11 +197,41 @@
             var newEndTime = $('#eventEndTime').val();
             var newStart = new Date($('#eventDate').val() + 'T' + newStartTime);
             var newEnd = new Date($('#eventDate').val() + 'T' + newEndTime);
+            var description = $('#eventDescription').val();
+            var paciente = $('#eventTitle').val();
+            var dentista = $('#dentistaNome').val();
+            var date = $('#eventDate').val();
 
-            if (newTitle && !isNaN(newStart) && !isNaN(newEnd)) {
-              info.event.setProp('title', newTitle);
-              info.event.setStart(newStart);
-              info.event.setEnd(newEnd);
+            console.log('Description:', description);
+            console.log('Paciente:', paciente);
+            console.log('Dentista:', dentista);
+
+            if (newTitle && newStartTime && newEndTime && description && date && paciente && dentista) {
+              $.ajax({
+                url: '/agendamento',
+                method: 'POST',
+                data: {
+                  _token: '{{ csrf_token() }}', // Adicionar token CSRF
+                  date: date,
+                  title: newTitle,
+                  start: newStartTime,
+                  end: newEndTime,
+                  description: description,
+                  paciente: paciente,
+                  dentista: dentista
+                },
+                success: function(response) {
+                  console.log('Success:', response);
+                  info.event.setProp('title', newTitle);
+                  info.event.setStart(newStart);
+                  info.event.setEnd(newEnd);
+                },
+                error: function(xhr, status, error) {
+                  console.error('Error:', error);
+                  console.error('Status:', status);
+                  console.error('Response:', xhr.responseText);
+                }
+              });
             } else {
               alert('Por favor, preencha todos os campos corretamente.');
             }
@@ -220,31 +267,31 @@
 
         if (title && startTime && endTime && description && date && paciente && dentista) {
           $.ajax({
-        url: '/agendamento',
-        method: 'POST',
-        data: {
-          _token: '{{ csrf_token() }}', // Adicionar token CSRF
-          date: date,
-          title: title,
-          start: startTime,
-          end: endTime,
-          description: description,
-          paciente: paciente,
-          dentista: dentista
-        },
-        success: function(response) {
-          console.log('Success:', response);
-        },
-        error: function(xhr, status, error) {
-          console.error('Error:', error);
-          console.error('Status:', status);
-          console.error('Response:', xhr.responseText);
-        }
+            url: '/agendamento',
+            method: 'POST',
+            data: {
+              _token: '{{ csrf_token() }}', // Adicionar token CSRF
+              date: date,
+              title: title,
+              start: startTime,
+              end: endTime,
+              description: description,
+              paciente: paciente,
+              dentista: dentista
+            },
+            success: function(response) {
+              console.log('Success:', response);
+            },
+            error: function(xhr, status, error) {
+              console.error('Error:', error);
+              console.error('Status:', status);
+              console.error('Response:', xhr.responseText);
+            }
           });
         } else {
           console.error('Todos os campos são obrigatórios.');
         }
       });
-        });
+    });
   </script>
-  </x-layout>
+</x-appBarAdmin>

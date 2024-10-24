@@ -14,7 +14,8 @@ class CalendarController extends Controller
     {
         $pacientes = User::where('perfil_id', 3)->get();
         $dentistas = Dentista::all();
-        return view('schedule.index', compact('pacientes', 'dentistas'));
+        $events = Agendamento::all();
+        return view('schedule.index', compact('pacientes', 'dentistas', 'events'));
     }
 
     /**
@@ -58,7 +59,8 @@ class CalendarController extends Controller
      */
     public function show(string $id)
     {
-        return Agendamento::find($id);
+        $event = Agendamento::find($id);
+        return view('schedule.index', compact('event'));
     }
 
     /**
@@ -82,9 +84,14 @@ class CalendarController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        Agendamento::destroy($id);
-        return response()->json(null, 204);
+        $event = Agendamento::find($id);
+        if ($event) {
+            $event->delete();
+            return response()->json(['success' => true]);
+        } else {
+            return response()->json(['success' => false, 'message' => 'Evento não encontrado.']);
+        }
     }
 }

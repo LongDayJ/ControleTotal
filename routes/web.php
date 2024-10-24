@@ -58,6 +58,7 @@ Route::get('/dashboard', function () {
 // ->middleware(Autenticador::class);
 
 Route::resource('agendamento', CalendarController::class)->middleware(Autenticador::class);
+Route::get('/events', [EventController::class, 'getEvents']);
 
 // Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 Route::resource('products', ProductController::class)

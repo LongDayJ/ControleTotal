@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('quantidade');
             $table->bigInteger('quantidadeMinima');
-            $table->foreignId('produto_id/')->constrained('produtos')->onDelete('cascade');
+            $table->foreignId('produto_id')->constrained('produtos')->onDelete('cascade');
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable();
         });

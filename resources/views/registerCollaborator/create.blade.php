@@ -134,7 +134,7 @@
 						</div>
 					</div>
 
-					<!-- <div class="row">
+					<div class="row">
 						<div class="col-md-6 mb-3">
 							<div class="mb-3">
 								<label for="cep" class="form-label">CEP:</label>
@@ -189,7 +189,7 @@
 								<input type="text" class="form-control" id="uf" name="uf" required>
 							</div>
 						</div>
-					</div> -->
+					</div>
 
 					<div class="d-grid gap-2">
 						<div class="row">
