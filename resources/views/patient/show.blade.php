@@ -22,10 +22,10 @@
 				</div>
 				<div class="row">
 					<div class="col-4">
-						<p class="text-break"><strong>CPF:</strong> {{ $patient['cpf'] }}</p>
+						<p class="text-break"><strong>CPF:</strong> {{ substr($patient['cpf'], 0, 3) . '.***.***-' . substr($patient['cpf'], -2) }}</p>
 					</div>
 					<div class="col-4">
-						<p class="text-break"><strong>Código do Paciente:</strong> {{ $patient['codigoPaciente'] }}</p>
+						<p class="text-break"><strong>Telefone:</strong> {{ $patient['telefone'] }}</p>
 					</div>
 				</div>
 				<p class="text-break"><strong>Descrição:</strong> {{ $patient['descricao'] }}</p>
