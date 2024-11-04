@@ -20,7 +20,7 @@
 <body>
 	<header>
 		<nav
-			class="navbar navbar-expand-sm navbar-light bg-light">
+			class="navbar navbar-expand-sm navbar-light bg-primary">
 			<div class="col-12 container-fluid d-flex justify-content-between">
 				<div>
 					<a class="navbar-brand align-items-center" href="/">Controle Total</a>
@@ -42,7 +42,7 @@
 								<a href="/equipe" class="nav-link mx-1">Equipe</a>
 							</li>
 							<li class="nav-item">
-								<a href="/login" class="btn btn-info text-light mx-1">Login</a>
+								<a href="/login" class="btn btn-light text-dark mx-1">Login</a>
 							</li>
 						</ul>
 					</div>

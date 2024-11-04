@@ -21,7 +21,7 @@
 	<main>
 		<div class="d-flex flex-column flex-md-row min-vh-100">
 			<!-- Drawer -->
-			<div class="sidebar d-flex flex-column p-3 bg-light flex-shrink-0" style="max-width: 20vw;">
+			<div class="sidebar d-flex flex-column p-3 bg-primary flex-shrink-0" style="max-width: 20vw;">
 				<a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
 					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-bullseye m-2" viewBox="0 0 16 16">
 						<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
@@ -71,7 +71,7 @@
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-vcard-fill m-2" viewBox="0 0 16 16">
 							<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
 						</svg>
-							Funcionários
+						Funcionários
 					</a>
 					</li>
 				</ul>
@@ -80,7 +80,7 @@
 
 			<div class="page-content-wrapper flex-grow-1">
 				<nav
-					class="navbar navbar-expand-sm navbar-dark bg-light">
+					class="navbar navbar-expand-sm navbar-dark bg-primary">
 					<div class="col-12 container-fluid d-flex justify-content-end">
 						<div>
 							<button
@@ -141,52 +141,9 @@
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous">
 	</script>
-	<script>
-		document.addEventListener('DOMContentLoaded', function() {
-			const themeSwitch = document.getElementById('themeSwitch');
-			const currentTheme = localStorage.getItem('theme') || 'light';
-
-			if (currentTheme === 'dark') {
-				document.body.classList.add('dark-theme');
-				themeSwitch.checked = true;
-			}
-
-			themeSwitch.addEventListener('change', function() {
-				if (this.checked) {
-					document.body.classList.add('dark-theme');
-					localStorage.setItem('theme', 'dark');
-				} else {
-					document.body.classList.remove('dark-theme');
-					localStorage.setItem('theme', 'light');
-				}
-			});
-		});
-	</script>
 	<style>
-		.dark-theme {
-			background-color: #121212;
-			color: #ffffff;
-		}
-
-		.dark-theme .nav-link {
-			color: #ffffff;
-		}
-
-		.dark-theme .nav-link.active {
-			background-color: #333333;
-		}
-
-		.dark-theme .form-check-label {
-			color: #ffffff;
-		}
-
-		.dark-theme .sidebar {
-			background-color: #121212;
-		}
-
-		.dark-theme .navbar {
-			background-color: #333333;
-			color: #ffffff;
+		.nav-link.active {
+			background-color: white !important;
 		}
 	</style>
 </body>
