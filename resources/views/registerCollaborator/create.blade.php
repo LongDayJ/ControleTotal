@@ -82,8 +82,8 @@
 			});
 		});
 	</script>
-	<div class="container pt-5">
-		<div class="row pt-5">
+	<div class="container pt-3">
+		<div class="row">
 			<div class="col-12">
 				<h1 class="text-center">Cadastro de Colaborador</h1>
 			</div>
@@ -133,7 +133,7 @@
 							</div>
 						</div>
 					</div>
-
+<!-- 
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<div class="mb-3">
@@ -189,7 +189,7 @@
 								<input type="text" class="form-control" id="uf" name="uf" required>
 							</div>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="d-grid gap-2">
 						<div class="row">

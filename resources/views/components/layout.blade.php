@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
 	<title>{{$title}} - Controle Total</title>
@@ -20,7 +20,7 @@
 <body>
 	<header>
 		<nav
-			class="navbar navbar-expand-sm navbar-dark bg-dark">
+			class="navbar navbar-expand-sm navbar-light bg-light">
 			<div class="col-12 container-fluid d-flex justify-content-between">
 				<div>
 					<a class="navbar-brand align-items-center" href="/">Controle Total</a>
@@ -42,7 +42,7 @@
 								<a href="/equipe" class="nav-link mx-1">Equipe</a>
 							</li>
 							<li class="nav-item">
-								<a href="/login" class="btn btn-light text-black mx-1">Login</a>
+								<a href="/login" class="btn btn-info text-light mx-1">Login</a>
 							</li>
 						</ul>
 					</div>
@@ -77,7 +77,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="text-center p-3 bg-dark text-white">
+		<div class="text-center p-3 bg-light text-white">
 			&copy; 2023 Casual Group. Todos os direitos reservados.
 		</div>
 	</footer>

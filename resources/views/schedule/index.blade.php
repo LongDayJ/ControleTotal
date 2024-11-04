@@ -7,9 +7,9 @@
   <!-- Adicionar CSS para definir o tamanho do calendário -->
   <style>
     #calendar {
-      max-width: 900px;
+      max-height: 90vh;
       margin: 0 auto;
-      padding: 20px;
+      padding: 10px;
       border: 1px solid #ccc;
       /* Adicionar uma borda para visualização */
     }

@@ -10,6 +10,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\RegisterPatientController;
 use App\Http\Middleware\Autenticador;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home.index');
@@ -45,13 +46,13 @@ Route::post('/register-colaborador', [RegisterCollaboratorController::class, 'st
 
 // Rotas do Colaborador + Admin
 Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
-->name('registerPatient.index')
-->middleware(Autenticador::class);
+    ->name('registerPatient.index')
+    ->middleware(Autenticador::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard.index')
-->middleware(Autenticador::class);
+    ->middleware(Autenticador::class);
 
 // Route::get('/agendamento', [CalendarController::class, 'index'])
 // ->name('schedule.index')
@@ -62,8 +63,15 @@ Route::get('/events', [EventController::class, 'getEvents']);
 
 // Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 Route::resource('products', ProductController::class)
-->middleware(Autenticador::class);
+    ->middleware(Autenticador::class);
 
+Route::post('/estoque/incrementar/{id}', [ProductController::class, 'incrementar'])->name('estoque.incrementar');
+Route::post('/estoque/decrementar/{id}', [ProductController::class, 'decrementar'])->name('estoque.decrementar');
 // Route::resource('/products', ProductController::class)
 // ->only(['index', 'create']);
 // ->middleware(Autenticador::class);
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
