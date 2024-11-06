@@ -4,16 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class loginController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('login.index');
+        //
     }
 
     /**
@@ -29,22 +28,7 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
-        // Tentativa de autenticação
-        if (!Auth::attempt($request->only(['email', 'password']))) {
-            return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
-        }
-
-        // pegar o usuário do banco de dados
-        $user = User::where('email', $request['email'])->first();
-
-        // redirecionar para a página correta
-        if ($user['perfil_id'] == 1 || $user['perfil_id'] == 2) {
-            return to_route('dashboard.index');
-        } else if ($user['perfil_id'] == 3) {
-            return to_route('patient.show', ['id' => $user['id']]);
-        } else {
-            return to_route('login.index');
-        }
+        //
     }
 
     /**
@@ -52,7 +36,14 @@ class loginController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        dd($user);
+        if ($user) {
+            return view('profile.show')->with('profileUser', $user);
+        } else {
+            abort(404, 'Paciente não encontrado');
+        }
     }
 
     /**

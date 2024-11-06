@@ -9,6 +9,25 @@ use App\Models\Estoque;
 
 class ProductController extends Controller
 {
+    public function incrementar($id)
+    {
+        $product = Produto::find($id);
+        if ($product && $product->estoque) {
+            $product->estoque->quantidade += 1;
+            $product->estoque->save();
+        }
+        return redirect()->back();
+    }
+
+    public function decrementar($id)
+    {
+        $product = Produto::find($id);
+        if ($product && $product->estoque && $product->estoque->quantidade > 0) {
+            $product->estoque->quantidade -= 1;
+            $product->estoque->save();
+        }
+        return redirect()->back();
+    }
     /**
      * Display a listing of the resource.
      */
@@ -28,6 +47,13 @@ class ProductController extends Controller
             $product->estoque = $estoque->where('produto_id', $product->id)->first();
         });
 
+        // Ordenar os produtos por ordem alfabética
+        $products = $products->sortBy('nome');
+        
+        // Ordenar os produtos com quantidade igual ou menor à quantidade mínima para o topo
+        $products = $products->sortByDesc(function ($product) {
+            return $product->estoque && $product->estoque->quantidade <= $product->estoque->quantidadeMinima;
+        });
         return view('products.index', compact('products')); // Passar os dados compactados para a view
     }
 

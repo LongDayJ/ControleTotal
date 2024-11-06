@@ -37,13 +37,11 @@ class PatientController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        // dd($user);
+        $user = User::findOrFail($id);
 
         if ($user) {
             return view('patient.show')->with('patient', $user);
         } else {
-            // Trate o erro conforme necessário
             abort(404, 'Paciente não encontrado');
         }
     }

@@ -22,10 +22,10 @@
 				</div>
 				<div class="row">
 					<div class="col-4">
-						<p class="text-break"><strong>CPF:</strong> {{ $patient['cpf'] }}</p>
+						<p class="text-break"><strong>CPF:</strong> {{ substr($patient['cpf'], 0, 3) . '.***.***-' . substr($patient['cpf'], -2) }}</p>
 					</div>
 					<div class="col-4">
-						<p class="text-break"><strong>Código do Paciente:</strong> {{ $patient['codigoPaciente'] }}</p>
+						<p class="text-break"><strong>Telefone:</strong> {{ $patient['telefone'] }}</p>
 					</div>
 				</div>
 				<p class="text-break"><strong>Descrição:</strong> {{ $patient['descricao'] }}</p>
@@ -51,26 +51,14 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>Consulta</td>
-							<td>01/01/2021</td>
-							<td>R$ 100,00</td>
-							<td>Pendente</td>
-						</tr>
-						<tr>
-							<td>Manutenção de Aparelho</td>
-							<td>01/01/2021</td>
-							<td>R$ 150,00</td>
-							<td>Pago</td>
-						</tr>
-						<tr>
-							<td>Limpeza de Tartáro</td>
-							<td>01/01/2021</td>
-							<td>R$ 350,00</td>
-							<td>Pago</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
 	</div>
-</x-layout>
+	</x-layout>

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('perfils', function (Blueprint $table) {
-        
-            $table->id();
-            $table->enum('nome', ['ADM', 'COLABORADOR' , 'CLIENTE'])->default('CLIENTE');
-            $table->timestamp('created_at')->nullable(false);
-            $table->timestamp('updated_at')->nullable();
+        Schema::table('agendamento', function (Blueprint $table) {
+            $table->time('horaFinal')->nullable();
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('perfils');
+        Schema::table('agendamento', function (Blueprint $table) {
+            //
+        });
     }
 };

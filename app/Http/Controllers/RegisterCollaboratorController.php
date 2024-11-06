@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Queue\Failed\PrunableFailedJobProvider;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class RegisterCollaboratorController extends Controller
@@ -18,9 +19,10 @@ class RegisterCollaboratorController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('registerCollaborator.create');
+        $cadastroSuccesso = $request->session()->get('cadastrado.sucesso');
+        return view('registerCollaborator.create')->with('cadastroSuccesso', $cadastroSuccesso);
         //
     }
 
@@ -32,7 +34,10 @@ class RegisterCollaboratorController extends Controller
         $data = $request->except('_token');
         $data['password'] = Hash::make($data['password']);
         $data['confirmPassword'] = Hash::make($data['confirmPassword']);
-        dd($data);
+        $data['perfil_id'] = 2;
+        $user = User::create($data);
+        return to_route('registerCollaborator.create')
+        ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
     }
 
     /**
