@@ -2,18 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Agendamento;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
+use App\Models\Consulta;
+use App\Models\Estoque;
 
-class PatientController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        // Obter o número de consultas do dia
+        $consultasDoDia = Agendamento::whereDate('data', today())->count();
+
+        // Obter o número de produtos com quantidade mínima
+        $produtosQuantidadeMinima = Estoque::whereColumn('quantidade', 'quantidadeMinima')->count();
+
+        // Passar as variáveis para a view
+        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima'));
     }
 
     /**
@@ -35,15 +43,9 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $user = User::findOrFail($id);
-
-        if ($user) {
-            return view('patient.show')->with('patient', $user);
-        } else {
-            abort(404, 'Paciente não encontrado');
-        }
+        //
     }
 
     /**

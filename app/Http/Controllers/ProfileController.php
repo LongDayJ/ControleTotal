@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
-class PatientController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,12 +34,13 @@ class PatientController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
         $user = User::findOrFail($id);
 
+        dd($user);
         if ($user) {
-            return view('patient.show')->with('patient', $user);
+            return view('profile.show')->with('profileUser', $user);
         } else {
             abort(404, 'Paciente não encontrado');
         }
