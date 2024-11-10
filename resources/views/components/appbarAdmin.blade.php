@@ -74,8 +74,17 @@
 						Funcionários
 					</a>
 					</li>
+					<a href="{{ route('registro.index') }}" class="nav-link link-light {{ request()->routeIs('registro.index') ? 'active link-dark' : 'link-light' }}">
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-badge-fill m-2" viewBox="0 0 16 16">
+							<path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z" />
+						</svg>
+						Registros
+					</a>
 				</ul>
 				<hr>
+				<div class="">
+					<p class="text-light text-center">{{ \Carbon\Carbon::now()->setTimezone('America/Sao_Paulo')->format('d/m/Y') }}</p>
+				</div>
 			</div>
 
 			<div class="page-content-wrapper flex-grow-1">
@@ -96,9 +105,8 @@
 							<div class="collapse navbar-collapse align-items-end" id="collapsibleNavId">
 								<ul class="navbar-nav mt-2 mt-lg-0 d-flex justify-content-end">
 									<div class="dropdown">
-										<a href="#" class="d-flex align-items-center link-light text-decoration-none" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+										<a href="#" class="d-flex align-items-center link-light text-decoration-none my-2" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
 											<strong>Olá, {{ Auth::user()->name }}</strong>
-											<img src="https://github.com/mdo.png" alt="" width="48" height="48" class="rounded-circle mx-2">
 										</a>
 										<ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
 											<li><a class="dropdown-item" href="#">Settings</a></li>

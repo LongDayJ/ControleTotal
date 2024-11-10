@@ -59,7 +59,7 @@
 					</div>
 				</div>
 			</div>
-			<div id="paleta-original" style="background-color: #0154a2; width: 100px; height: 100px;"></div>
+			<!-- <div id="paleta-original" style="background-color: #0154a2; width: 100px; height: 100px;"></div> -->
 			<!-- <div id="paleta-protanopia" style="background-color: #0154a2; width: 100px; height: 100px;"></div>
 			<div id="paleta-deuteranopia" style="background-color: #0154a2; width: 100px; height: 100px;"></div>
 			<div id="paleta-tritanopia" style="background-color: #0154a2; width: 100px; height: 100px;"></div> -->
