@@ -208,5 +208,71 @@
 				</form>
 			</div>
 		</div>
+	<!-- Modal -->
+	<div class="modal fade" id="registerCollaboratorModal" tabindex="-1" aria-labelledby="registerCollaboratorModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="registerCollaboratorModalLabel">Cadastro de Colaborador</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<form action="{{ route('registerCollaborator.store') }}" method="POST">
+						@csrf
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="name" class="form-label">Nome Completo</label>
+								<input type="text" class="form-control" id="name" name="name" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="email" class="form-label">Email:</label>
+								<input type="email" class="form-control" id="email" name="email" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="cpf" class="form-label">CPF:</label>
+								<input type="text" class="form-control" id="cpf" name="cpf" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="mb-3">
+									<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
+									<input type="text" class="form-control" id="cro" name="cro">
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<div class="mb-3">
+									<label for="password" class="form-label">Senha:</label>
+									<input type="password" class="form-control" id="password" name="password" required>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="mb-3">
+									<label for="confirmPassword" class="form-label">Confirmar Senha:</label>
+									<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+								</div>
+							</div>
+						</div>
+						<div class="d-grid gap-2">
+							<div class="row">
+								<div class="col-11 mb-3">
+									<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+								</div>
+								<div class="col-1 mb-3">
+									<button id="clearForm" type="button" class="btn btn-secondary">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
+											<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 	</div>
 </x-appBarAdmin>

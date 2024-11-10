@@ -9,11 +9,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\RegisterPatientController;
 use App\Http\Middleware\Autenticador;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::get('/', function () {
     return view('home.index');
@@ -69,8 +69,11 @@ Route::post('/estoque/decrementar/{id}', [ProductController::class, 'decrementar
 Route::get('/profile/{id}', [ProfileController::class, 'show'])
     ->name('profile.show')->middleware(Autenticador::class);
 
+Route::get('/registros', [RegistroController::class, 'index'])
+    ->name('registro.index')
+    ->middleware(Autenticador::class);
 
 Route::post('/logout', function () {
     Auth::logout();
-    return redirect('/login');
+    return redirect('/');
 })->name('logout');

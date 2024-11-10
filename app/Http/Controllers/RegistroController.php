@@ -2,28 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
-class RegisterCollaboratorController extends Controller
+class RegistroController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        if (Auth::user()->perfil_id != 2) {
+            return redirect()->route('/');
+        }
+
+        // dd(Auth::user());
+        $colaboradores = User::where('perfil_id', 2)->get();
+        return view('registro.index', compact('colaboradores'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        $cadastroSuccesso = $request->session()->get('cadastrado.sucesso');
-        return view('registerCollaborator.create')->with('cadastroSuccesso', $cadastroSuccesso);
         //
     }
 
@@ -32,13 +35,7 @@ class RegisterCollaboratorController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->except('_token');
-        $data['password'] = Hash::make($data['password']);
-        $data['confirmPassword'] = Hash::make($data['confirmPassword']);
-        $data['perfil_id'] = 2;
-        $user = User::create($data);
-        return to_route('registerCollaborator.create')
-        ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
+        //
     }
 
     /**
