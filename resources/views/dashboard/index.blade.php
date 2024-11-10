@@ -30,16 +30,26 @@
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
-						<h5 class="card-title">Card Genérico 1</h5>
-						<p class="card-text">Informações adicionais aqui.</p>
+						<h3 class="card-title">{{ $procedimentosCadastrados }}</h3>
+						<p class="card-text">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard-fill m-2" viewBox="0 0 16 16">
+								<path fill-rule="evenodd" d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2" />
+							</svg>
+							Procedimentos Cadastrados
+						</p>
 					</div>
 				</div>
 			</div>
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
-						<h5 class="card-title">Card Genérico 2</h5>
-						<p class="card-text">Informações adicionais aqui.</p>
+						<h5 class="card-title">{{ $pacientesCadastrados }}</h5>
+						<p class="card-text">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill m-2" viewBox="0 0 16 16">
+								<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+							</svg>
+							Pacientes Cadastrados
+						</p>
 					</div>
 				</div>
 			</div>

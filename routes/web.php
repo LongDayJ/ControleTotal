@@ -19,17 +19,7 @@ Route::get('/', function () {
     return view('home.index');
 });
 
-// Route::get('/patients/{id}', function ($patient) {
-//     return view('patient.show', ['id' => $patient]);
-// });
-
-Route::get('/login', [loginController::class, 'index'])->name('login.index');
 Route::post('/login', [loginController::class, 'store'])->name('login.store');
-
-
-Route::get('/equipe', function () {
-    return view('team.index');
-});
 
 // Rota do Paciente 
 Route::get('/patient/{id}', [PatientController::class, 'show'])

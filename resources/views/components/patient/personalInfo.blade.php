@@ -1,3 +1,0 @@
-<x-bfive>
-
-</x-bfive>

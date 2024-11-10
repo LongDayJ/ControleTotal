@@ -61,4 +61,4 @@
 			</div>
 		</div>
 	</div>
-	</x-layout>
+</x-appbarUser>
