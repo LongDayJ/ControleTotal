@@ -13,9 +13,6 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->perfil_id != 2) {
-            return redirect()->route('/');
-        }
 
         // dd(Auth::user());
         $colaboradores = User::where('perfil_id', 2)->get();
