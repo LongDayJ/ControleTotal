@@ -12,18 +12,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\RegisterPatientController;
 use App\Http\Middleware\Autenticador;
+use App\Http\Middleware\AutenticadorPaciente;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home.index');
 
 Route::post('/login', [loginController::class, 'store'])->name('login.store');
 
 // Rota do Paciente 
 Route::get('/patient/{id}', [PatientController::class, 'show'])
-    ->name('patient.show')->middleware(Autenticador::class);
+    ->name('patient.show')->middleware(AutenticadorPaciente::class);
 
 // Rotas do Admin
 Route::get('/register-colaborador', [RegisterCollaboratorController::class, 'create'])

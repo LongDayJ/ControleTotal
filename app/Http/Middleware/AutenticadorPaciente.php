@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class Autenticador
+class AutenticadorPaciente
 {
     /**
      * Handle an incoming request.
@@ -16,8 +16,8 @@ class Autenticador
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!$request->is('login') && !Auth::check()) {
-            return redirect()->route('home.index');
+        if (!$request->is('login') && (!Auth::check() || Auth::user()->perfil_id != 3 || Auth::user()->id != $request->route('id'))) {
+            return redirect()->back();
         }
         return $next($request);
     }

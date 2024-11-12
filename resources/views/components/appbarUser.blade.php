@@ -40,24 +40,33 @@
 						<ul class="navbar-nav mt-2 mt-lg-0 d-flex justify-content-end">
 							<li class="nav-item">
 								<div class="dropdown">
-									<a href="#" class="d-flex align-items-center link-dark text-decoration-none" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-										Olá, {{ Auth::user()->name }}
-										<img src="@if (Auth::user()->profile_photo_path){{ Auth::user()->profile_photo_path }}
-                        @else
-                            'https://via.placeholder.com/48'
-                        @endif
-                        " alt="" width="48" height="48" class="rounded-circle mx-2">
-									</a>
+									<div class="collapse navbar-collapse align-items-end" id="collapsibleNavId">
+										<ul class="navbar-nav mt-2 mt-lg-0 d-flex justify-content-end">
+											<div class="dropdown">
+												<a href="#" class="d-flex align-items-center link-light text-decoration-none my-2" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+													<strong>Olá, {{ Auth::user()->name }}</strong>
+												</a>
+												<ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
+													<li><a class="dropdown-item" href="#">Settings</a></li>
+
+													<li><a class="dropdown-item" href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Perfil</a></li>
+													<li>
+														<hr class="dropdown-divider">
+													</li>
+													<li>
+														<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+															@csrf
+														</form>
+														<a class="dropdown-item" href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+															Sair
+														</a>
+													</li>
+												</ul>
+											</div>
+										</ul>
+									</div>
 								</div>
 							</li>
-							<li class="nav-item">
-								<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-									@csrf
-								</form>
-								<a href="#" class="btn btn-danger" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-									Sair
-								</a>
-								</liv>
 						</ul>
 					</div>
 				</div>
@@ -80,6 +89,11 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
 		integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
 		crossorigin="anonymous"></script>
+	<style>
+		.navbar {
+			background-color: #0154a2 !important;
+		}
+	</style>
 </body>
 
 </html>
