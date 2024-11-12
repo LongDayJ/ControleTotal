@@ -7,13 +7,19 @@
 	@endif
 	<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 		<li class="nav-item" role="presentation">
-			<a class="nav-link active" id="colaborador-tab" data-toggle="tab" href="#colaborador" role="tab" aria-controls="colaborador" aria-selected="true">Colaboradores</a>
+			<a class="nav-link active" id="colaborador-tab" data-toggle="tab" href="#colaborador" role="tab" aria-controls="colaborador" aria-selected="true">
+				Colaboradores
+			</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link" id="paciente-tab" data-toggle="tab" href="#paciente" role="tab" aria-controls="paciente" aria-selected="false">Pacientes</a>
+			<a class="nav-link" id="paciente-tab" data-toggle="tab" href="#paciente" role="tab" aria-controls="paciente" aria-selected="false">
+				Pacientes
+			</a>
 		</li>
 		<li class="nav-item" role="presentation">
-			<a class="nav-link" id="procedimento-tab" data-toggle="tab" href="#procedimento" role="tab" aria-controls="procedimento" aria-selected="false">Registrar Procedimento</a>
+			<a class="nav-link" id="procedimento-tab" data-toggle="tab" href="#procedimento" role="tab" aria-controls="procedimento" aria-selected="false">
+				Procedimentos
+			</a>
 		</li>
 		<li class="nav-item" role="presentation">
 			<a class="nav-link" id="dentista-tab" data-toggle="tab" href="#dentista" role="tab" aria-controls="dentista" aria-selected="false">
