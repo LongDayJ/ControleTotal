@@ -4,19 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\ValidCpf;
+
 
 class RegisterCollaboratorController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        
-    }
-    
+    public function index() {}
+
     /**
      * Show the form for creating a new resource.
      */
@@ -32,13 +30,20 @@ class RegisterCollaboratorController extends Controller
      */
     public function store(Request $request)
     {
+        // Validações incluindo CPF, email e senha
+        $request->validate([
+            'cpf' => ['required', new ValidCpf],
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
         $data = $request->except('_token');
         $data['password'] = Hash::make($data['password']);
         $data['confirmPassword'] = Hash::make($data['confirmPassword']);
         $data['perfil_id'] = 2;
         $user = User::create($data);
         return to_route('registerCollaborator.create')
-        ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
+            ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
     }
 
     /**

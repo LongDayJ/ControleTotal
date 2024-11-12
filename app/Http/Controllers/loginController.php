@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Rules\ValidCpf;
 
 class loginController extends Controller
 {
@@ -30,20 +29,7 @@ class loginController extends Controller
      */
     public function store(Request $request)
     {
-
-        // Validações incluindo CPF, email e senha
-        $request->validate([
-        'cpf' => ['required', new ValidCpf],
-        'email' => 'required|email',
-        'password' => 'required|string',
-                ]);
-
-        // Tenta autenticar o usuário usando o CPF e a senha
-        if (!Auth::attempt(['cpf' => $request->cpf, 'password' => $request->password])) {
-            return back()->withErrors([
-                'cpf' => 'As credenciais fornecidas estão incorretas.',
-            ]);
-        }        
+        
         // Tentativa de autenticação
         if (!Auth::attempt($request->only(['email', 'password']))) {
             return redirect()->back()->withErrors('Usuário e/ou senha incorretos');
