@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dentista', function (Blueprint $table) {
             $table->id();
             $table->string('nome');
-            $table->string('descricao');
+            $table->string('descricao')->nullable();
             $table->string('status');
             $table->string('cro');
             $table->timestamp('created_at')->nullable(false);

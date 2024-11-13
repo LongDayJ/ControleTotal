@@ -12,28 +12,19 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\RegisterPatientController;
 use App\Http\Middleware\Autenticador;
+use App\Http\Middleware\AutenticadorPaciente;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
     return view('home.index');
-});
+})->name('home.index');
 
-// Route::get('/patients/{id}', function ($patient) {
-//     return view('patient.show', ['id' => $patient]);
-// });
-
-Route::get('/login', [loginController::class, 'index'])->name('login.index');
 Route::post('/login', [loginController::class, 'store'])->name('login.store');
-
-
-Route::get('/equipe', function () {
-    return view('team.index');
-});
 
 // Rota do Paciente 
 Route::get('/patient/{id}', [PatientController::class, 'show'])
-    ->name('patient.show')->middleware(Autenticador::class);
+    ->name('patient.show')->middleware(AutenticadorPaciente::class);
 
 // Rotas do Admin
 Route::get('/register-colaborador', [RegisterCollaboratorController::class, 'create'])
@@ -49,6 +40,10 @@ Route::get('/agendamento', function () {
 // Rotas do Colaborador
 Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
     ->name('registerPatient.index')
+    ->middleware(Autenticador::class);
+
+Route::post('/registrar-paciente', [RegisterPatientController::class, 'store'])
+    ->name('registerPatient.store')
     ->middleware(Autenticador::class);
 
 Route::get('/dashboard', [DashboardController::class, 'index'])

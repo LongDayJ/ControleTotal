@@ -17,7 +17,6 @@ class ProcedimentoFactory extends Factory
         return [
             'nome' => $this->faker->word(),  // Gera um nome aleatório para o procedimento
             'descricao' => $this->faker->sentence(),  // Gera uma descrição aleatória
-            'codigo_procedimento' => $this->faker->unique()->numerify('PROC###'),  // Código único, como 'PROC123'
             'id_procedimento_pai' => null,  // Procedimentos sem pai por padrão (pode ser setado posteriormente)
         ];
     }

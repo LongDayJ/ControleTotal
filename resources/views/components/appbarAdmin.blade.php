@@ -18,6 +18,32 @@
 </head>
 
 <body>
+	<script src="https://cdn.jsdelivr.net/npm/mousetrap@1.6.5/mousetrap.min.js"></script>
+	<script>
+		Mousetrap.bind('d', function() {
+			window.location.href = "{{ route('dashboard.index') }}";
+		});
+
+		Mousetrap.bind('a', function() {
+			window.location.href = "{{ route('agendamento.index') }}";
+		});
+
+		Mousetrap.bind('p', function() {
+			window.location.href = "{{ route('products.index') }}";
+		});
+
+		Mousetrap.bind('c', function() {
+			window.location.href = "{{ route('registerPatient.index') }}";
+		});
+
+		Mousetrap.bind('f', function() {
+			window.location.href = "{{ route('registerCollaborator.create') }}";
+		});
+
+		Mousetrap.bind('r', function() {
+			window.location.href = "{{ route('registro.index') }}";
+		});
+	</script>
 	<main>
 		<div class="d-flex flex-column flex-md-row min-vh-100">
 			<!-- Drawer -->
@@ -67,19 +93,22 @@
 							Pacientes
 						</a>
 					</li>
-					<a href="{{ route('registerCollaborator.create') }}" class="nav-link link-light {{ request()->routeIs('registerCollaborator.create') ? 'active link-dark' : 'link-light' }}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-vcard-fill m-2" viewBox="0 0 16 16">
-							<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
-						</svg>
-						Funcionários
-					</a>
+					<li>
+						<a href="{{ route('registerCollaborator.create') }}" class="nav-link link-light {{ request()->routeIs('registerCollaborator.create') ? 'active link-dark' : 'link-light' }}">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-vcard-fill m-2" viewBox="0 0 16 16">
+								<path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5M9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8m1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5m-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96q.04-.245.04-.5M7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0" />
+							</svg>
+							Funcionários
+						</a>
 					</li>
-					<a href="{{ route('registro.index') }}" class="nav-link link-light {{ request()->routeIs('registro.index') ? 'active link-dark' : 'link-light' }}">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-badge-fill m-2" viewBox="0 0 16 16">
-							<path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z" />
-						</svg>
-						Registros
-					</a>
+					<li>
+						<a href="{{ route('registro.index') }}" class="nav-link link-light {{ request()->routeIs('registro.index') ? 'active link-dark' : 'link-light' }}">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-badge-fill m-2" viewBox="0 0 16 16">
+								<path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6m5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1z" />
+							</svg>
+							Registros
+						</a>
+					</li>
 				</ul>
 				<hr>
 				<div class="">

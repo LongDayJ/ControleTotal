@@ -46,9 +46,6 @@
 					</button>
 					<div class="collapse navbar-collapse align-items-end" id="collapsibleNavId">
 						<ul class="navbar-nav mt-2 mt-lg-0 d-flex justify-content-end">
-							<li class="nav-item">
-								<a href="/equipe" class="nav-link text-light mx-1">Equipe</a>
-							</li>
 							<li class="nav-item dropdown"></li>
 							<a class="btn btn-light text-dark mx-1" href="#" id="loginDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 								Login

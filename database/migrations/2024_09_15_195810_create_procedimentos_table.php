@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('nome');
             $table->string('descricao');
-            $table->string('codigo_procedimento');
             $table->foreignId('id_procedimento_pai')->nullable()->constrained('procedimentos')->onDelete('cascade');
             $table->timestamps();
         });

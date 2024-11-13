@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Procedimento;
 
 class RegistroController extends Controller
 {
@@ -13,13 +14,19 @@ class RegistroController extends Controller
      */
     public function index()
     {
-        if (Auth::user()->perfil_id != 2) {
-            return redirect()->route('/');
-        }
 
         // dd(Auth::user());
         $colaboradores = User::where('perfil_id', 2)->get();
-        return view('registro.index', compact('colaboradores'));
+        $procedimentos = Procedimento::all();
+        foreach ($procedimentos as $procedimento) {
+            if ($procedimento->id_procedimento_pai) {
+                $procedimento->nome_procedimento_pai = Procedimento::find($procedimento->id_procedimento_pai)->nome;
+            } else {
+                $procedimento->nome_procedimento_pai = null;
+            }
+        }
+        $pacientes = User::where('perfil_id', 3)->get();
+        return view('registro.index', compact('colaboradores', 'procedimentos', 'pacientes'));
     }
 
     /**

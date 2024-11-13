@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use Illuminate\Http\Request;
-use App\Models\Consulta;
+use App\Models\User;
 use App\Models\Estoque;
+use App\Models\Dentista;
+use App\Models\Procedimento;
 
 class DashboardController extends Controller
 {
@@ -20,8 +22,14 @@ class DashboardController extends Controller
         // Obter o número de produtos com quantidade mínima
         $produtosQuantidadeMinima = Estoque::whereColumn('quantidade', 'quantidadeMinima')->count();
 
+        $procedimentosCadastrados = Procedimento::all()->count();
+
+        $pacientesCadastrados = User::where('perfil_id', 3)->count();
+
+        $dentistasCadastrados = Dentista::all()->count();
+
         // Passar as variáveis para a view
-        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima'));
+        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 'pacientesCadastrados', 'dentistasCadastrados'));
     }
 
     /**

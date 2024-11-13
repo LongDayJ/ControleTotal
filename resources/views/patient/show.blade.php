@@ -8,23 +8,20 @@
 		</div>
 
 		<div class="row">
-			<div class="col-4 text-center align-content-center">
-				<img src="https://via.placeholder.com/200" alt="Foto do Paciente" class="img-fluid">
-			</div>
-			<div class="col-8 pt-4">
+			<div class="col-12 pt-4">
 				<div class="row">
-					<div class="col-4">
+					<div class="col-6">
 						<p class="text-break"><strong>Nome:</strong> {{ $patient['name'] }}</p>
 					</div>
-					<div class="col-4">
+					<div class="col-6">
 						<p class="text-break"><strong>E-mail:</strong> {{ $patient['email'] }}</p>
 					</div>
 				</div>
 				<div class="row">
-					<div class="col-4">
+					<div class="col-6">
 						<p class="text-break"><strong>CPF:</strong> {{ substr($patient['cpf'], 0, 3) . '.***.***-' . substr($patient['cpf'], -2) }}</p>
 					</div>
-					<div class="col-4">
+					<div class="col-6">
 						<p class="text-break"><strong>Telefone:</strong> {{ $patient['telefone'] }}</p>
 					</div>
 				</div>
@@ -61,4 +58,4 @@
 			</div>
 		</div>
 	</div>
-	</x-layout>
+</x-appbarUser>
