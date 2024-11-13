@@ -6,6 +6,7 @@ use App\Models\Agendamento;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Estoque;
+use App\Models\Dentista;
 use App\Models\Procedimento;
 
 class DashboardController extends Controller
@@ -25,8 +26,10 @@ class DashboardController extends Controller
 
         $pacientesCadastrados = User::where('perfil_id', 3)->count();
 
+        $dentistasCadastrados = Dentista::all()->count();
+
         // Passar as variáveis para a view
-        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 'pacientesCadastrados'));
+        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 'pacientesCadastrados', 'dentistasCadastrados'));
     }
 
     /**

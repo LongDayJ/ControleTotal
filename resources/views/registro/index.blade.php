@@ -1,10 +1,10 @@
 <x-appBarAdmin title="Registros">
 	<h1>Tela de Registros</h1>
-	@if(session('success'))
+	@isset($cadastroSuccesso)
 	<div class="alert alert-success">
-		{{ session('success') }}
+		{{ $cadastroSuccesso }}
 	</div>
-	@endif
+	@endisset
 	<ul class="nav nav-tabs nav-fill" id="myTab" role="tablist">
 		<li class="nav-item" role="presentation">
 			<a class="nav-link active" id="colaborador-tab" data-toggle="tab" href="#colaborador" role="tab" aria-controls="colaborador" aria-selected="true">
@@ -72,7 +72,6 @@
 							</svg>
 						</button>
 					</form>
-					</form>
 				</div>
 			</div>
 			<table class="table text-center">
@@ -99,16 +98,59 @@
 
 		<!-- TODO Pacientes -->
 		<div class="tab-pane fade" id="paciente" role="tabpanel" aria-labelledby="paciente-tab">
-			<h2>Paciente</h2>
-			<form action="" method="POST">
-				@csrf
-				<label for="pacienteNome">Nome:</label>
-				<input type="text" id="pacienteNome" name="pacienteNome" required>
-				<label for="pacienteIdade">Idade:</label>
-				<input type="number" id="pacienteIdade" name="pacienteIdade" required>
-				<button type="submit">Registrar</button>
-			</form>
+			<h2>Pacientes</h2>
+			<div class="col-4 text-start">
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#registerPatientModal">
+					Registrar Paciente
+				</button>
+			</div>
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th>Paciente</th>
+						<th>Email</th>
+						<th>Telefone</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($pacientes as $paciente)
+					<tr>
+						<td>{{ $paciente->name }}</td>
+						<td>{{ $paciente->email }}</td>
+						<td></td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
+			<!-- Modal -->
+			<div class="modal fade" id="registerPatientModal" tabindex="-1" aria-labelledby="registerPatientModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="registerPatientModalLabel">Registrar Paciente</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							<form action="{{ route('registerPatient.store') }}" method="POST">
+								@csrf
+								<label for="pacienteNome">Nome:</label>
+								<input type="text" id="pacienteNome" name="pacienteNome" required>
+								<label for="pacienteIdade">Idade:</label>
+								<input type="number" id="pacienteIdade" name="pacienteIdade" required>
+								<label for="pacienteEmail">Email:</label>
+								<input type="email" id="pacienteEmail" name="pacienteEmail" required>
+								<label for="pacienteTelefone">Telefone:</label>
+								<input type="text" id="pacienteTelefone" name="pacienteTelefone" required>
+								<button type="submit" class="btn btn-primary">Registrar</button>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
+
 		<div class="tab-pane fade" id="procedimento" role="tabpanel" aria-labelledby="procedimento-tab">
 			<h2>Procedimento</h2>
 			<form action="" method="POST">
@@ -117,7 +159,26 @@
 				<input type="text" id="procedimentoNome" name="procedimentoNome" required>
 				<button type="submit">Registrar</button>
 			</form>
+			<table class="table text-center">
+				<thead>
+					<tr>
+						<th>Procedimento</th>
+						<th>Descricao</th>
+						<th>Depende de</th>
+					</tr>
+				</thead>
+				<tbody>
+					@foreach($procedimentos as $procedimento)
+					<tr>
+						<td>{{ $procedimento->nome }}</td>
+						<td>{{ $procedimento->descricao }}</td>
+						<td>{{ $procedimento->nome_procedimento_pai }}</td>
+					</tr>
+					@endforeach
+				</tbody>
+			</table>
 		</div>
+
 		<div class="tab-pane fade" id="dentista" role="tabpanel" aria-labelledby="dentista-tab">
 			<h2>Dentistas</h2>
 			<form action="" method="POST">

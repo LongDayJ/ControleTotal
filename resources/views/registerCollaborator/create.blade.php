@@ -95,130 +95,9 @@
 		@endisset
 		<div class="row justify-content-center align-items-center align-content-center d-flex pb-5">
 			<div class="col-8">
-				<form action="{{ route('registerCollaborator.store') }}" method="POST">
+				<form id="formStep1" action="{{ route('registerCollaborator.store') }}" method="POST">
 					@csrf
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="name" class="form-label">Nome Completo</label>
-							<input type="text" class="form-control" id="name" name="name" required>
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="email" class="form-label">Email:</label>
-							<input type="email" class="form-control" id="email" name="email" required>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="cpf" class="form-label">CPF:</label>
-							<input type="text" class="form-control" id="cpf" name="cpf" required>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
-								<input type="text" class="form-control" id="cro" name="cro">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="password" class="form-label">Senha:</label>
-								<input type="password" class="form-control" id="password" name="password" required>
-							</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="confirmPassword" class="form-label">Confirmar Senha:</label>
-								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-							</div>
-						</div>
-					</div>
-<!-- 
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="cep" class="form-label">CEP:</label>
-								<input type="text" class="form-control" id="cep" name="cep" required>
-							</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="complemento" class="form-label">Complemento:</label>
-								<input type="text" class="form-control" id="complemento" name="complemento">
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="logradouro" class="form-label">Logradouro:</label>
-								<input type="text" class="form-control" id="logradouro" name="logradouro" required>
-							</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="numeroCasa" class="form-label">Nº da Casa:</label>
-								<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="bairro" class="form-label">Bairro:</label>
-								<input type="text" class="form-control" id="bairro" name="bairro" required>
-							</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="phone" class="form-label">Telefone:</label>
-								<input type="text" class="form-control" id="phone" name="phone" required>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="cidade" class="form-label">Cidade:</label>
-								<input type="text" class="form-control" id="cidade" name="cidade" required>
-							</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<div class="mb-3">
-								<label for="uf" class="form-label">Estado:</label>
-								<input type="text" class="form-control" id="uf" name="uf" required>
-							</div>
-						</div>
-					</div> -->
-
-					<div class="d-grid gap-2">
-						<div class="row">
-							<div class="col-11 mb-3">
-								<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
-							</div>
-							<div class="col-1 mb-3">
-								<button id="clearForm" type="button" class="btn btn-secondary">
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-										<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
-									</svg>
-								</button>
-							</div>
-						</div>
-					</div>
-				</form>
-			</div>
-		</div>
-	<!-- Modal -->
-	<div class="modal fade" id="registerCollaboratorModal" tabindex="-1" aria-labelledby="registerCollaboratorModalLabel" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="registerCollaboratorModalLabel">Cadastro de Colaborador</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<form action="{{ route('registerCollaborator.store') }}" method="POST">
-						@csrf
+					<div id="step1">
 						<div class="row">
 							<div class="col-md-6 mb-3">
 								<label for="name" class="form-label">Nome Completo</label>
@@ -235,44 +114,113 @@
 								<input type="text" class="form-control" id="cpf" name="cpf" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<div class="mb-3">
-									<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
-									<input type="text" class="form-control" id="cro" name="cro">
-								</div>
+								<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
+								<input type="text" class="form-control" id="cro" name="cro">
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<div class="mb-3">
-									<label for="password" class="form-label">Senha:</label>
-									<input type="password" class="form-control" id="password" name="password" required>
-								</div>
+								<label for="password" class="form-label">Senha:</label>
+								<input type="password" class="form-control" id="password" name="password" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<div class="mb-3">
-									<label for="confirmPassword" class="form-label">Confirmar Senha:</label>
-									<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-								</div>
+								<label for="confirmPassword" class="form-label">Confirmar Senha:</label>
+								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
 							</div>
 						</div>
 						<div class="d-grid gap-2">
 							<div class="row">
 								<div class="col-11 mb-3">
-									<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+									<button type="button" class="btn btn-primary col-12" id="nextStep">Avançar</button>
 								</div>
 								<div class="col-1 mb-3">
 									<button id="clearForm" type="button" class="btn btn-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3-fill" viewBox="0 0 16 16">
-											<path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5" />
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+											<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
 										</svg>
 									</button>
 								</div>
 							</div>
 						</div>
-					</form>
-				</div>
+					</div>
+					<div id="step2" style="display: none;">
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="cep" class="form-label">CEP:</label>
+								<input type="text" class="form-control" id="cep" name="cep" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="complemento" class="form-label">Complemento:</label>
+								<input type="text" class="form-control" id="complemento" name="complemento">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="logradouro" class="form-label">Logradouro:</label>
+								<input type="text" class="form-control" id="logradouro" name="logradouro" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="numeroCasa" class="form-label">Nº da Casa:</label>
+								<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="bairro" class="form-label">Bairro:</label>
+								<input type="text" class="form-control" id="bairro" name="bairro" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="phone" class="form-label">Telefone:</label>
+								<input type="text" class="form-control" id="phone" name="phone" required>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<label for="cidade" class="form-label">Cidade:</label>
+								<input type="text" class="form-control" id="cidade" name="cidade" required>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label for="uf" class="form-label">Estado:</label>
+								<input type="text" class="form-control" id="uf" name="uf" required>
+							</div>
+						</div>
+						<div class="d-grid gap-2">
+							<div class="row">
+								<div class="col-1 mb-3">
+									<button type="button" class="btn btn-primary" id="previousStep">
+										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
+											<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+										</svg>
+									</button>
+								</div>
+								<div class="col-10 mb-3">
+									<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+								</div>
+								<div class="col-1 mb-3">
+									<button id="clearForm" type="button" class="btn btn-secondary">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+											<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
 			</div>
 		</div>
+		</form>
 	</div>
+	</div>
+
+	<script>
+		document.getElementById('previousStep').addEventListener('click', function() {
+			document.getElementById('step1').style.display = 'block';
+			document.getElementById('step2').style.display = 'none';
+		});
+		document.getElementById('nextStep').addEventListener('click', function() {
+			document.getElementById('step1').style.display = 'none';
+			document.getElementById('step2').style.display = 'block';
+		});
+	</script>
 	</div>
 </x-appBarAdmin>

@@ -15,7 +15,7 @@
 			</ol>
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img class="d-block w-100" src="https://via.placeholder.com/500x155" alt="First slide">
+					<img class="d-block w-100" style="max-height: 60vh;" src="{{ asset('banner1.jpeg') }}" alt="First slide">
 				</div>
 				<div class="carousel-item">
 					<img class="d-block w-100" src="https://via.placeholder.com/500x156" alt="Second slide">

@@ -42,6 +42,10 @@ Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
     ->name('registerPatient.index')
     ->middleware(Autenticador::class);
 
+Route::post('/registrar-paciente', [RegisterPatientController::class, 'store'])
+    ->name('registerPatient.store')
+    ->middleware(Autenticador::class);
+
 Route::get('/dashboard', [DashboardController::class, 'index'])
     ->name('dashboard.index')
     ->middleware(Autenticador::class);

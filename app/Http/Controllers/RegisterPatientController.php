@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class RegisterPatientController extends Controller
 {
@@ -27,7 +29,13 @@ class RegisterPatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->except('_token');
+        $data['password'] = Hash::make($data['password']);
+        $data['confirmPassword'] = Hash::make($data['confirmPassword']);
+        $data['perfil_id'] = 3;
+        $user = User::create($data);
+        return to_route('registros.index')
+        ->with('cadastrado.sucesso', "Cadastro de {$user->name} realizado com sucesso!");
     }
 
     /**
