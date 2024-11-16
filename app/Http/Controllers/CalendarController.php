@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agendamento;
 use App\Models\Dentista;
+use App\Models\Procedimento;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -14,8 +15,9 @@ class CalendarController extends Controller
     {
         $pacientes = User::where('perfil_id', 3)->get();
         $dentistas = Dentista::all();
+        $procedimentos = Procedimento::all();
         $events = Agendamento::all();
-        return view('schedule.index', compact('pacientes', 'dentistas', 'events'));
+        return view('schedule.index', compact('pacientes', 'dentistas', 'events', 'procedimentos'));
     }
 
     /**

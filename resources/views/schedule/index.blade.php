@@ -49,6 +49,15 @@
               </select>
             </div>
             <div class="form-group">
+              <label for="procedimento">Procedimento</label>
+              <select class="form-control" id="procedimento">
+                <option value="">Selecione um procedimento</option>
+                @foreach($procedimentos as $procedimento)
+                <option value="{{ $procedimento->nome }}">{{ $procedimento->nome }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
               <label for="eventDescription">Observação</label>
               <textarea class="form-control" id="eventDescription" rows="3" style="resize: none;" required></textarea>
             </div>
@@ -66,6 +75,10 @@
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
           </form>
+          <div class="form-group">
+            <label for="eventPrice">Preço</label>
+            <input type="number" class="form-control" id="eventPrice" step="0.01" required>
+          </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="saveEvent">Salvar</button>
