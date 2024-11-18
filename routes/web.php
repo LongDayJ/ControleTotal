@@ -55,6 +55,15 @@ Route::get('/agendamento', [CalendarController::class, 'index'])
 
 Route::get('/products', [ProductController::class, 'index'])->name('product.index');
 
+Route::get('/events', [CalendarController::class,'getEvents']);
+Route::delete('/schedule/{id}',[CalendarController::class,'deleteEvent']);
+Route::put('/schedule/{id}',[CalendarController::class, 'atualizar']);
+Route::put('/schedule/{id}/resize', [CalendarController::class, 'resize']);
+
+Route::get('/events/search', [CalendarController::class, 'search']);
+
+Route::view('add-schedule', 'schedule.add');
+Route::post('create-schedule', [CalendarController::class, 'criar']);
 // Route::resource('/products', ProductController::class)
 // ->only(['index', 'create']);
 // ->middleware(Autenticador::class);
