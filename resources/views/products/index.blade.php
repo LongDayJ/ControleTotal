@@ -100,7 +100,7 @@
 												<button type="submit" class="btn btn-secondary"><strong>-</strong></button>
 											</form>
 										</td>
-										<td>{{ $product->updated_at }}</td>
+										<td>{{ $product->estoque->updated_at }}</td>
 										<td>
 											<a href="{{ route('products.edit', $product->id) }}" class="btn btn-primary">
 												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">

@@ -18,18 +18,21 @@ class DashboardController extends Controller
     {
         // Obter o número de consultas do dia
         $consultasDoDia = Agendamento::whereDate('data', today())->count();
+        // Obter o número de consultas do mês
+        $consultasDoMes = Agendamento::whereMonth('data', now()->month)->count();
 
         // Obter o número de produtos com quantidade mínima
-        $produtosQuantidadeMinima = Estoque::whereColumn('quantidade', 'quantidadeMinima')->count();
+        $produtosQuantidadeMinima = Estoque::whereColumn('quantidadeMinima', '>=', 'quantidade')->count();
 
         $procedimentosCadastrados = Procedimento::all()->count();
 
-        $pacientesCadastrados = User::where('perfil_id', 3)->count();
+        $pacientesCadastrados = User::where('perfil_id',  3)->count();
 
-        $dentistasCadastrados = Dentista::all()->count();
 
         // Passar as variáveis para a view
-        return view('dashboard.index', compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 'pacientesCadastrados', 'dentistasCadastrados'));
+        return view('dashboard.index', 
+        compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 
+        'pacientesCadastrados', 'consultasDoMes'));
     }
 
     /**

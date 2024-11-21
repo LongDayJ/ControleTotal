@@ -121,7 +121,7 @@
 						</div>
 						<div class="row">
 							<div class="col-md-12 mb-3">
-								<label for="descricao" class="form-label">Descrição:</label>
+								<label for="descricao" class="form-label">Obersavação:</label>
 								<textarea class="form-control" id="descricao" name="descricao" rows="4" required></textarea>
 							</div>
 						</div>

@@ -82,48 +82,6 @@
 			});
 		});
 	</script>
-	<script>
-        // Função de validação de CPF em JavaScript
-        function validarCPF(cpf) {
-            cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
-            if (cpf.length !== 11 || /^(\d)\1{10}$/.test(cpf)) return false;
-
-            let soma = 0, resto;
-
-            for (let i = 1; i <= 9; i++) {
-                soma += parseInt(cpf.substring(i - 1, i)) * (11 - i);
-            }
-
-            resto = (soma * 10) % 11;
-            if ((resto === 10) || (resto === 11)) resto = 0;
-            if (resto !== parseInt(cpf.substring(9, 10))) return false;
-
-            soma = 0;
-            for (let i = 1; i <= 10; i++) {
-                soma += parseInt(cpf.substring(i - 1, i)) * (12 - i);
-            }
-
-            resto = (soma * 10) % 11;
-            if ((resto === 10) || (resto === 11)) resto = 0;
-            if (resto !== parseInt(cpf.substring(10, 11))) return false;
-
-            return true;
-        }
-
-        // Verificação do CPF no envio do formulário
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            const cpfInput = document.getElementById('cpf');
-            const cpfError = document.getElementById('cpfError');
-            const cpfValido = validarCPF(cpfInput.value);
-
-            if (!cpfValido) {
-                event.preventDefault(); // Evita o envio do formulário
-                cpfError.style.display = 'block'; // Exibe mensagem de erro
-            } else {
-                cpfError.style.display = 'none'; // Oculta mensagem de erro
-            }
-        });
-    </script> 
 	<div class="container pt-3">
 		<div class="row">
 			<div class="col-12">
@@ -147,19 +105,23 @@
 					<div id="step1">
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="name" class="form-label">Nome Completo</label>
+								<label for="name" class="form-label">Nome Completo <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="name" name="name" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="email" class="form-label">Email:</label>
+								<label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
 								<input type="email" class="form-control" id="email" name="email" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="cpf" class="form-label">CPF:</label>
-								<input type="text" class="form-control" id="cpf" name="cpf" maxlength="11" required>
-								<span id="cpfError" style="color: red; display: none;">CPF inválido.</span>
+								<div class="form-group">
+									<label for="cpf">CPF: <span class="text-danger">*</span></label>
+									<input type="text" class="form-control" id="cpf" name="cpf" required>
+									<div class="invalid-feedback">
+										CPF inválido.
+									</div>
+								</div>
 							</div>
 							<div class="col-md-6 mb-3">
 								<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
@@ -168,17 +130,17 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="password" class="form-label">Senha:</label>
+								<label for="password" class="form-label">Senha: <span class="text-danger">*</span></label>
 								<input type="password" class="form-control" id="password" name="password" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="confirmPassword" class="form-label">Confirmar Senha:</label>
+								<label for="confirmPassword" class="form-label">Confirmar Senha: <span class="text-danger">*</span></label>
 								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-12 mb-3">
-								<label for="descricao" class="form-label">Descrição:</label>
+								<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
 								<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly></textarea>
 							</div>
 						</div>
@@ -200,7 +162,7 @@
 					<div id="step2" style="display: none;">
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="cep" class="form-label">CEP:</label>
+								<label for="cep" class="form-label">CEP: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="cep" name="cep" required>
 							</div>
 							<div class="col-md-6 mb-3">
@@ -210,31 +172,31 @@
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="logradouro" class="form-label">Logradouro:</label>
+								<label for="logradouro" class="form-label">Logradouro: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="logradouro" name="logradouro" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="numeroCasa" class="form-label">Nº da Casa:</label>
+								<label for="numeroCasa" class="form-label">Nº do endereco: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="bairro" class="form-label">Bairro:</label>
+								<label for="bairro" class="form-label">Bairro <span class="text-danger">*</span>:</label>
 								<input type="text" class="form-control" id="bairro" name="bairro" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="phone" class="form-label">Telefone:</label>
+								<label for="phone" class="form-label">Telefone <span class="text-danger">*</span>:</label>
 								<input type="text" class="form-control" id="phone" name="phone" required>
 							</div>
 						</div>
 						<div class="row">
 							<div class="col-md-6 mb-3">
-								<label for="cidade" class="form-label">Cidade:</label>
+								<label for="cidade" class="form-label">Cidade: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="cidade" name="cidade" required>
 							</div>
 							<div class="col-md-6 mb-3">
-								<label for="uf" class="form-label">Estado:</label>
+								<label for="uf" class="form-label">Estado: <span class="text-danger">*</span></label>
 								<input type="text" class="form-control" id="uf" name="uf" required>
 							</div>
 						</div>
@@ -260,21 +222,63 @@
 							</div>
 						</div>
 					</div>
+				</form>
 			</div>
 		</div>
-		</form>
-	</div>
-	</div>
 
+		<script>
+			document.getElementById('previousStep').addEventListener('click', function() {
+				document.getElementById('step1').style.display = 'block';
+				document.getElementById('step2').style.display = 'none';
+			});
+			document.getElementById('nextStep').addEventListener('click', function() {
+				document.getElementById('step1').style.display = 'none';
+				document.getElementById('step2').style.display = 'block';
+			});
+		</script>
+	</div>
 	<script>
-		document.getElementById('previousStep').addEventListener('click', function() {
-			document.getElementById('step1').style.display = 'block';
-			document.getElementById('step2').style.display = 'none';
-		});
-		document.getElementById('nextStep').addEventListener('click', function() {
-			document.getElementById('step1').style.display = 'none';
-			document.getElementById('step2').style.display = 'block';
+		document.addEventListener('DOMContentLoaded', function() {
+			const cpfField = document.getElementById('cpf');
+
+			function validateCPF(cpf) {
+				cpf = cpf.replace(/[^\d]+/g, '');
+				if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) return false;
+				let sum = 0,
+					remainder;
+				for (let i = 1; i <= 9; i++) sum += parseInt(cpf.substring(i - 1, i)) * (11 - i);
+				remainder = (sum * 10) % 11;
+				if (remainder === 10 || remainder === 11) remainder = 0;
+				if (remainder !== parseInt(cpf.substring(9, 10))) return false;
+				sum = 0;
+				for (let i = 1; i <= 10; i++) sum += parseInt(cpf.substring(i - 1, i)) * (12 - i);
+				remainder = (sum * 10) % 11;
+				if (remainder === 10 || remainder === 11) remainder = 0;
+				if (remainder !== parseInt(cpf.substring(10, 11))) return false;
+				return true;
+			}
+
+			function validateAndShowMessage() {
+				if (!validateCPF(cpfField.value)) {
+					cpfField.setCustomValidity('CPF inválido.');
+					cpfField.classList.add('is-invalid');
+				} else {
+					cpfField.setCustomValidity('');
+					cpfField.classList.remove('is-invalid');
+				}
+			}
+
+			cpfField.addEventListener('input', validateAndShowMessage);
+			cpfField.addEventListener('keyup', validateAndShowMessage);
 		});
 	</script>
-	</div>
+	<style>
+		.is-invalid {
+			border-color: #dc3545;
+		}
+
+		.is-invalid~.invalid-feedback {
+			display: block;
+		}
+	</style>
 </x-appBarAdmin>

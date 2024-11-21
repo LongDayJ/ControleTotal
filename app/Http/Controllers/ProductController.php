@@ -14,6 +14,7 @@ class ProductController extends Controller
         $product = Produto::find($id);
         if ($product && $product->estoque) {
             $product->estoque->quantidade += 1;
+            $product->estoque->updated_at = now()->setTimezone('America/Sao_Paulo');
             $product->estoque->save();
         }
         return redirect()->back();
@@ -24,6 +25,7 @@ class ProductController extends Controller
         $product = Produto::find($id);
         if ($product && $product->estoque && $product->estoque->quantidade > 0) {
             $product->estoque->quantidade -= 1;
+            $product->estoque->updated_at = now()->setTimezone('America/Sao_Paulo');
             $product->estoque->save();
         }
         return redirect()->back();
@@ -139,10 +141,11 @@ class ProductController extends Controller
             ['quantidadeMinima' => $validatedData['quantidadeMinima'], 'quantidade' => $validatedData['quantidade']]
         );
 
-        // Atualizar os dados de estoque
+        // Atualizar os dados de estoque e o updated_at
         $estoque->update([
             'quantidadeMinima' => $validatedData['quantidadeMinima'],
             'quantidade' => $validatedData['quantidade'],
+            'updated_at' => now(),
         ]);
 
         // Redirecionar com uma mensagem de sucesso
