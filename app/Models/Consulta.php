@@ -10,10 +10,16 @@ class Consulta extends Model
     use HasFactory;
     protected  $table = 'endereco';
     protected $fillable = [
-        'diagnostico',
-        'receita',
-        'codigoConsulta',
-        'agendamento_id'
+        'queixa',
+        'medicacao_pre_consulta',
+        'alergia',
+        'cirurgia',
+        'sangramento',
+        'cicatrizacao',
+        'falta_ar',
+        'gestante',
+        'semanas',
+        'observacoes',
     ];
 
     public function agendamento()

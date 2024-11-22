@@ -13,8 +13,9 @@ return new class extends Migration
     {
         Schema::create('prontuario', function (Blueprint $table) {
             $table->id();
-            $table->text('historico');
-            $table->text('observacao');
+            $table->text('medicamento');
+            $table->text( 'metodo');
+            $table->text('cuidado');
             $table->foreignId('consulta_id')->constrained('consulta')->onDelete('cascade');
         });
     }

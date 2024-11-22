@@ -15,8 +15,11 @@ class ProntuarioResource extends JsonResource
     public function toArray(Request $request): array
     {
         return[
-            'historico' => $this ->historico,
-            'observacao' => $this ->observacao
+            'id' => $this ->id,
+            'medicamento' => $this ->medicamento,
+            'metodo' => $this ->metodo,
+            'cuidado' => $this ->cuidado,
+            'consulta_id' => $this ->consulta_id
         ];
     }
 }

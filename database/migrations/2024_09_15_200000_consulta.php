@@ -13,8 +13,16 @@ return new class extends Migration
     {
         Schema::create('consulta', function (Blueprint $table) {
             $table->id();
-            $table->string('diagnostico');
-            $table->text('receita');
+            $table->text('queixa');
+            $table->text('medicacao_pre_consulta');
+            $table->text('alergia');
+            $table->text('cirurgia');
+            $table->text('sangramento');
+            $table->text('cicatrizacao');
+            $table->text('falta_ar');
+            $table->text('gestante');
+            $table->text('semanas');
+            $table->text('observacao');
             $table->string('condigoConsulta');
             $table->foreignId('agendamento_id')->constrained('agendamento')->onDelete('cascade');
         });

@@ -10,9 +10,9 @@ class Prontuario extends Model
     use HasFactory;
     protected $table = 'Prontuario';
     protected $fillable = [
-        'historico',
-        'observacao',
-        'consulta_id'
+        'medicamento',
+        'metodo',
+        'cuidado',
         
     ];
 
