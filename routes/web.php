@@ -6,6 +6,7 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegisterCollaboratorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MrecordController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
@@ -76,3 +77,6 @@ Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+Route::get('/prontuario/{paciente_id}', [MrecordController::class, 'index'])
+->name('prontuario.index')->middleware(Autenticador::class);

@@ -16,7 +16,7 @@ class RegistroController extends Controller
 	public function index(Request $request)
 	{
 		$procedimentoErro = $request->session()->get('procedimento.erro');
-		$colaboradores = User::where('perfil_id', 2)->get();
+		$colaboradores = User::whereIn('perfil_id', [2, 4])->get();
 		$procedimentos = Procedimento::all();
 		foreach ($procedimentos as $procedimento) {
 			if ($procedimento->id_procedimento_pai) {

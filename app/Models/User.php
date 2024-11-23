@@ -19,7 +19,6 @@ class User extends Authenticatable
         'name',
         'descricao',
         'email',
-        'password', // Alterado para 'password' que é o campo padrão do Laravel
         'cpf',
         'perfil_id'
     ];
@@ -30,6 +29,11 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->belongsTo(Perfil::class, 'perfil_id');
+    }
+
+    public function endereco()
+    {
+        return $this->hasOne(Endereco::class, 'id', 'user_id');
     }
 
     /**

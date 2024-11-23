@@ -102,140 +102,109 @@
 			<div class="col-8">
 				<form id="formStep1" action="{{ route('registerCollaborator.store') }}" method="POST">
 					@csrf
-					<div id="step1">
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="name" class="form-label">Nome Completo <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="name" name="name" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
-								<input type="email" class="form-control" id="email" name="email" required>
-							</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="name" class="form-label">Nome Completo <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="name" name="name" required>
 						</div>
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<div class="form-group">
-									<label for="cpf">CPF: <span class="text-danger">*</span></label>
-									<input type="text" class="form-control" id="cpf" name="cpf" required>
-									<div class="invalid-feedback">
-										CPF inválido.
-									</div>
-								</div>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="cro" class="form-label">CRO: (caso seja dentista)</label>
-								<input type="text" class="form-control" id="cro" name="cro">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="password" class="form-label">Senha: <span class="text-danger">*</span></label>
-								<input type="password" class="form-control" id="password" name="password" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="confirmPassword" class="form-label">Confirmar Senha: <span class="text-danger">*</span></label>
-								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-12 mb-3">
-								<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
-								<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly></textarea>
-							</div>
-						</div>
-						<div class="d-grid gap-2">
-							<div class="row">
-								<div class="col-11 mb-3">
-									<button type="button" class="btn btn-primary col-12" id="nextStep">Avançar</button>
-								</div>
-								<div class="col-1 mb-3">
-									<button id="clearForm" type="button" class="btn btn-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-											<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-										</svg>
-									</button>
-								</div>
-							</div>
+						<div class="col-md-6 mb-3">
+							<label for="email" class="form-label">Email: <span class="text-danger">*</span></label>
+							<input type="email" class="form-control" id="email" name="email" required>
 						</div>
 					</div>
-					<div id="step2" style="display: none;">
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="cep" class="form-label">CEP: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="cep" name="cep" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="complemento" class="form-label">Complemento:</label>
-								<input type="text" class="form-control" id="complemento" name="complemento">
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="logradouro" class="form-label">Logradouro: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="logradouro" name="logradouro" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="numeroCasa" class="form-label">Nº do endereco: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="bairro" class="form-label">Bairro <span class="text-danger">*</span>:</label>
-								<input type="text" class="form-control" id="bairro" name="bairro" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="phone" class="form-label">Telefone <span class="text-danger">*</span>:</label>
-								<input type="text" class="form-control" id="phone" name="phone" required>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-md-6 mb-3">
-								<label for="cidade" class="form-label">Cidade: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="cidade" name="cidade" required>
-							</div>
-							<div class="col-md-6 mb-3">
-								<label for="uf" class="form-label">Estado: <span class="text-danger">*</span></label>
-								<input type="text" class="form-control" id="uf" name="uf" required>
-							</div>
-						</div>
-						<div class="d-grid gap-2">
-							<div class="row">
-								<div class="col-1 mb-3">
-									<button type="button" class="btn btn-primary" id="previousStep">
-										<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-caret-left-fill" viewBox="0 0 16 16">
-											<path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
-										</svg>
-									</button>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<div class="form-group">
+								<label for="cpf">CPF: <span class="text-danger">*</span></label>
+								<input type="text" class="form-control" id="cpf" name="cpf" required>
+								<div class="invalid-feedback">
+									CPF inválido.
 								</div>
-								<div class="col-10 mb-3">
-									<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
-								</div>
-								<div class="col-1 mb-3">
-									<button id="clearForm" type="button" class="btn btn-secondary">
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-											<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-										</svg>
-									</button>
-								</div>
+							</div>
+						</div>
+					<div class="col-md-6 mb-3">
+						<label for="cargo" class="form-label">Cargo: <span class="text-danger">*</span></label>
+						<select class="form-control" id="cargo" name="cargo" required>
+							<option value="">Selecione um cargo</option>
+							<option value="PROFISSIONAL_DE_SAUDE">Profissional de Saúde</option>
+							<option value="colaborador">Auxiliar</option>
+						</select>
+					</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="password" class="form-label">Senha: <span class="text-danger">*</span></label>
+							<input type="password" class="form-control" id="password" name="password" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="confirmPassword" class="form-label">Confirmar Senha: <span class="text-danger">*</span></label>
+							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
+							<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly
+							placeholder="CRO, especialidade e etc ..."></textarea>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="cep" class="form-label">CEP: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="cep" name="cep" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="complemento" class="form-label">Complemento:</label>
+							<input type="text" class="form-control" id="complemento" name="complemento">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="logradouro" class="form-label">Logradouro: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="logradouro" name="logradouro" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="numeroCasa" class="form-label">Nº do endereco: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="bairro" class="form-label">Bairro <span class="text-danger">*</span>:</label>
+							<input type="text" class="form-control" id="bairro" name="bairro" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="phone" class="form-label">Telefone <span class="text-danger">*</span>:</label>
+							<input type="text" class="form-control" id="phone" name="phone" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="cidade" class="form-label">Cidade: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="cidade" name="cidade" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="uf" class="form-label">Estado: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="uf" name="uf" required>
+						</div>
+					</div>
+					<div class="d-grid gap-2 mt-3">
+						<div class="row">
+							<div class="col-11 mb-3">
+								<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+							</div>
+							<div class="col-1 mb-3">
+								<button id="clearForm" type="button" class="btn btn-secondary">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+										<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+									</svg>
+								</button>
 							</div>
 						</div>
 					</div>
 				</form>
 			</div>
 		</div>
-
-		<script>
-			document.getElementById('previousStep').addEventListener('click', function() {
-				document.getElementById('step1').style.display = 'block';
-				document.getElementById('step2').style.display = 'none';
-			});
-			document.getElementById('nextStep').addEventListener('click', function() {
-				document.getElementById('step1').style.display = 'none';
-				document.getElementById('step2').style.display = 'block';
-			});
-		</script>
 	</div>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {

@@ -21,11 +21,6 @@
 				Procedimentos
 			</a>
 		</li>
-		<li class="nav-item" role="presentation">
-			<a class="nav-link" id="dentista-tab" data-toggle="tab" href="#dentista" role="tab" aria-controls="dentista" aria-selected="false">
-				Dentistas
-			</a>
-		</li>
 	</ul>
 	<div class="tab-content" id="myTabContent">
 		<div class="tab-pane fade show active" id="colaborador" role="tabpanel" aria-labelledby="colaborador-tab">
@@ -61,13 +56,11 @@
 				</thead>
 				<tbody>
 					@foreach($colaboradores as $colaborador)
-					@if($colaborador->perfil_id == 2)
 					<tr>
 						<td>{{ $colaborador->name }}</td>
-						<td>{{ $colaborador->perfil_id == 2 ? 'Colaborador' : 'Sem Cargo' }}</td>
+						<td>{{ $colaborador->perfil_id == 4 ? 'Profissional de Saúde' : 'Colaborador' }}</td>
 						<td>{{ substr($colaborador['cpf'], 0, 3) . '.***.***-' . substr($colaborador['cpf'], -2) }}</td>
 					</tr>
-					@endif
 					@endforeach
 				</tbody>
 			</table>
@@ -92,9 +85,9 @@
 				<tbody>
 					@foreach($pacientes as $paciente)
 					<tr>
-						<td>{{ $paciente->name }}</td>
+						<td><a href="{{ route('prontuario.index', ['paciente_id' => $paciente->id]) }}">{{ $paciente->name }}</a></td>
 						<td>{{ $paciente->email }}</td>
-						<td>{{ $paciente->telefone}}</td>
+						<td>{{ $paciente->telefone }}</td>
 					</tr>
 					@endforeach
 				</tbody>
@@ -213,30 +206,6 @@
 								</button>
 							</form>
 						</td>
-					</tr>
-					@endforeach
-				</tbody>
-			</table>
-		</div>
-
-		<div class="tab-pane fade" id="dentista" role="tabpanel" aria-labelledby="dentista-tab">
-			<h2>Dentistas</h2>
-			<table class="table text-center">
-				<thead>
-					<tr>
-						<th>Nome</th>
-						<th>Descricao</th>
-						<th>Status</th>
-						<th>CRO</th>
-					</tr>
-				</thead>
-				<tbody>
-					@foreach($dentistas as $dentista)
-					<tr>
-						<td>{{ $dentista->nome }}</td>
-						<td>{{ $dentista->descricao }}</td>
-						<td>{{ $dentista->status }}</td>
-						<td>{{ $dentista->cro }}</td>
 					</tr>
 					@endforeach
 				</tbody>

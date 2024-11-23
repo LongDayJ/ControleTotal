@@ -21,6 +21,21 @@ class DashboardController extends Controller
         // Obter o número de consultas do mês
         $consultasDoMes = Agendamento::whereMonth('data', now()->month)->count();
 
+        // Obter os agendamentos do mês e separar pelos dias da semana
+        $agendamentosPorDiaDaSemana = Agendamento::whereBetween('data', [now()->startOfWeek(), now()->endOfWeek()])
+            ->with('user:id,name') // Carregar apenas o nome do usuário
+            ->get(['data', 'hora', 'user_id']) // Obter apenas a data, hora e user_id
+            ->groupBy(function($agendamento) {
+            return \Carbon\Carbon::parse($agendamento->data)->format('l'); // Agrupar pelo nome do dia da semana
+            })
+            ->map(function($agendamentos) {
+            return $agendamentos->map(function($agendamento) {
+                $agendamento->user_name = $agendamento->user->name; // Adicionar o nome do usuário
+                return $agendamento;
+            });
+            });
+  
+
         // Obter o número de produtos com quantidade mínima
         $produtosQuantidadeMinima = Estoque::whereColumn('quantidadeMinima', '>=', 'quantidade')->count();
 
@@ -32,7 +47,7 @@ class DashboardController extends Controller
         // Passar as variáveis para a view
         return view('dashboard.index', 
         compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 
-        'pacientesCadastrados', 'consultasDoMes'));
+        'pacientesCadastrados', 'consultasDoMes', 'agendamentosPorDiaDaSemana'));
     }
 
     /**

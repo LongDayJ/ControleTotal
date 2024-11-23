@@ -14,10 +14,10 @@ class CalendarController extends Controller
     public function index()
     {
         $pacientes = User::where('perfil_id', 3)->get();
-        $dentistas = Dentista::all();
+        $medicos = User::where('perfil_id', 4)->get();
         $procedimentos = Procedimento::all();
         $events = Agendamento::all();
-        return view('schedule.index', compact('pacientes', 'dentistas', 'events', 'procedimentos'));
+        return view('schedule.index', compact('pacientes', 'medicos', 'events', 'procedimentos'));
     }
 
     /**

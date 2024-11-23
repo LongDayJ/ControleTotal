@@ -1,6 +1,34 @@
 <x-appBarAdmin title="Dashboard">
 	<div class="container mt-4">
 		<div class="row">
+		<h3 class="card-title">Agendamentos da Semana</h3>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>Segunda-feira</th>
+						<th>Terça-feira</th>
+						<th>Quarta-feira</th>
+						<th>Quinta-feira</th>
+						<th>Sexta-feira</th>
+						<th>Sábado</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						@foreach($agendamentosPorDiaDaSemana as $dia => $agendamentos)
+						@if($dia != 'Sunday')
+						<td>
+							@foreach($agendamentos as $agendamento)
+								Hora: {{ $agendamento['hora'] }}<br>
+								Paciente: {{ $agendamento['user_name'] }}<br>
+								<br>
+							@endforeach
+						</td>
+						@endif
+						@endforeach
+					</tr>
+				</tbody>
+			</table>
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
