@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('perfils', function (Blueprint $table) {
         
             $table->id();
-            $table->enum('nome', ['ADM', 'COLABORADOR' , 'CLIENTE'])->default('CLIENTE');
+            $table->enum('nome', ['ADM', 'COLABORADOR' , 'CLIENTE', 'PROFISSIONAL_DE_SAUDE'])->default('CLIENTE');
             $table->timestamp('created_at')->nullable(false);
             $table->timestamp('updated_at')->nullable();
         });

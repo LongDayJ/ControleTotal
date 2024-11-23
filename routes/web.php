@@ -6,10 +6,12 @@ use App\Http\Controllers\PatientController;
 use App\Http\Controllers\loginController;
 use App\Http\Controllers\RegisterCollaboratorController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MrecordController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistroController;
+use App\Http\Controllers\ProcedimentoController;
 use App\Http\Controllers\RegisterPatientController;
 use App\Http\Middleware\Autenticador;
 use App\Http\Middleware\AutenticadorPaciente;
@@ -31,15 +33,15 @@ Route::get('/register-colaborador', [RegisterCollaboratorController::class, 'cre
     ->name('registerCollaborator.create')->middleware(Autenticador::class);
 
 Route::post('/register-colaborador', [RegisterCollaboratorController::class, 'store'])
-    ->name('registerCollaborator.store');
+    ->name('registerCollaborator.store')->middleware(Autenticador::class);
 
 Route::get('/agendamento', function () {
     return view('schedule.index');
 });
 
 // Rotas do Colaborador
-Route::get('/registrar-paciente', [RegisterPatientController::class, 'index'])
-    ->name('registerPatient.index')
+Route::get('/registrar-paciente', [RegisterPatientController::class, 'create'])
+    ->name('registerPatient.create')
     ->middleware(Autenticador::class);
 
 Route::post('/registrar-paciente', [RegisterPatientController::class, 'store'])
@@ -68,7 +70,13 @@ Route::get('/registros', [RegistroController::class, 'index'])
     ->name('registro.index')
     ->middleware(Autenticador::class);
 
+Route::resource('procedimentos', ProcedimentoController::class)
+    ->middleware(Autenticador::class)->except(['index', 'show', 'edit', 'create']);
+
 Route::post('/logout', function () {
     Auth::logout();
     return redirect('/');
 })->name('logout');
+
+Route::get('/prontuario/{paciente_id}', [MrecordController::class, 'index'])
+->name('prontuario.index')->middleware(Autenticador::class);

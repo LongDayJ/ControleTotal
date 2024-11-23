@@ -43,8 +43,17 @@
               <label for="dentistaNome">Nome do Dentista</label>
               <select class="form-control" id="dentistaNome">
                 <option value="">Selecione um dentista</option>
-                @foreach($dentistas as $dentista)
-                <option value="{{ $dentista->nome }}">{{ $dentista->nome }}</option>
+                @foreach($medicos as $medico)
+                <option value="{{ $medico->name }}">{{ $medico->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="procedimento">Procedimento</label>
+              <select class="form-control" id="procedimento">
+                <option value="">Selecione um procedimento</option>
+                @foreach($procedimentos as $procedimento)
+                <option value="{{ $procedimento->nome }}">{{ $procedimento->nome }}</option>
                 @endforeach
               </select>
             </div>
@@ -58,7 +67,7 @@
             </div>
             <div class="form-group">
               <label for="eventStartTime">Hora de Início</label>
-                <input type="time" class="form-control" id="eventStartTime" step="900" required>
+              <input type="time" class="form-control" id="eventStartTime" step="900" required>
             </div>
             <div class="form-group">
               <label for="eventEndTime">Hora de Fim</label>
