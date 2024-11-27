@@ -33,7 +33,9 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-
+        if ($request->input('data') < now()->toDateString()) {
+            return response()->json(['success' => false, 'message' => 'Não é possível agendar para uma data que já passou.'], 400);
+        }
         $agendamento = new Agendamento();
         $agendamento->data = $request->input('date');
         $agendamento->hora = $request->input('start');
@@ -67,7 +69,12 @@ class CalendarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $agendamento = Agendamento::findOrFail($id);
+        $pacientes = User::where('perfil_id', 3)->get();
+        $medicos = User::where('perfil_id', 4)->get();
+        $procedimentos = Procedimento::all();
+        $agendamento->hora = substr($agendamento->hora, 0, 5);
+        return view('schedule.edit', compact('agendamento', 'pacientes', 'medicos', 'procedimentos'));
     }
 
     /**
@@ -77,7 +84,9 @@ class CalendarController extends Controller
     {
         $agendamento = Agendamento::findOrFail($id);
         $agendamento->update($request->all());
-        return response()->json($agendamento, 200);
+        $agendamento->updated_at = now();
+        $agendamento->save();
+        return redirect()->route('agendamento.index')->with('success', 'Agendamento atualizado com sucesso!');
     }
 
     /**
@@ -87,6 +96,9 @@ class CalendarController extends Controller
     {
         $event = Agendamento::findOrFail($id);
         if ($event) {
+            if ($event->data < now()->toDateString()) {
+            return response()->json(['success' => false, 'message' => 'Não é possível excluir um evento que já passou.']);
+            }
             $event->delete();
             return response()->json(['success' => true]);
         } else {

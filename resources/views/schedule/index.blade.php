@@ -74,7 +74,7 @@
                       @endfor
                       @for ($i = 14; $i < 19; $i++)
                         <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                        @endfor
+                      @endfor
                   </select>
                 </div>
                 <div class="form-group col-md-6">

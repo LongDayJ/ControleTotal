@@ -13,6 +13,7 @@ class Financeiro extends Model
         'id',
         'tipo',
         'valor',
+        'descricao',
         'created_at',
         'updated_at',
         'deleted_at'

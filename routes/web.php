@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ProcedimentoController;
 use App\Http\Controllers\RegisterPatientController;
+use App\Http\Controllers\FinanceiroController;
 use App\Http\Middleware\Autenticador;
 use App\Http\Middleware\AutenticadorPaciente;
 use Illuminate\Support\Facades\Route;
@@ -80,3 +81,5 @@ Route::post('/logout', function () {
 
 Route::get('/prontuario/{paciente_id}', [MrecordController::class, 'index'])
 ->name('prontuario.index')->middleware(Autenticador::class);
+
+Route::resource('financeiro', FinanceiroController::class);
