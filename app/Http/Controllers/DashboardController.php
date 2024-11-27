@@ -6,7 +6,6 @@ use App\Models\Agendamento;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Estoque;
-use App\Models\Dentista;
 use App\Models\Procedimento;
 
 class DashboardController extends Controller
@@ -16,6 +15,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
+
         // Obter o número de consultas do dia
         $consultasDoDia = Agendamento::whereDate('data', today())->count();
         // Obter o número de consultas do mês
@@ -43,11 +43,20 @@ class DashboardController extends Controller
 
         $pacientesCadastrados = User::where('perfil_id',  3)->count();
 
+        $pacientesNovos = User::where('perfil_id', 3)
+            ->whereMonth('created_at', now()->month)
+            ->count();
 
         // Passar as variáveis para a view
         return view('dashboard.index', 
-        compact('consultasDoDia', 'produtosQuantidadeMinima', 'procedimentosCadastrados', 
-        'pacientesCadastrados', 'consultasDoMes', 'agendamentosPorDiaDaSemana'));
+        compact('consultasDoDia',
+        'consultasDoMes',
+        'agendamentosPorDiaDaSemana',
+        'produtosQuantidadeMinima',
+        'procedimentosCadastrados',
+        'pacientesCadastrados',
+        'pacientesNovos'
+    ));
     }
 
     /**

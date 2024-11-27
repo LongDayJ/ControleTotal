@@ -5,7 +5,7 @@ namespace App\Http\Resources\v1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class EstoqueResource extends JsonResource
+class FinanceiroResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,10 +15,14 @@ class EstoqueResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'produto' => (new EstoqueResource($this->produto))->infoProdutoEstoque(),
-            'quantidade' => $this ->quantidade,
-            'quantidadeMinima' => $this ->quantidadeMinima,
-            'updated_at' => $this ->updated_at
+            'tipo' => $this ->tipo,
+            'valor' => $this ->valor,
+            'descricao' => $this ->descricao,
+            'created_at' => $this ->created_at,
+            'updated_at' => $this ->updated_at,
+            'deleted_at' => $this ->deleted_at
         ];
     }
 }
+
+
