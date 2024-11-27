@@ -13,6 +13,7 @@ class EventController extends Controller
         foreach ($events as $event) {
             $event->title = $event->user->name;
             $event->start = $event->data . 'T' . $event->hora;
+            $event->color = $event->color;
             unset($event->user);
         }
         return response()->json($events);

@@ -33,24 +33,21 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        // Exibir o conteúdo da requisição e interromper a execução
-    
+
         $agendamento = new Agendamento();
         $agendamento->data = $request->input('date');
         $agendamento->hora = $request->input('start');
-        $agendamento->horaFinal = $request->input('end');
         $agendamento->status = "AGENDADO";
         $agendamento->observacao = $request->input('description');
         
         $pacienteNome = $request->input('paciente');
         $paciente = User::where('name', $pacienteNome)->firstOrFail();
         $agendamento->user_id = $paciente->id;
-        
         $dentistaNome = $request->input('dentista');
-        $dentista = Dentista::where('nome', $dentistaNome)->firstOrFail();
+        $dentista = User::where('name', $dentistaNome)->firstOrFail();
         $agendamento->dentista_id = $dentista->id;
-    
-        // Salvar o agendamento no banco de dados
+        $agendamento->color = $request->input('color');
+
         $agendamento->save();
     
         return response()->json($agendamento, 201);
