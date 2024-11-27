@@ -13,6 +13,9 @@ class Financeiro extends Model
         'id',
         'tipo',
         'valor',
+        'data_vencimento',
+        'data_pagamento',
+        'status',
         'created_at',
         'updated_at',
         'deleted_at'

@@ -18,6 +18,9 @@ class FinanceiroResource extends JsonResource
             'tipo' => $this ->tipo,
             'valor' => $this ->valor,
             'descricao' => $this ->descricao,
+            'data_vencimento' => $this ->data_vencimento,
+            'data_pagamento' => $this ->data_pagamento,
+            'status' => $this ->status,
             'created_at' => $this ->created_at,
             'updated_at' => $this ->updated_at,
             'deleted_at' => $this ->deleted_at
