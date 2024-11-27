@@ -9,20 +9,24 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('agendamento', function (Blueprint $table) {
-            // $table->time('horaFinal')->nullable();
+            $table->unsignedBigInteger('procedimento_id')->after('dentista_id')->nullable();
+            $table->foreign('procedimento_id')->references('id')->on('procedimentos')->onDelete('cascade');
         });
     }
 
     /**
      * Reverse the migrations.
+     *
+     * @return void
      */
-    public function down(): void
+    public function down()
     {
         Schema::table('agendamento', function (Blueprint $table) {
-            // $table->dropColumn('horaFinal');
+            $table->dropForeign(['procedimento_id']);
+            $table->dropColumn('procedimento_id');
         });
     }
 };

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('financeiro', function (Blueprint $table) {
             $table->id();
             $table->enum('tipo', ['ENTRADA', 'SAIDA'])->default('ENTRADA');
-            $table->bigInteger('valor');
+            $table->double('valor');
             $table->text('descricao');
             $table->timestamps();
             $table->softDeletes();

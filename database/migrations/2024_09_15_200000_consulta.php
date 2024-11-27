@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('diagnostico');
             $table->text('receita');
-            $table->string('condigoConsulta');
+            $table->string('codigoConsulta');
             $table->foreignId('agendamento_id')->constrained('agendamento')->onDelete('cascade');
         });
     }

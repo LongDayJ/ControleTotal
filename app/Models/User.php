@@ -32,6 +32,11 @@ class User extends Authenticatable
         return $this->belongsTo(Perfil::class, 'perfil_id');
     }
 
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class);
+    }
+
     public function endereco()
     {
         return $this->hasOne(Endereco::class, 'id', 'user_id');
