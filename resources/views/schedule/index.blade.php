@@ -98,160 +98,174 @@
   <!-- Inicializar o calendário -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM fully loaded and parsed'); // Adicionar log para depuração
+      console.log('DOM fully loaded and parsed');
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        selectable: true,
-        editable: true,
-        locale: 'pt-br',
-        headerToolbar: {
-          left: 'prev,next today',
-          center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay createEventButton' // Adicionar botões de navegação
-        },
-        customButtons: {
-          createEventButton: {
-            text: '+ Criar Evento',
-            click: function() {
-              $('#eventModal').modal('show');
-              $('#saveEvent').off('click').on('click', function() {
-                var title = $('#eventTitle').val();
-                var dateStr = $('#eventDate').val();
-                var startTime = $('#eventStartTime').val();
-                var endTime = $('#eventEndTime').val();
-                var start = new Date(dateStr + 'T' + startTime);
-                var end = new Date(dateStr + 'T' + endTime);
+      initialView: 'dayGridMonth',
+      selectable: true,
+      editable: true,
+      locale: 'pt-br',
+      headerToolbar: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'dayGridMonth,timeGridWeek,timeGridDay createEventButton'
+      },
+      customButtons: {
+        createEventButton: {
+        text: '+ Criar Evento',
+        click: function() {
+          $('#eventModal').modal('show');
+          $('#saveEvent').off('click').on('click', function() {
+          var title = $('#eventTitle').val();
+          var dateStr = $('#eventDate').val();
+          var startTime = $('#eventStartTime').val();
+          var endTime = $('#eventEndTime').val();
+          var start = new Date(dateStr + 'T' + startTime);
+          var end = new Date(dateStr + 'T' + endTime);
 
-                if (title && !isNaN(start) && !isNaN(end)) {
-                  calendar.addEvent({
-                    title: title,
-                    start: start,
-                    end: end,
-                    allDay: false
-                  });
-                  $('#eventModal').modal('hide');
-                } else {
-                  alert('Por favor, preencha todos os campos corretamente.');
-                }
-              });
-            }
+          if (title && !isNaN(start) && !isNaN(end)) {
+            calendar.addEvent({
+            title: title,
+            start: start,
+            end: end,
+            allDay: false
+            });
+            $('#eventModal').modal('hide');
+          } else {
+            alert('Por favor, preencha todos os campos corretamente.');
           }
-        },
-        buttonText: {
-          today: 'Hoje',
-          month: 'Mês',
-          week: 'Semana',
-          day: 'Dia'
-        },
-        events: function(fetchInfo, successCallback, failureCallback) {
-          $.ajax({
-            url: '/events',
-            method: 'GET',
-            success: function(data) {
-              var events = data.map(function(event) {
-                return {
-                  id: event.id,
-                  title: event.title, // Usando o campo correto para o título
-                  start: event.start, // Usando o campo correto para o início
-                  end: event.end // Usando o campo correto para o fim
-                };
-              });
-              successCallback(events);
-            },
-            error: function() {
-              failureCallback();
-            }
-          });
-        },
-        select: function(info) {
-          // Função de seleção de data
-          $('#eventDate').val(info.startStr);
-          $('#eventModal').modal('show');
-          $('#saveEvent').off('click').on('click', function() {
-            var title = $('#eventTitle').val();
-            var dateStr = $('#eventDate').val();
-            var startTime = $('#eventStartTime').val();
-            var endTime = $('#eventEndTime').val();
-            var start = new Date(dateStr + ' ' + startTime);
-            var end = new Date(dateStr + ' ' + endTime);
-
-            console.log('Title:', title);
-
-            if (title && !isNaN(start) && !isNaN(end)) {
-              calendar.addEvent({
-                title: title,
-                start: start,
-                end: end,
-                allDay: false
-              });
-              $('#eventModal').modal('hide');
-            } else {
-              alert('Por favor, preencha todos os campos corretamente.');
-            }
-          });
-          calendar.unselect();
-        },
-        eventClick: function(info) {
-          $('#eventTitle').val(info.event.title);
-          $('#eventDate').val(info.event.start.toISOString().split('T')[0]);
-          $('#eventStartTime').val(info.event.start.toISOString().split('T')[1].substring(0, 5));
-          $('#eventEndTime').val(info.event.end ? info.event.end.toISOString().split('T')[1].substring(0, 5) : '');
-
-          $('#eventModal').modal('show');
-
-          $('#saveEvent').off('click').on('click', function() {
-            var newTitle = $('#eventTitle').val();
-            var newStartTime = $('#eventStartTime').val();
-            var newEndTime = $('#eventEndTime').val();
-            var newStart = new Date($('#eventDate').val() + 'T' + newStartTime);
-            var newEnd = new Date($('#eventDate').val() + 'T' + newEndTime);
-            var description = $('#eventDescription').val();
-            var paciente = $('#eventTitle').val();
-            var dentista = $('#dentistaNome').val();
-            var date = $('#eventDate').val();
-
-            console.log('Description:', description);
-            console.log('Paciente:', paciente);
-            console.log('Dentista:', dentista);
-
-            if (newTitle && newStartTime && newEndTime && description && date && paciente && dentista) {
-              $.ajax({
-                url: '/agendamento',
-                method: 'POST',
-                data: {
-                  _token: '{{ csrf_token() }}', // Adicionar token CSRF
-                  date: date,
-                  title: newTitle,
-                  start: newStartTime,
-                  end: newEndTime,
-                  description: description,
-                  paciente: paciente,
-                  dentista: dentista
-                },
-                success: function(response) {
-                  console.log('Success:', response);
-                  info.event.setProp('title', newTitle);
-                  info.event.setStart(newStart);
-                  info.event.setEnd(newEnd);
-                },
-                error: function(xhr, status, error) {
-                  console.error('Error:', error);
-                  console.error('Status:', status);
-                  console.error('Response:', xhr.responseText);
-                }
-              });
-            } else {
-              alert('Por favor, preencha todos os campos corretamente.');
-            }
-            $('#eventModal').modal('hide');
-          });
-
-          $('#deleteEvent').off('click').on('click', function() {
-            info.event.remove();
-            $('#eventModal').modal('hide');
           });
         }
+        }
+      },
+      buttonText: {
+        today: 'Hoje',
+        month: 'Mês',
+        week: 'Semana',
+        day: 'Dia'
+      },
+      events: function(fetchInfo, successCallback, failureCallback) {
+        $.ajax({
+        url: '/events',
+        method: 'GET',
+        success: function(data) {
+          var events = data.map(function(event) {
+          return {
+            id: event.id,
+            title: event.title,
+            start: event.start,
+            end: event.end
+          };
+          });
+          successCallback(events);
+        },
+        error: function() {
+          failureCallback();
+        }
+        });
+      },
+      select: function(info) {
+        // Função de seleção de data
+        $('#eventDate').val(info.startStr);
+        $('#eventModal').modal('show');
+        $('#saveEvent').off('click').on('click', function() {
+        var title = $('#eventTitle').val();
+        var dateStr = $('#eventDate').val();
+        var startTime = $('#eventStartTime').val();
+        var endTime = $('#eventEndTime').val();
+        var start = new Date(dateStr + ' ' + startTime);
+        var end = new Date(dateStr + ' ' + endTime);
+
+        console.log('Title:', title);
+
+        if (title && !isNaN(start) && !isNaN(end)) {
+          calendar.addEvent({
+          title: title,
+          start: start,
+          end: end,
+          allDay: false
+          });
+          $('#eventModal').modal('hide');
+        } else {
+          alert('Por favor, preencha todos os campos corretamente.');
+        }
+        });
+        calendar.unselect();
+      },
+      eventClick: function(info) {
+        $('#eventTitle').val(info.event.title);
+        $('#eventDate').val(info.event.start.toISOString().split('T')[0]);
+        $('#eventStartTime').val(info.event.start.toISOString().split('T')[1].substring(0, 5));
+        $('#eventEndTime').val(info.event.end ? info.event.end.toISOString().split('T')[1].substring(0, 5) : '');
+
+        $('#eventModal').modal('show');
+
+        $('#saveEvent').off('click').on('click', function() {
+        var newTitle = $('#eventTitle').val();
+        var newStartTime = $('#eventStartTime').val();
+        var newEndTime = $('#eventEndTime').val();
+        var newStart = new Date($('#eventDate').val() + 'T' + newStartTime);
+        var newEnd = new Date($('#eventDate').val() + 'T' + newEndTime);
+        var description = $('#eventDescription').val();
+        var paciente = $('#eventTitle').val();
+        var dentista = $('#dentistaNome').val();
+        var date = $('#eventDate').val();
+
+        console.log('Description:', description);
+        console.log('Paciente:', paciente);
+        console.log('Dentista:', dentista);
+
+        if (newTitle && newStartTime && newEndTime && description && date && paciente && dentista) {
+          $.ajax({
+          url: '/agendamento',
+          method: 'POST',
+          data: {
+            _token: '{{ csrf_token() }}',
+            date: date,
+            title: newTitle,
+            start: newStartTime,
+            end: newEndTime,
+            description: description,
+            paciente: paciente,
+            dentista: dentista
+          },
+          success: function(response) {
+            console.log('Success:', response);
+            info.event.setProp('title', newTitle);
+            info.event.setStart(newStart);
+            info.event.setEnd(newEnd);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            console.error('Status:', status);
+            console.error('Response:', xhr.responseText);
+          }
+          });
+        } else {
+          alert('Por favor, preencha todos os campos corretamente.');
+        }
+        $('#eventModal').modal('hide');
+        });
+
+        $('#deleteEvent').off('click').on('click', function() {
+        info.event.remove();
+        $('#eventModal').modal('hide');
+        });
+      },
+      businessHours: [
+        {
+        daysOfWeek: [0, 1, 2, 3, 4, 5, 6], // Segunda a Sexta
+        startTime: '08:00',
+        endTime: '12:00'
+        },
+        {
+        daysOfWeek: [0, 1, 2, 3, 4, 5, 6], // Segunda a Sexta
+        startTime: '14:00',
+        endTime: '18:00'
+        }
+      ],
+      slotMinTime: '08:00:00',
+      slotMaxTime: '18:00:01'
       });
       console.log('Calendar initialized:', calendar); // Adicionar log para depuração
       calendar.render();
