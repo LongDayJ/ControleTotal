@@ -85,7 +85,7 @@ class CalendarController extends Controller
      */
     public function destroy($id)
     {
-        $event = Agendamento::find($id);
+        $event = Agendamento::findOrFail($id);
         if ($event) {
             $event->delete();
             return response()->json(['success' => true]);

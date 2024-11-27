@@ -9,11 +9,11 @@ use Illuminate\Support\Facades\Route;
   //  return $request->user();
 //})->middleware('auth:sanctum');
 
-Route::prefix('v1')->group(function() {
-    Route::get('/user', [UserController::class, 'index']);
-    Route::get('/user/{id}', [UserController::class, 'show']);
+// Route::prefix('v1')->group(function() {
+//     Route::get('/user', [UserController::class, 'index']);
+//     Route::get('/user/{id}', [UserController::class, 'show']);
     
-});
+// });
 
 // Route::prefix('v1')->group(function() {
 //   Route::get('/agendamento', [AgendamentoController::class, 'index']);
