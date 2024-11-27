@@ -20,7 +20,8 @@ class User extends Authenticatable
         'descricao',
         'email',
         'cpf',
-        'perfil_id'
+        'perfil_id',
+        'password'
     ];
 
     /**
