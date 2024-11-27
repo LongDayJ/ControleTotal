@@ -50,7 +50,7 @@ class FinanceiroController extends Controller
     public function destroy($id)
     {
         $financeiro = Financeiro::findOrFail($id);
-        $financeiro->delete();
+        $financeiro->update(['ativo' => false]);
         return redirect()->route('financeiro.index');
     }
 }

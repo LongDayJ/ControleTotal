@@ -13,8 +13,6 @@ return new class extends Migration
     {
         Schema::table('agendamento', function (Blueprint $table) {
             $table->unsignedBigInteger('procedimento_id')->after('dentista_id')->nullable();
-
-            // Se você quiser adicionar uma chave estrangeira
             $table->foreign('procedimento_id')->references('id')->on('procedimentos')->onDelete('cascade');
         });
     }

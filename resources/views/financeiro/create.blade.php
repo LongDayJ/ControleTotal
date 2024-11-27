@@ -7,8 +7,8 @@
             <option value="ENTRADA">ENTRADA</option>
             <option value="SAIDA">SAIDA</option>
         </select>
-        <label for="valor">Valor:</label>
-        <input type="number" name="valor" id="valor" required>
+        <label for="valor">Valor (R$):</label>
+        <input type="number" name="valor" id="valor" step="0.01" min="0" required>
         <label for="descricao">Descrição:</label>
         <textarea name="descricao" id="descricao" required></textarea>
         <button type="submit">Salvar</button>

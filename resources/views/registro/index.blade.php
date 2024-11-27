@@ -85,7 +85,7 @@
 				<tbody>
 					@foreach($pacientes as $paciente)
 					<tr>
-						<td><a href="{{ route('prontuario.index', ['paciente_id' => $paciente->id]) }}">{{ $paciente->name }}</a></td>
+						<td><a href="{{ route('consultas.index', ['paciente_id' => $paciente->id]) }}">{{ $paciente->name }}</a></td>
 						<td>{{ $paciente->email }}</td>
 						<td>{{ $paciente->telefone }}</td>
 					</tr>
