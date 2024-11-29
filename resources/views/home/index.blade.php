@@ -127,40 +127,40 @@
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone2.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Limpeza Dental</h5>
+					<p>Procedimento preventivo realizado para remover placas bacterianas, tártaros e manchas dos dentes, ajudando a prevenir cáries e doenças gengivais.</p>
 				</div>
 			</div>
 			<!-- Serviço 3 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone3.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Tratamento de Cáries</h5>
+					<p>Processo de remoção do tecido dentário danificado por cáries, seguido do preenchimento do espaço com materiais restauradores para devolver a funcionalidade do dente.</p>
 				</div>
 			</div>
 			<!-- Serviço 4 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone4.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Clareamento Dental</h5>
+					<p>Tratamento estético que utiliza agentes químicos para clarear a coloração dos dentes, proporcionando um sorriso mais branco e brilhante.</p>
 				</div>
 			</div>
 			<!-- Serviço 5 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone5.png" alt="Ícone Aparelhos" class="service-icon">
-					<h5>Aparelhos Dentários</h5>
-					<p>Equipe especializada para corrigindo problemas de alinhamento e mordida que impactam tanto a estética quanto a funcionalidade dos dentes.</p>
+					<h5>Aparelhos Ortodônticos</h5>
+					<p>Dispositivos utilizados para corrigir desalinhamentos dentários e problemas de mordida, melhorando a funcionalidade e a estética do sorriso.</p>
 				</div>
 			</div>
 			<!-- Serviço 6 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone6.png" alt="Ícone Implante" class="service-icon">
-					<h5>Implante Dentário</h5>
-					<p>Solução moderna e eficaz para a reposição de dentes perdidos, proporcionando estética, funcionalidade e conforto semelhantes aos de um dente natural.</p>
+					<h5>Extração Dentária</h5>
+					<p>Procedimento cirúrgico para remover dentes comprometidos, seja por cáries extensas, fraturas ou falta de espaço, como no caso dos sisos.</p>
 				</div>
 			</div>
 		</div>
@@ -295,70 +295,38 @@
 			}
 		</style>
 		<div class="container mt-5">
-			<h2 class="section-title text-center">Conheça Nossa <span class="highlight">Equipe Médica</span></h2>
+			<h2 class="section-title text-center">Conheça Nossa <span class="highlight">Equipe de Especialistas</span></h2>
 			<div class="row mt-4">
 				<!-- Membro 1 -->
 				<div class="col-md-3 col-sm-6 mb-4-4">
 					<div class="team-card">
-						<img src="profile1.png" alt="Médico 1">
-						<h5>Doutor Kratos Atreus </h5>
+					<img src="{{ asset('css/home/equipe/Depositphotos_13042582_m-2015.jpg-1-700x467.jpeg') }}" alt="Nome do Profissional">
+					<h5>Dr Jaime Cabral </h5>
 						<p>Ortodontista</p>
 					</div>
 				</div>
 				<!-- Membro 2 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile2.png" alt="Médico 2">
-						<h5>Doutor Jaime</h5>
-						<p>Odontopediatra</p>
+					<img src="{{ asset('css/home/equipe/como-ser-um-dentista-de-sucesso.png') }}" alt="Nome do Profissional">
+						<h5>Dr'a Thalyta Santos</h5>
+						<p>Ortodontista</p>
 					</div>
 				</div>
 				<!-- Membro 3 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile3.png" alt="Médico 3">
-						<h5>Doutor Joao</h5>
-						<p>Implantodentista</p>
+					<img src="{{ asset('css/home/equipe/Ser-proativo-na-profissao-418x400.jpg') }}" alt="Nome do Profissional">
+						<h5>Dr Edmilson Zacarias</h5>
+						<p>Dentista Cirurgião</p>
 					</div>
 				</div>
 				<!-- Membro 4 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile4.png" alt="Médico 4">
-						<h5>Doutor Marquinhos</h5>
-						<p>Odontologia estética</p>
-					</div>
-				</div>
-				<!-- Membro 5 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile5.png" alt="Médico 5">
-						<h5>Doutora Lara</h5>
-						<p>Cirurgia e Traumatologia Buco-Maxilo-Facial</p>
-					</div>
-				</div>
-				<!-- Membro 6 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile6.png" alt="Médico 6">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
-					</div>
-				</div>
-				<!-- Membro 7 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile7.png" alt="Médico 7">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
-					</div>
-				</div>
-				<!-- Membro 8 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile8.png" alt="Médico 8">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
+					<img src="{{ asset('css/home/equipe/Especial-Dia-da-Mulher-As-mulheres-na-odontologia.jpg') }}" alt="Nome do Profissional">
+						<h5>Dr'a Marina</h5>
+						<p>Ortondontista Pediatra</p>
 					</div>
 				</div>
 			</div>
