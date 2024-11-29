@@ -7,9 +7,36 @@ use Illuminate\Http\Request;
 
 class FinanceiroController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $financeiros = Financeiro::all();
+        $query = Financeiro::query();
+    
+        if ($request->filled('tipo')) {
+            $query->where('tipo', 'like', '%' . $request->tipo . '%');
+        }
+    
+        if ($request->filled('descricao')) {
+            $query->where('descricao', 'like', '%' . $request->descricao . '%');
+        }
+    
+        if ($request->filled('valor')) {
+            $query->where('valor', $request->valor);
+        }
+    
+        if ($request->filled('data_vencimento')) {
+            $query->whereDate('data_vencimento', $request->data_vencimento);
+        }
+    
+        if ($request->filled('data_pagamento')) {
+            $query->whereDate('data_pagamento', $request->data_pagamento);
+        }
+    
+        if ($request->filled('status')) {
+            $query->where('status', 'like', '%' . $request->status . '%');
+        }
+    
+        $financeiros = $query->get();
+    
         return view('financeiro.index', compact('financeiros'));
     }
 

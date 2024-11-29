@@ -12,11 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('financeiro', function (Blueprint $table) {
-            $table->time(column: 'data_vencimento')->nullable();
-            $table->time(column: 'data_pagamento')->nullable();
-            $table->enum('status', ['PENDENTE', 'PAGO', 'CANCELADO'])->defalt('PENDENTE');
-
-
+            $table->date(column: 'data_vencimento')->nullable();
+            $table->date(column: 'data_pagamento')->nullable();
+            $table->enum('status', ['PENDENTE', 'PAGO', 'CANCELADO'])->default('PENDENTE');
         });
     }
 

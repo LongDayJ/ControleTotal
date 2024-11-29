@@ -73,7 +73,7 @@ class CalendarController extends Controller
         $pacientes = User::where('perfil_id', 3)->get();
         $medicos = User::where('perfil_id', 4)->get();
         $procedimentos = Procedimento::all();
-        $agendamento->hora = substr($agendamento->hora, 0, 5);
+        list($agendamento->hora, $agendamento->minuto) = explode(':', substr($agendamento->hora, 0, 5));
         return view('schedule.edit', compact('agendamento', 'pacientes', 'medicos', 'procedimentos'));
     }
 
@@ -82,8 +82,12 @@ class CalendarController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $hora = $request->input('hora');
+        $minuto = $request->input('minuto');
+        $segundo = $request->input('segundo');
+        $request->merge(['hora' => sprintf('%02d:%02d:%02d', $hora, $minuto, $segundo)]);
         $agendamento = Agendamento::findOrFail($id);
-        $agendamento->update($request->all());
+        $agendamento->update($request->except('_token', '_method', 'minuto'));
         $agendamento->updated_at = now();
         $agendamento->save();
         return redirect()->route('agendamento.index')->with('success', 'Agendamento atualizado com sucesso!');
