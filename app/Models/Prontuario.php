@@ -20,4 +20,9 @@ class Prontuario extends Model
     {
         return $this->hasOne(Consulta::class, 'id', 'consulta_id');
     }
+
+    public function user()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
