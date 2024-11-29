@@ -9,20 +9,17 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::table('agendamento', function (Blueprint $table) {
-            // $table->time('horaFinal')->nullable();
+            $table->string('color')->default('#6495ED');
         });
     }
-
-    /**
-     * Reverse the migrations.
-     */
-    public function down(): void
+    
+    public function down()
     {
         Schema::table('agendamento', function (Blueprint $table) {
-            // $table->dropColumn('horaFinal');
+            $table->dropColumn('color');
         });
     }
 };

@@ -9,10 +9,12 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MrecordController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ConsultaController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RegistroController;
 use App\Http\Controllers\ProcedimentoController;
 use App\Http\Controllers\RegisterPatientController;
+use App\Http\Controllers\FinanceiroController;
 use App\Http\Middleware\Autenticador;
 use App\Http\Middleware\AutenticadorPaciente;
 use Illuminate\Support\Facades\Route;
@@ -78,5 +80,8 @@ Route::post('/logout', function () {
     return redirect('/');
 })->name('logout');
 
-Route::get('/prontuario/{paciente_id}', [MrecordController::class, 'index'])
-->name('prontuario.index')->middleware(Autenticador::class);
+
+Route::get('/consultas/{paciente_id}', [ConsultaController::class, 'index'])
+    ->name('consultas.index')->middleware(Autenticador::class)->middleware(Autenticador::class);
+Route::resource('financeiro', FinanceiroController::class)->middleware(Autenticador::class);
+Route::resource('consultas', ConsultaController::class)->except('index')->middleware(Autenticador::class);

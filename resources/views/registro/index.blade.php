@@ -58,7 +58,7 @@
 					@foreach($colaboradores as $colaborador)
 					<tr>
 						<td>{{ $colaborador->name }}</td>
-						<td>{{ $colaborador->perfil_id == 4 ? 'Profissional de Saúde' : 'Colaborador' }}</td>
+						<td>{{ $colaborador->perfil_id == 4 ? 'Dentista' : 'Auxiliar' }}</td>
 						<td>{{ substr($colaborador['cpf'], 0, 3) . '.***.***-' . substr($colaborador['cpf'], -2) }}</td>
 					</tr>
 					@endforeach
@@ -85,7 +85,7 @@
 				<tbody>
 					@foreach($pacientes as $paciente)
 					<tr>
-						<td><a href="{{ route('prontuario.index', ['paciente_id' => $paciente->id]) }}">{{ $paciente->name }}</a></td>
+						<td><a href="{{ route('consultas.index', ['paciente_id' => $paciente->id]) }}">{{ $paciente->name }}</a></td>
 						<td>{{ $paciente->email }}</td>
 						<td>{{ $paciente->telefone }}</td>
 					</tr>

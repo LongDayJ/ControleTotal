@@ -122,14 +122,14 @@
 								</div>
 							</div>
 						</div>
-					<div class="col-md-6 mb-3">
-						<label for="cargo" class="form-label">Cargo: <span class="text-danger">*</span></label>
-						<select class="form-control" id="cargo" name="cargo" required>
-							<option value="">Selecione um cargo</option>
-							<option value="PROFISSIONAL_DE_SAUDE">Profissional de Saúde</option>
-							<option value="colaborador">Auxiliar</option>
-						</select>
-					</div>
+						<div class="col-md-6 mb-3">
+							<label for="cargo" class="form-label">Cargo: <span class="text-danger">*</span></label>
+							<select class="form-control" id="cargo" name="cargo" required>
+								<option value="">Selecione um cargo</option>
+								<option value="PROFISSIONAL_DE_SAUDE">Dentista</option>
+								<option value="colaborador">Auxiliar</option>
+							</select>
+						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
@@ -145,7 +145,7 @@
 						<div class="col-md-12 mb-3">
 							<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
 							<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly
-							placeholder="CRO, especialidade e etc ..."></textarea>
+								placeholder="CRO, especialidade e etc ..."></textarea>
 						</div>
 					</div>
 					<div class="row">

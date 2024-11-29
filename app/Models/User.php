@@ -20,7 +20,8 @@ class User extends Authenticatable
         'descricao',
         'email',
         'cpf',
-        'perfil_id'
+        'perfil_id',
+        'password'
     ];
 
     /**
@@ -29,6 +30,11 @@ class User extends Authenticatable
     public function perfil()
     {
         return $this->belongsTo(Perfil::class, 'perfil_id');
+    }
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class);
     }
 
     public function endereco()

@@ -1,34 +1,8 @@
 <x-appBarAdmin title="Dashboard">
 	<div class="container mt-4">
+		<h3 class="mb-4 text-center">Agendamentos da Semana</h3>
 		<div class="row">
-		<h3 class="card-title">Agendamentos da Semana</h3>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Segunda-feira</th>
-						<th>Terça-feira</th>
-						<th>Quarta-feira</th>
-						<th>Quinta-feira</th>
-						<th>Sexta-feira</th>
-						<th>Sábado</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						@foreach($agendamentosPorDiaDaSemana as $dia => $agendamentos)
-						@if($dia != 'Sunday')
-						<td>
-							@foreach($agendamentos as $agendamento)
-								Hora: {{ $agendamento['hora'] }}<br>
-								Paciente: {{ $agendamento['user_name'] }}<br>
-								<br>
-							@endforeach
-						</td>
-						@endif
-						@endforeach
-					</tr>
-				</tbody>
-			</table>
+			<!-- Card 1 -->
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
@@ -42,6 +16,7 @@
 					</div>
 				</div>
 			</div>
+			<!-- Card 2 -->
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
@@ -55,8 +30,20 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
+			<!-- Card 3 -->
+			<div class="col-md-4 mb-4">
+				<div class="card text-center">
+					<div class="card-body">
+						<h3 class="card-title">{{ $pacientesNovos }}</h3>
+						<p class="card-text">
+							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill m-2" viewBox="0 0 16 16">
+								<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+							</svg>
+							Pacientes Cadastrados no Mês
+						</p>
+					</div>
+				</div>
+			</div>
 			<div class="col-md-4 mb-4">
 				<div class="card text-center">
 					<div class="card-body">
@@ -70,34 +57,34 @@
 					</div>
 				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 mb-4">
-				<div class="card text-center">
-					<div class="card-body">
-						<h3 class="card-title">{{ $procedimentosCadastrados }}</h3>
-						<p class="card-text">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-clipboard-fill m-2" viewBox="0 0 16 16">
-								<path fill-rule="evenodd" d="M10 1.5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5zm-5 0A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5v1A1.5 1.5 0 0 1 9.5 4h-3A1.5 1.5 0 0 1 5 2.5zm-2 0h1v1A2.5 2.5 0 0 0 6.5 5h3A2.5 2.5 0 0 0 12 2.5v-1h1a2 2 0 0 1 2 2V14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V3.5a2 2 0 0 1 2-2" />
-							</svg>
-							Procedimentos Cadastrados
-						</p>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-4 mb-4">
-				<div class="card text-center">
-					<div class="card-body">
-						<h3 class="card-title">{{ $pacientesCadastrados }}</h3>
-						<p class="card-text">
-							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-people-fill m-2" viewBox="0 0 16 16">
-								<path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-							</svg>
-							Pacientes Cadastrados
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+            <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="card-title">{{ round($taxaOcupacaoDia, 2) }}%</h3>
+                    <p class="card-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-check m-2" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm11.854 3.646a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708 0L8.5 9.707 6.854 11.354a.5.5 0 1 1-.708-.708l2-2a.5.5 0 0 1 .708 0l2.146 2.147 2.646-2.646a.5.5 0 0 1 .708 0z" />
+                        </svg>
+                        {{ $consultasPreenchidasDia }} de {{ $totalHorariosPorDia }} horários preenchidos.
+                    </p>
+                </div>
+            </div>
+        </div>
+            <!-- Taxa de ocupação do mês -->
+            <div class="col-md-4 mb-4">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h3 class="card-title">{{ round($taxaOcupacaoMes, 2) }}%</h3>
+                    <p class="card-text">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-calendar-event m-2" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1zm11 2a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm-9 0a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm0 4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm4-4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm4 4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5zm-4 4a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-1 0v-1a.5.5 0 0 1 .5-.5z" />
+                        </svg>
+                        {{ $consultasPreenchidasMes }} de {{ $totalHorariosMes }} horários preenchidos.
+                    </p>
+                </div>
+            </div>
+        </div>  
+        </div>
+        </div>
+    </div>
 </x-appBarAdmin>

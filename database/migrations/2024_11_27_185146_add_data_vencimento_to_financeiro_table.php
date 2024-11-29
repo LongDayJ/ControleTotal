@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('agendamento', function (Blueprint $table) {
-            // $table->time('horaFinal')->nullable();
+        Schema::table('financeiro', function (Blueprint $table) {
+            $table->time(column: 'data_vencimento')->nullable();
+            $table->time(column: 'data_pagamento')->nullable();
+            $table->enum('status', ['PENDENTE', 'PAGO', 'CANCELADO'])->defalt('PENDENTE');
+
+
         });
     }
 
@@ -21,8 +25,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('agendamento', function (Blueprint $table) {
-            // $table->dropColumn('horaFinal');
+        Schema::table('financeiro', function (Blueprint $table) {
+            //
         });
     }
 };

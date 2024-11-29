@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('consulta', function (Blueprint $table) {
+        Schema::create('financeiro', function (Blueprint $table) {
             $table->id();
-            $table->string('diagnostico');
-            $table->text('receita');
-            $table->string('codigoConsulta');
-            $table->foreignId('agendamento_id')->constrained('agendamento')->onDelete('cascade');
+            $table->enum('tipo', ['ENTRADA', 'SAIDA'])->default('ENTRADA');
+            $table->double('valor');
+            $table->text('descricao');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('consulta');
+        Schema::dropIfExists('financeiro');
     }
 };

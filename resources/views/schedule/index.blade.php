@@ -18,18 +18,17 @@
   <!-- Div onde o calendário será renderizado -->
   <div id='calendar'></div>
 
-  <!-- Modal HTML -->
-  <div id="eventModal" class="modal" tabindex="-1" role="dialog">
+  <div id="createEventModal" class="modal" tabindex="1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Criar/Editar Evento</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <h5 class="modal-title">Criar Evento</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-          <form id="eventForm">
+          <form id="createEventForm">
             <div class="form-group">
               <label for="eventTitle">Nome do Paciente</label>
               <select class="form-control" id="eventTitle">
@@ -59,27 +58,148 @@
             </div>
             <div class="form-group">
               <label for="eventDescription">Observação</label>
-              <textarea class="form-control" id="eventDescription" rows="3" style="resize: none;" required></textarea>
+              <textarea class="form-control" id="eventDescription" rows="2" style="resize: none;" required></textarea>
             </div>
             <div class="form-group">
               <label for="eventDate">Data</label>
               <input type="date" class="form-control" id="eventDate" required>
             </div>
             <div class="form-group">
-              <label for="eventStartTime">Hora de Início</label>
-              <input type="time" class="form-control" id="eventStartTime" step="900" required>
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="eventStartTimeHour">Horário</label>
+                  <select class="form-control" id="eventStartTimeHour" required>
+                    @for ($i = 8; $i < 13; $i++)
+                      <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                      @endfor
+                      @for ($i = 14; $i < 19; $i++)
+                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                      @endfor
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="eventStartTimeMinute">Minuto</label>
+                  <select class="form-control" id="eventStartTimeMinute" required>
+                    @foreach ([0, 15, 30, 45] as $minute)
+                    <option value="{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
             </div>
             <div class="form-group">
-              <label for="eventEndTime">Hora de Fim</label>
-              <input type="time" class="form-control" id="eventEndTime" step="900" required>
+              <label for="eventColor">Cor do Evento</label>
+              <select class="form-control" id="eventColor">
+                <option value="#ff0000" style="color: #ff0000;">Vermelho</option>
+                <option value="#00ff00" style="color: #00ff00;">Verde</option>
+                <option value="#0000ff" style="color: #0000ff;">Azul</option>
+                <option value="#ffff00" style="color: #ffff00;">Amarelo</option>
+                <option value="#ff00ff" style="color: #ff00ff;">Rosa</option>
+                <option value="#00ffff" style="color: #00ffff;">Ciano</option>
+                <option value="#ff8000" style="color: #ff8000;">Laranja</option>
+                <option value="#8000ff" style="color: #8000ff;">Roxo</option>
+              </select>
             </div>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+            @csrf
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="saveEvent">Salvar</button>
+          <button type="button" class="btn btn-primary" id="saveCreateEvent">Salvar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="editEventModal" class="modal" tabindex="1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Editar Evento</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="editEventForm">
+            <div class="form-group">
+              <label for="eventTitle">Nome do Paciente</label>
+              <select class="form-control" id="eventTitle">
+                <option value="">Selecione um paciente</option>
+                @foreach($pacientes as $paciente)
+                <option value="{{ $paciente->name }}">{{ $paciente->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="dentistaNome">Nome do Dentista</label>
+              <select class="form-control" id="dentistaNome">
+                <option value="">Selecione um dentista</option>
+                @foreach($medicos as $medico)
+                <option value="{{ $medico->name }}">{{ $medico->name }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="procedimento">Procedimento</label>
+              <select class="form-control" id="procedimento">
+                <option value="">Selecione um procedimento</option>
+                @foreach($procedimentos as $procedimento)
+                <option value="{{ $procedimento->nome }}">{{ $procedimento->nome }}</option>
+                @endforeach
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="eventDescription">Observação</label>
+              <textarea class="form-control" id="eventDescription" rows="2" style="resize: none;" required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="eventDate">Data</label>
+              <input type="date" class="form-control" id="eventDate" required>
+            </div>
+            <div class="form-group">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="eventStartTimeHour">Horário</label>
+                  <select class="form-control" id="eventStartTimeHour" required>
+                    @for ($i = 8; $i < 13; $i++)
+                      <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                      @endfor
+                      @for ($i = 14; $i < 19; $i++)
+                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
+                        @endfor
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="eventStartTimeMinute">Minuto</label>
+                  <select class="form-control" id="eventStartTimeMinute" required>
+                    @foreach ([0, 15, 30, 45] as $minute)
+                    <option value="{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="eventColor">Cor do Evento</label>
+              <select class="form-control" id="eventColor">
+                <option value="#ff0000" style="color: #ff0000;">Vermelho</option>
+                <option value="#00ff00" style="color: #00ff00;">Verde</option>
+                <option value="#0000ff" style="color: #0000ff;">Azul</option>
+                <option value="#ffff00" style="color: #ffff00;">Amarelo</option>
+                <option value="#ff00ff" style="color: #ff00ff;">Rosa</option>
+                <option value="#00ffff" style="color: #00ffff;">Ciano</option>
+                <option value="#ff8000" style="color: #ff8000;">Laranja</option>
+                <option value="#8000ff" style="color: #8000ff;">Roxo</option>
+              </select>
+            </div>
+            @csrf
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" id="saveCreateEvent">Salvar</button>
           <button type="button" class="btn btn-danger" id="deleteEvent">Excluir</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
@@ -98,42 +218,24 @@
   <!-- Inicializar o calendário -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      console.log('DOM fully loaded and parsed'); // Adicionar log para depuração
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
+        initialView: 'timeGridWeek',
         selectable: true,
         editable: true,
         locale: 'pt-br',
         headerToolbar: {
           left: 'prev,next today',
           center: 'title',
-          right: 'dayGridMonth,timeGridWeek,timeGridDay createEventButton' // Adicionar botões de navegação
+          right: 'dayGridMonth,timeGridWeek,timeGridDay createEventButton'
         },
         customButtons: {
           createEventButton: {
             text: '+ Criar Evento',
             click: function() {
-              $('#eventModal').modal('show');
-              $('#saveEvent').off('click').on('click', function() {
-                var title = $('#eventTitle').val();
-                var dateStr = $('#eventDate').val();
-                var startTime = $('#eventStartTime').val();
-                var endTime = $('#eventEndTime').val();
-                var start = new Date(dateStr + 'T' + startTime);
-                var end = new Date(dateStr + 'T' + endTime);
-
-                if (title && !isNaN(start) && !isNaN(end)) {
-                  calendar.addEvent({
-                    title: title,
-                    start: start,
-                    end: end,
-                    allDay: false
-                  });
-                  $('#eventModal').modal('hide');
-                } else {
-                  alert('Por favor, preencha todos os campos corretamente.');
-                }
+              $('#createEventModal').modal('show');
+              $('#saveCreateEvent').off('click').on('click', function() {
+                saveEvent(calendar);
               });
             }
           }
@@ -152,9 +254,10 @@
               var events = data.map(function(event) {
                 return {
                   id: event.id,
-                  title: event.title, // Usando o campo correto para o título
-                  start: event.start, // Usando o campo correto para o início
-                  end: event.end // Usando o campo correto para o fim
+                  title: event.title,
+                  start: event.start,
+                  end: event.start,
+                  color: event.color,
                 };
               });
               successCallback(events);
@@ -165,75 +268,33 @@
           });
         },
         select: function(info) {
-          // Função de seleção de data
-          $('#eventDate').val(info.startStr);
-          $('#eventModal').modal('show');
-          $('#saveEvent').off('click').on('click', function() {
-            var title = $('#eventTitle').val();
-            var dateStr = $('#eventDate').val();
-            var startTime = $('#eventStartTime').val();
-            var endTime = $('#eventEndTime').val();
-            var start = new Date(dateStr + ' ' + startTime);
-            var end = new Date(dateStr + ' ' + endTime);
-
-            console.log('Title:', title);
-
-            if (title && !isNaN(start) && !isNaN(end)) {
-              calendar.addEvent({
-                title: title,
-                start: start,
-                end: end,
-                allDay: false
-              });
-              $('#eventModal').modal('hide');
-            } else {
-              alert('Por favor, preencha todos os campos corretamente.');
-            }
+          $('#createEventModal').modal('show');
+          $('#saveCreateEvent').off('click').on('click', function() {
+            saveEvent(calendar);
           });
           calendar.unselect();
         },
-        eventClick: function(info) {
-          $('#eventTitle').val(info.event.title);
-          $('#eventDate').val(info.event.start.toISOString().split('T')[0]);
-          $('#eventStartTime').val(info.event.start.toISOString().split('T')[1].substring(0, 5));
-          $('#eventEndTime').val(info.event.end ? info.event.end.toISOString().split('T')[1].substring(0, 5) : '');
+        eventContent: function(info) {
+          var eventTitle = info.event.title;
+          var eventStart = info.event.start.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit'
+          });
+          var eventElement = document.createElement('div');
+          eventElement.innerHTML = '<span style="cursor:pointer;">🗑️</span> - ' + eventStart + ' - ' + eventTitle;
 
-          $('#eventModal').modal('show');
-
-          $('#saveEvent').off('click').on('click', function() {
-            var newTitle = $('#eventTitle').val();
-            var newStartTime = $('#eventStartTime').val();
-            var newEndTime = $('#eventEndTime').val();
-            var newStart = new Date($('#eventDate').val() + 'T' + newStartTime);
-            var newEnd = new Date($('#eventDate').val() + 'T' + newEndTime);
-            var description = $('#eventDescription').val();
-            var paciente = $('#eventTitle').val();
-            var dentista = $('#dentistaNome').val();
-            var date = $('#eventDate').val();
-
-            console.log('Description:', description);
-            console.log('Paciente:', paciente);
-            console.log('Dentista:', dentista);
-
-            if (newTitle && newStartTime && newEndTime && description && date && paciente && dentista) {
+          eventElement.querySelector('span').addEventListener('click', function() {
+            if (confirm('Deseja realmente excluir este evento?')) {
               $.ajax({
-                url: '/agendamento',
-                method: 'POST',
+                url: '/agendamento/' + info.event.id,
+                method: 'DELETE',
                 data: {
-                  _token: '{{ csrf_token() }}', // Adicionar token CSRF
-                  date: date,
-                  title: newTitle,
-                  start: newStartTime,
-                  end: newEndTime,
-                  description: description,
-                  paciente: paciente,
-                  dentista: dentista
+                  _token: '{{ csrf_token() }}',
+                  event: info.event.id
                 },
                 success: function(response) {
-                  console.log('Success:', response);
-                  info.event.setProp('title', newTitle);
-                  info.event.setStart(newStart);
-                  info.event.setEnd(newEnd);
+                  info.event.remove();
+                  console.log('Event deleted:', response);
                 },
                 error: function(xhr, status, error) {
                   console.error('Error:', error);
@@ -241,66 +302,96 @@
                   console.error('Response:', xhr.responseText);
                 }
               });
-            } else {
-              alert('Por favor, preencha todos os campos corretamente.');
             }
-            $('#eventModal').modal('hide');
           });
-
-          $('#deleteEvent').off('click').on('click', function() {
-            info.event.remove();
-            $('#eventModal').modal('hide');
-          });
-        }
+          return {
+            domNodes: [eventElement]
+          };
+        },
+        eventClick: function(info) {
+          if (info.jsEvent.target.tagName !== 'SPAN') {
+            window.location.href = '/agendamento/' + info.event.id + '/edit';
+          }
+        },
+        businessHours: [{
+            daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
+            startTime: '08:00',
+            endTime: '12:00'
+          },
+          {
+            daysOfWeek: [0, 1, 2, 3, 4, 5, 6],
+            startTime: '14:00',
+            endTime: '18:00'
+          }
+        ],
+        slotMinTime: '08:00:00',
+        slotMaxTime: '18:00:01'
       });
-      console.log('Calendar initialized:', calendar); // Adicionar log para depuração
+
       calendar.render();
-
-      //Adicionar evento de clique no botão de salvar
-      document.getElementById('saveEvent').addEventListener('click', function() {
-        var title = document.getElementById('eventTitle').value;
-        var startTime = document.getElementById('eventStartTime').value;
-        var endTime = document.getElementById('eventEndTime').value;
-        var date = document.getElementById('eventDate').value;
-        var description = document.getElementById('eventDescription').value;
-        var paciente = document.getElementById('eventTitle').value;
-        var dentista = document.getElementById('dentistaNome').value;
-
-        console.log('Title:', title);
-        console.log('Start Time:', startTime);
-        console.log('End Time:', endTime);
-        console.log('Date:', date);
-        console.log('Description:', description);
-        console.log('Paciente:', paciente);
-        console.log('Dentista:', dentista);
-
-        if (title && startTime && endTime && description && date && paciente && dentista) {
-          $.ajax({
-            url: '/agendamento',
-            method: 'POST',
-            data: {
-              _token: '{{ csrf_token() }}', // Adicionar token CSRF
-              date: date,
-              title: title,
-              start: startTime,
-              end: endTime,
-              description: description,
-              paciente: paciente,
-              dentista: dentista
-            },
-            success: function(response) {
-              console.log('Success:', response);
-            },
-            error: function(xhr, status, error) {
-              console.error('Error:', error);
-              console.error('Status:', status);
-              console.error('Response:', xhr.responseText);
-            }
-          });
-        } else {
-          console.error('Todos os campos são obrigatórios.');
-        }
-      });
     });
+
+    function saveEvent(calendar, event = null) {
+      var title = $('#eventTitle').val();
+      var startHour = $('#eventStartTimeHour').val();
+      var startMinute = $('#eventStartTimeMinute').val();
+      var startTime = startHour + ':' + startMinute + ':00';
+      var date = $('#eventDate').val();
+      var description = $('#eventDescription').val();
+      var paciente = $('#eventTitle').val();
+      var dentista = $('#dentistaNome').val();
+      var color = $('#eventColor').val();
+
+      if (title && startTime && description && date && paciente && dentista && color) {
+        var start = new Date(date + 'T' + startTime);
+        var eventData = {
+          title: title,
+          start: start,
+          description: description,
+          paciente: paciente,
+          dentista: dentista,
+          color: color,
+          allDay: false
+        };
+
+        if (event) {
+          event.setProp('title', title);
+          event.setStart(start);
+          event.setExtendedProp('description', description);
+          event.setExtendedProp('dentista', dentista);
+          event.setProp('backgroundColor', color);
+        } else {
+          calendar.addEvent(eventData);
+        }
+
+        $.ajax({
+          url: '/agendamento',
+          method: 'POST',
+          data: {
+            _token: '{{ csrf_token() }}',
+            date: date,
+            title: title,
+            start: startTime,
+            description: description,
+            paciente: paciente,
+            dentista: dentista,
+            color: color
+          },
+          success: function(response) {
+            console.log('Success:', response);
+          },
+          error: function(xhr, status, error) {
+            console.error('Error:', error);
+            console.error('Status:', status);
+            console.error('Response:', xhr.responseText);
+          }
+        });
+
+        $('#createEventModal').modal('hide');
+        $('#editEventModal').modal('hide');
+      } else {
+        alert('Por favor, preencha todos os campos corretamente.');
+      }
+    }
   </script>
 </x-appBarAdmin>

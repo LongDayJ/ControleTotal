@@ -33,24 +33,23 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        // Exibir o conteúdo da requisição e interromper a execução
-    
+        if ($request->input('date') < now()->setTimezone('America/Sao_Paulo')->toDateString()) {
+            return response()->json(['success' => false, 'message' => 'Não é possível agendar para uma data que já passou.'], 400);
+        }
         $agendamento = new Agendamento();
         $agendamento->data = $request->input('date');
         $agendamento->hora = $request->input('start');
-        $agendamento->horaFinal = $request->input('end');
         $agendamento->status = "AGENDADO";
         $agendamento->observacao = $request->input('description');
         
         $pacienteNome = $request->input('paciente');
         $paciente = User::where('name', $pacienteNome)->firstOrFail();
         $agendamento->user_id = $paciente->id;
-        
         $dentistaNome = $request->input('dentista');
-        $dentista = Dentista::where('nome', $dentistaNome)->firstOrFail();
+        $dentista = User::where('name', $dentistaNome)->firstOrFail();
         $agendamento->dentista_id = $dentista->id;
-    
-        // Salvar o agendamento no banco de dados
+        $agendamento->color = $request->input('color');
+
         $agendamento->save();
     
         return response()->json($agendamento, 201);
@@ -70,7 +69,12 @@ class CalendarController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $agendamento = Agendamento::findOrFail($id);
+        $pacientes = User::where('perfil_id', 3)->get();
+        $medicos = User::where('perfil_id', 4)->get();
+        $procedimentos = Procedimento::all();
+        $agendamento->hora = substr($agendamento->hora, 0, 5);
+        return view('schedule.edit', compact('agendamento', 'pacientes', 'medicos', 'procedimentos'));
     }
 
     /**
@@ -80,7 +84,9 @@ class CalendarController extends Controller
     {
         $agendamento = Agendamento::findOrFail($id);
         $agendamento->update($request->all());
-        return response()->json($agendamento, 200);
+        $agendamento->updated_at = now();
+        $agendamento->save();
+        return redirect()->route('agendamento.index')->with('success', 'Agendamento atualizado com sucesso!');
     }
 
     /**
@@ -88,8 +94,11 @@ class CalendarController extends Controller
      */
     public function destroy($id)
     {
-        $event = Agendamento::find($id);
+        $event = Agendamento::findOrFail($id);
         if ($event) {
+            if ($event->data < now()->toDateString()) {
+            return response()->json(['success' => false, 'message' => 'Não é possível excluir um evento que já passou.']);
+            }
             $event->delete();
             return response()->json(['success' => true]);
         } else {

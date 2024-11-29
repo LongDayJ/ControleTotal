@@ -33,8 +33,7 @@ class RegistroController extends Controller
 		foreach ($pacientes as $paciente) {
 			$paciente->telefone = $telefones->firstWhere('user_id', $paciente->id)->telefone ?? null;
 		}
-		$dentistas = Dentista::all();
-		return view('registro.index', compact('colaboradores', 'procedimentos', 'pacientes', 'dentistas'))
+		return view('registro.index', compact('colaboradores', 'procedimentos', 'pacientes'))
 		->with('procedimentoErro', $procedimentoErro);
 	}
 

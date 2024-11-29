@@ -15,7 +15,7 @@ class EstoqueResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'produto' => (new DentistaResource($this->produto))->infoProdutoEstoque(),
+            'produto' => (new EstoqueResource($this->produto))->infoProdutoEstoque(),
             'quantidade' => $this ->quantidade,
             'quantidadeMinima' => $this ->quantidadeMinima,
             'updated_at' => $this ->updated_at
