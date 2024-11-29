@@ -58,7 +58,7 @@
 					@foreach($colaboradores as $colaborador)
 					<tr>
 						<td>{{ $colaborador->name }}</td>
-						<td>{{ $colaborador->perfil_id == 4 ? 'Profissional de Saúde' : 'Colaborador' }}</td>
+						<td>{{ $colaborador->perfil_id == 4 ? 'Dentista' : 'Auxiliar' }}</td>
 						<td>{{ substr($colaborador['cpf'], 0, 3) . '.***.***-' . substr($colaborador['cpf'], -2) }}</td>
 					</tr>
 					@endforeach

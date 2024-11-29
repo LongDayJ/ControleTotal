@@ -197,7 +197,7 @@
           </form>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="saveEditEvent">Salvar</button>
+          <button type="button" class="btn btn-primary" id="saveCreateEvent">Salvar</button>
           <button type="button" class="btn btn-danger" id="deleteEvent">Excluir</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>

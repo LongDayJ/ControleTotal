@@ -122,90 +122,89 @@
 								</div>
 							</div>
 						</div>
+						<div class="col-md-6 mb-3">
+							<label for="cargo" class="form-label">Cargo: <span class="text-danger">*</span></label>
+							<select class="form-control" id="cargo" name="cargo" required>
+								<option value="">Selecione um cargo</option>
+								<option value="PROFISSIONAL_DE_SAUDE">Dentista</option>
+								<option value="colaborador">Auxiliar</option>
+							</select>
+						</div>
 					</div>
-					<div class="col-md-6 mb-3">
-						<label for="cargo" class="form-label">Cargo: <span class="text-danger">*</span></label>
-						<select class="form-control" id="cargo" name="cargo" required>
-							<option value="">Selecione um cargo</option>
-							<option value="PROFISSIONAL_DE_SAUDE">Profissional de Saúde</option>
-							<option value="colaborador">Auxiliar</option>
-						</select>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="password" class="form-label">Senha: <span class="text-danger">*</span></label>
+							<input type="password" class="form-control" id="password" name="password" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="confirmPassword" class="form-label">Confirmar Senha: <span class="text-danger">*</span></label>
+							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
+						</div>
 					</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="password" class="form-label">Senha: <span class="text-danger">*</span></label>
-					<input type="password" class="form-control" id="password" name="password" required>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="confirmPassword" class="form-label">Confirmar Senha: <span class="text-danger">*</span></label>
-					<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-12 mb-3">
-					<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
-					<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly
-						placeholder="CRO, especialidade e etc ..."></textarea>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="cep" class="form-label">CEP: <span class="text-danger">*</span></label>
-					<input type="text" class="form-control" id="cep" name="cep" required>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="complemento" class="form-label">Complemento:</label>
-					<input type="text" class="form-control" id="complemento" name="complemento">
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="logradouro" class="form-label">Logradouro: <span class="text-danger">*</span></label>
-					<input type="text" class="form-control" id="logradouro" name="logradouro" required>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="numeroCasa" class="form-label">Nº do endereco: <span class="text-danger">*</span></label>
-					<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="bairro" class="form-label">Bairro <span class="text-danger">*</span>:</label>
-					<input type="text" class="form-control" id="bairro" name="bairro" required>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="phone" class="form-label">Telefone <span class="text-danger">*</span>:</label>
-					<input type="text" class="form-control" id="phone" name="phone" required>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-6 mb-3">
-					<label for="cidade" class="form-label">Cidade: <span class="text-danger">*</span></label>
-					<input type="text" class="form-control" id="cidade" name="cidade" required>
-				</div>
-				<div class="col-md-6 mb-3">
-					<label for="uf" class="form-label">Estado: <span class="text-danger">*</span></label>
-					<input type="text" class="form-control" id="uf" name="uf" required>
-				</div>
-			</div>
-			<div class="d-grid gap-2 mt-3">
-				<div class="row">
-					<div class="col-11 mb-3">
-						<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+					<div class="row">
+						<div class="col-md-12 mb-3">
+							<label for="descricao" class="form-label">Descrição: <span class="text-danger">*</span></label>
+							<textarea class="form-control" id="descricao" name="descricao" rows="4" required onfocus="this.removeAttribute('readonly');" readonly
+								placeholder="CRO, especialidade e etc ..."></textarea>
+						</div>
 					</div>
-					<div class="col-1 mb-3">
-						<button id="clearForm" type="button" class="btn btn-secondary">
-							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
-								<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
-							</svg>
-						</button>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="cep" class="form-label">CEP: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="cep" name="cep" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="complemento" class="form-label">Complemento:</label>
+							<input type="text" class="form-control" id="complemento" name="complemento">
+						</div>
 					</div>
-				</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="logradouro" class="form-label">Logradouro: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="logradouro" name="logradouro" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="numeroCasa" class="form-label">Nº do endereco: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="numeroCasa" name="numeroCasa" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="bairro" class="form-label">Bairro <span class="text-danger">*</span>:</label>
+							<input type="text" class="form-control" id="bairro" name="bairro" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="phone" class="form-label">Telefone <span class="text-danger">*</span>:</label>
+							<input type="text" class="form-control" id="phone" name="phone" required>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label for="cidade" class="form-label">Cidade: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="cidade" name="cidade" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="uf" class="form-label">Estado: <span class="text-danger">*</span></label>
+							<input type="text" class="form-control" id="uf" name="uf" required>
+						</div>
+					</div>
+					<div class="d-grid gap-2 mt-3">
+						<div class="row">
+							<div class="col-11 mb-3">
+								<button type="submit" class="btn btn-primary col-12">Cadastrar</button>
+							</div>
+							<div class="col-1 mb-3">
+								<button id="clearForm" type="button" class="btn btn-secondary">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+										<path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5M8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5m3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0" />
+									</svg>
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
-			</form>
 		</div>
-	</div>
 	</div>
 	<script>
 		document.addEventListener('DOMContentLoaded', function() {

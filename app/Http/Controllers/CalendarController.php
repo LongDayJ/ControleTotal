@@ -33,7 +33,7 @@ class CalendarController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->input('data') < now()->toDateString()) {
+        if ($request->input('date') < now()->setTimezone('America/Sao_Paulo')->toDateString()) {
             return response()->json(['success' => false, 'message' => 'Não é possível agendar para uma data que já passou.'], 400);
         }
         $agendamento = new Agendamento();
