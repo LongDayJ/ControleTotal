@@ -20,6 +20,10 @@ class DashboardController extends Controller
         $consultasDoDia = Agendamento::whereDate('data', today())->count();
         // Obter o número de consultas do mês
         $consultasDoMes = Agendamento::whereMonth('data', now()->month)->count();
+        
+        $consultasCanceladasMes = Agendamento::whereMonth('data', now()->month)
+        ->where('status', 'CANCELADO') // Ajuste o valor do status conforme necessário
+        ->count();
 
         // Obter os agendamentos do mês e separar pelos dias da semana
         $agendamentosPorDiaDaSemana = Agendamento::whereBetween('data', [now()->startOfWeek(), now()->endOfWeek()])
@@ -46,63 +50,17 @@ class DashboardController extends Controller
         $pacientesNovos = User::where('perfil_id', 3)
             ->whereMonth('created_at', now()->month)
             ->count();
-        function calcularDiasUteis($mes, $ano)
-        {
-            $inicioDoMes = now()->setYear($ano)->setMonth($mes)->startOfMonth();
-            $fimDoMes = now()->setYear($ano)->setMonth($mes)->endOfMonth();
 
-            $diasUteis = 0;
-
-            while ($inicioDoMes->lte($fimDoMes)) {
-                // Verifica se o dia não é sábado (6) ou domingo (7)
-                if (!$inicioDoMes->isWeekend()) {
-                    $diasUteis++;
-                }
-                $inicioDoMes->addDay();
-            }
-
-            return $diasUteis;
-        }
-
-        $totalHorariosPorDia = 16; // Exemplo: 8 horas * 2 consultas por hora
-
-        $totalDiasUteis = calcularDiasUteis(now()->month, now()->year);
-
-        // Cálculo do total de horários disponíveis no mês
-        $totalHorariosMes = $totalDiasUteis * $totalHorariosPorDia;
-
-  // Consultas preenchidas no mês
-        $consultasPreenchidasMes = Agendamento::whereMonth('data', now()->month)->count();
-
-        // Taxa de ocupação do mês
-        $taxaOcupacaoMes = $totalHorariosMes > 0
-            ? ($consultasPreenchidasMes / $totalHorariosMes) * 100
-            : 0;
-
-        // Consultas preenchidas no dia
-        $consultasPreenchidasDia = Agendamento::whereDate('data', today())->count();
-
-        // Taxa de ocupação do dia
-        $taxaOcupacaoDia = $totalHorariosPorDia > 0
-            ? ($consultasPreenchidasDia / $totalHorariosPorDia) * 100
-            : 0;
         // Passar as variáveis para a view
-        return view('dashboard.index', 
-        compact('consultasDoDia',
-        'consultasDoMes',
-        'agendamentosPorDiaDaSemana',
-        'produtosQuantidadeMinima',
-        'procedimentosCadastrados',
-        'pacientesCadastrados',
-        'pacientesNovos',
-        'consultasDoMes',
-        'agendamentosPorDiaDaSemana',
-        'taxaOcupacaoDia',
-        'taxaOcupacaoMes',
-        'consultasPreenchidasDia',
-        'totalHorariosPorDia',
-        'consultasPreenchidasMes',
-        'totalHorariosMes'
+        return view('dashboard.index', compact(
+            'consultasDoDia',
+            'consultasDoMes',
+            'consultasCanceladasMes',
+            'agendamentosPorDiaDaSemana',
+            'produtosQuantidadeMinima',
+            'procedimentosCadastrados',
+            'pacientesCadastrados',
+            'pacientesNovos'
     ));
     }
 

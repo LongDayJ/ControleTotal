@@ -175,7 +175,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Jorge Amado</h5>
 						<p class="card-text text-break">
 							Fiquei impressionado com a qualidade do atendimento! O consultório é super limpo e moderno, e o dentista foi muito paciente ao explicar cada etapa do tratamento. Eu estava nervoso com o procedimento, mas tudo foi feito de forma tão tranquila que até esqueci do medo. Definitivamente recomendo!
 						</p>
@@ -187,7 +187,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Mariana Lima</h5>
 						<p class="card-text text-break">
 							Fiz uma restauração e fiquei muito satisfeito com o resultado. Ele foi super detalhista e garantiu que eu saísse do consultório sem dor. Além disso, o horário foi respeitado, e o atendimento foi rápido e eficiente. Excelente trabalho!
 						</p>
@@ -199,7 +199,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Roberto Carlos</h5>
 						<p class="card-text">
 							Se você procura um dentista de confiança, pode marcar aqui sem medo! Fiz extração do siso e o procedimento foi tão rápido e indolor que nem acreditei. Estou me recuperando super bem, sem complicações.
 						</p>
@@ -211,7 +211,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Suzane Almeida</h5>
 						<p class="card-text">
 							Consultório bem localizado, ambiente confortável e uma equipe extremamente educada. Fiz manutenção do aparelho e fui muito bem atendido. Eles explicam tudo de forma clara e tiram todas as dúvidas. Recomendo!
 						</p>
@@ -223,7 +223,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Antonio Mario</h5>
 						<p class="card-text">
 							Melhor experiência com um dentista até agora! Fiz uma limpeza e um clareamento dental, e o resultado foi incrível. O profissional é muito cuidadoso, e toda a equipe é muito simpática. Com certeza voltarei para outros procedimentos.
 						</p>
@@ -235,7 +235,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Genario Alquime</h5>
 						<p class="card-text">
 						Nunca imaginei que uma consulta ao dentista poderia ser tão tranquila. A equipe é muito profissional, e o ambiente é acolhedor. Fiz uma extração e mal senti desconforto. Com certeza virei cliente fiel!
 						</p>
