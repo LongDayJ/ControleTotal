@@ -15,58 +15,52 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        // Obter o número de consultas do dia
+        $consultasDoDia = Agendamento::whereDate('data', today())->count();
+        // Obter o número de consultas do mês
+        $consultasDoMes = Agendamento::whereMonth('data', now()->month)->count();
+        
+        $consultasCanceladasMes = Agendamento::whereMonth('data', now()->month)
+        ->where('status', 'CANCELADO') // Ajuste o valor do status conforme necessário
+        ->count();
 
-// Obter o número de consultas do dia
-$consultasDoDia = Agendamento::whereDate('data', today())->count();
+        // Obter os agendamentos do mês e separar pelos dias da semana
+        $agendamentosPorDiaDaSemana = Agendamento::whereBetween('data', [now()->startOfWeek(), now()->endOfWeek()])
+            ->with('user:id,name') // Carregar apenas o nome do usuário
+            ->get(['data', 'hora', 'user_id']) // Obter apenas a data, hora e user_id
+            ->groupBy(function($agendamento) {
+            return \Carbon\Carbon::parse($agendamento->data)->format('l'); // Agrupar pelo nome do dia da semana
+            })
+            ->map(function($agendamentos) {
+            return $agendamentos->map(function($agendamento) {
+                $agendamento->user_name = $agendamento->user->name; // Adicionar o nome do usuário
+                return $agendamento;
+            });
+            });
+  
 
-// Obter o número de consultas do mês
-$consultasDoMes = Agendamento::whereMonth('data', now()->month)->count();
+        // Obter o número de produtos com quantidade mínima
+        $produtosQuantidadeMinima = Estoque::whereColumn('quantidadeMinima', '>=', 'quantidade')->count();
 
-// Obter o número de consultas canceladas do mês
-$consultasCanceladasMes = Agendamento::whereMonth('data', now()->month)
-    ->where('status', 'CANCELADO') // Respeitar o valor exato do enum
-    ->count();
+        $procedimentosCadastrados = Procedimento::all()->count();
 
+        $pacientesCadastrados = User::where('perfil_id',  3)->count();
 
-// Obter os agendamentos do mês e separar pelos dias da semana
-$agendamentosPorDiaDaSemana = Agendamento::whereBetween('data', [now()->startOfWeek(), now()->endOfWeek()])
-    ->with('user:id,name') // Carregar apenas o nome do usuário
-    ->get(['data', 'hora', 'user_id']) // Obter apenas a data, hora e user_id
-    ->groupBy(function ($agendamento) {
-        return \Carbon\Carbon::parse($agendamento->data)->format('l'); // Agrupar pelo nome do dia da semana
-    })
-    ->map(function ($agendamentos) {
-        return $agendamentos->map(function ($agendamento) {
-            $agendamento->user_name = $agendamento->user->name; // Adicionar o nome do usuário
-            return $agendamento;
-        });
-    });
+        $pacientesNovos = User::where('perfil_id', 3)
+            ->whereMonth('created_at', now()->month)
+            ->count();
 
-// Obter o número de produtos com quantidade mínima
-$produtosQuantidadeMinima = Estoque::whereColumn('quantidadeMinima', '>=', 'quantidade')->count();
-
-// Número de procedimentos cadastrados
-$procedimentosCadastrados = Procedimento::all()->count();
-
-// Número total de pacientes cadastrados
-$pacientesCadastrados = User::where('perfil_id', 3)->count();
-
-// Número de pacientes novos no mês atual
-$pacientesNovos = User::where('perfil_id', 3)
-    ->whereMonth('created_at', now()->month)
-    ->count();
-
-// Passar as variáveis para a view
-return view('dashboard.index', compact(
-    'consultasDoDia',
-    'consultasDoMes',
-    'consultasCanceladasMes',
-    'agendamentosPorDiaDaSemana',
-    'produtosQuantidadeMinima',
-    'procedimentosCadastrados',
-    'pacientesCadastrados',
-    'pacientesNovos'
-));
+        // Passar as variáveis para a view
+        return view('dashboard.index', compact(
+            'consultasDoDia',
+            'consultasDoMes',
+            'consultasCanceladasMes',
+            'agendamentosPorDiaDaSemana',
+            'produtosQuantidadeMinima',
+            'procedimentosCadastrados',
+            'pacientesCadastrados',
+            'pacientesNovos'
+    ));
     }
 
     /**
