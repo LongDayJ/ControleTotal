@@ -111,6 +111,7 @@
 							Registros
 						</a>
 					</li>
+					@if (Auth::user()->perfil_id == 1)
 					<li>
 						<a href="{{ route('financeiro.index')}}" class="nav-link link-light {{ request()->routeIs('financeiro.index') ? 'active link-dark' : 'link-light'}}">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cash-stack m-2" viewBox="0 0 16 16">
@@ -120,6 +121,7 @@
 							Financeiro
 						</a>
 					</li>
+					@endif
 				</ul>
 				<hr>
 				<div class="">

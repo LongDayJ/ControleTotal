@@ -42,28 +42,33 @@
 			<input type="date" name="data" id="data" class="form-control" value="{{ old('data', $agendamento->data) }}">
 		</div>
 		<div class="form-group">
-			<label for="hora">Horário</label>
-			<select class="form-control" id="hora" name="hora" required>
-				@for ($i = 8; $i < 12; $i++)
-					<option value="{{ sprintf('%02d:00', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:00', $i) ? 'selected' : '' }}>
-					{{ sprintf('%02d:00', $i) }}
-					</option>
-					<option value="{{ sprintf('%02d:30', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:30', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:30', $i) }}
-					</option>
-					@endfor
-					@for ($i = 14; $i < 19; $i++)
-						<option value="{{ sprintf('%02d:00', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:00', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:00', $i) }}
+			<div class="form-row">
+				<div class="form-group col-md-6">
+					<label for="eventStartTimeHour">Horário</label>
+					<select class="form-control" id="eventStartTimeHour" name="hora" required>
+						@for ($i = 8; $i < 13; $i++)
+							<option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ old('hora', $agendamento->hora) == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+							{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+							</option>
+						@endfor
+						@for ($i = 14; $i < 19; $i++)
+							<option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ old('hora', $agendamento->hora) == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+							{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+							</option>
+						@endfor
+					</select>
+				</div>
+				<div class="form-group col-md-6">
+					<label for="eventStartTimeMinute">Minuto</label>
+					<select class="form-control" id="eventStartTimeMinute" name="minuto" required>
+						@foreach ([0, 15, 30, 45] as $minute)
+						<option value="{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}" {{ old('minuto', $agendamento->minuto) == str_pad($minute, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+							{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}
 						</option>
-						<option value="{{ sprintf('%02d:15', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:15', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:15', $i) }}
-						</option>
-						<option value="{{ sprintf('%02d:30', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:30', $i) ? 'selected' : '' }}>
-							{{ sprintf('%02d:30', $i) }}
-						</option>
-					@endfor
-			</select>
+						@endforeach
+					</select>
+				</div>
+			</div>
 		</div>
 		<button type="submit" class="btn btn-primary">Salvar</button>
 	</form>

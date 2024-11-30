@@ -15,7 +15,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-
         // Obter o número de consultas do dia
         $consultasDoDia = Agendamento::whereDate('data', today())->count();
         // Obter o número de consultas do mês

@@ -27,6 +27,30 @@
                 Por favor, insira uma descrição.
             </div>
         </div>
+        <div class="mb-3">
+            <label for="data_vencimento" class="form-label">Data de Vencimento:</label>
+            <input type="date" name="data_vencimento" id="data_vencimento" class="form-control" value="{{ $financeiro->data_vencimento }}" required>
+            <div class="invalid-feedback">
+                Por favor, insira uma data de vencimento.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="data_pagamento" class="form-label">Data de Pagamento:</label>
+            <input type="date" name="data_pagamento" id="data_pagamento" class="form-control" value="{{ $financeiro->data_pagamento }}" required>
+            <div class="invalid-feedback">
+                Por favor, insira uma data de pagamento.
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status:</label>
+            <select name="status" id="status" class="form-select" required>
+                <option value="PENDENTE" {{ $financeiro->status == 'PENDENTE' ? 'selected' : '' }}>PENDENTE</option>
+                <option value="PAGO" {{ $financeiro->status == 'PAGO' ? 'selected' : '' }}>PAGO</option>
+            </select>
+            <div class="invalid-feedback">
+                Por favor, selecione um status.
+            </div>
+        </div>
         <button type="submit" class="btn btn-primary">Salvar</button>
     </form>
 </x-appBarAdmin>
