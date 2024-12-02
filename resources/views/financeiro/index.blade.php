@@ -40,7 +40,6 @@
 		</form>
 
 		<ul class="list-group">
-			@foreach ($financeiros as $financeiro)
 			<li class="list-group-item d-flex justify-content-between align-items-center">
 				<table class="table">
 					<thead>
@@ -57,7 +56,7 @@
 					<tbody>
 						@foreach ($financeiros as $financeiro)
 						<tr>
-							<td class="{{ $financeiro->tipo == 'ENTRADA' ? 'text-success font-weight-bold' : '' }}">{{ $financeiro->tipo }}</td>
+							<td class="{{ $financeiro->tipo == 'ENTRADA' ? 'text-success font-weight-bold' : ($financeiro->tipo == 'SAIDA' ? 'text-danger font-weight-bold' : '') }}"><strong>{{ $financeiro->tipo }}</strong></strong></td>
 							<td>{{ $financeiro->descricao }}</td>
 							<td>R$ {{ number_format($financeiro->valor, 2, ',', '.') }}</td>
 							<td>{{ \Carbon\Carbon::parse($financeiro->data_vencimento)->format('d/m/Y') }}</td>
@@ -76,7 +75,6 @@
 					</tbody>
 				</table>
 			</li>
-			@endforeach
 		</ul>
 	</div>
 </x-appbarAdmin>

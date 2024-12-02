@@ -46,6 +46,7 @@
             <select name="status" id="status" class="form-select" required>
                 <option value="PENDENTE" {{ $financeiro->status == 'PENDENTE' ? 'selected' : '' }}>PENDENTE</option>
                 <option value="PAGO" {{ $financeiro->status == 'PAGO' ? 'selected' : '' }}>PAGO</option>
+                <option value="CANCELADO" {{ $financeiro->status == 'CANCELADO' ? 'selected' : '' }}>CANCELADO</option>
             </select>
             <div class="invalid-feedback">
                 Por favor, selecione um status.

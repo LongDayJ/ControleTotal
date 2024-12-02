@@ -21,6 +21,20 @@
                     </div>
                 </div>
                 <div class="mb-3">
+                    <label for="data_vencimento" class="form-label">Data de Vencimento:</label>
+                    <input type="date" name="data_vencimento" id="data_vencimento" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira uma data de vencimento.
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="data_pagamento" class="form-label">Data de Pagamento:</label>
+                    <input type="date" name="data_pagamento" id="data_pagamento" class="form-control" required>
+                    <div class="invalid-feedback">
+                        Por favor, insira uma data de pagamento.
+                    </div>
+                </div>
+                <div class="mb-3">
                     <label for="descricao" class="form-label">Descrição:</label>
                     <textarea name="descricao" id="descricao" class="form-control" required></textarea>
                     <div class="invalid-feedback">

@@ -90,7 +90,7 @@
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 					<h5 class="text-uppercase">Horário de Funcionamento</h5>
 					<p>
-						Segunda a Sexta: 8:00 - 18:00
+						Segunda a Sexta: 8:00 - 12:00 | 14:00 - 18:00
 					</p>
 					<p>
 						Sábado: 8:00 - 12:00

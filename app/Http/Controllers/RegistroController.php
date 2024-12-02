@@ -16,8 +16,8 @@ class RegistroController extends Controller
 	public function index(Request $request)
 	{
 		$procedimentoErro = $request->session()->get('procedimento.erro');
-		$colaboradores = User::whereIn('perfil_id', [2, 4])->get();
-		$procedimentos = Procedimento::all();
+		$colaboradores = User::whereIn('perfil_id', [2, 4])->paginate(10);
+		$procedimentos = Procedimento::paginate(10);
 		foreach ($procedimentos as $procedimento) {
 			if ($procedimento->id_procedimento_pai) {
 				$procedimento->nome_procedimento_pai = Procedimento::find($procedimento->id_procedimento_pai)->nome;
@@ -25,11 +25,11 @@ class RegistroController extends Controller
 				$procedimento->nome_procedimento_pai = null;
 			}
 		}
-		$pacientes = User::where('perfil_id', 3)->get();
+		$pacientes = User::where('perfil_id', 3)->paginate(10);
 		$telefones = User::where('perfil_id', 3)
 			->join('enderecos', 'users.id', '=', 'enderecos.user_id')
 			->select('users.id as user_id', 'enderecos.telefone')
-			->get();
+			->paginate(10);
 		foreach ($pacientes as $paciente) {
 			$paciente->telefone = $telefones->firstWhere('user_id', $paciente->id)->telefone ?? null;
 		}

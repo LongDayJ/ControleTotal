@@ -24,27 +24,12 @@ class DashboardController extends Controller
         ->where('status', 'CANCELADO') // Ajuste o valor do status conforme necessário
         ->count();
 
-        // Obter os agendamentos do mês e separar pelos dias da semana
-        $agendamentosPorDiaDaSemana = Agendamento::whereBetween('data', [now()->startOfWeek(), now()->endOfWeek()])
-            ->with('user:id,name') // Carregar apenas o nome do usuário
-            ->get(['data', 'hora', 'user_id']) // Obter apenas a data, hora e user_id
-            ->groupBy(function($agendamento) {
-            return \Carbon\Carbon::parse($agendamento->data)->format('l'); // Agrupar pelo nome do dia da semana
-            })
-            ->map(function($agendamentos) {
-            return $agendamentos->map(function($agendamento) {
-                $agendamento->user_name = $agendamento->user->name; // Adicionar o nome do usuário
-                return $agendamento;
-            });
-            });
-  
+        $consultasConfirmadasMes = Agendamento::whereMonth('data', now()->month)
+        ->where('status', 'CONFIRMADO') // Ajuste o valor do status conforme necessário
+        ->count();
+        
 
-        // Obter o número de produtos com quantidade mínima
         $produtosQuantidadeMinima = Estoque::whereColumn('quantidadeMinima', '>=', 'quantidade')->count();
-
-        $procedimentosCadastrados = Procedimento::all()->count();
-
-        $pacientesCadastrados = User::where('perfil_id',  3)->count();
 
         $pacientesNovos = User::where('perfil_id', 3)
             ->whereMonth('created_at', now()->month)
@@ -55,10 +40,8 @@ class DashboardController extends Controller
             'consultasDoDia',
             'consultasDoMes',
             'consultasCanceladasMes',
-            'agendamentosPorDiaDaSemana',
+            'consultasConfirmadasMes',
             'produtosQuantidadeMinima',
-            'procedimentosCadastrados',
-            'pacientesCadastrados',
             'pacientesNovos'
     ));
     }
