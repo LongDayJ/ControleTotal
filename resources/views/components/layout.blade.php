@@ -81,10 +81,10 @@
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 					<h5 class="text-uppercase">Clínica Thalyta Santos</h5>
 					<p>
-						Endereço: R. Prof. José Dionísio de Barros, 37 - Matriz, Vitória de Santo Antão - PE, 55610-420
+						Endereço: R. Aluizio de Melo Xavier, 37 - Matriz, Vitória de Santo Antão - PE, 55610-420
 					</p>
 					<p>
-						Telefone: (11) 1234-5678[EDITAR O NÚMERO DEPOIS]
+						Telefone: (81) 8529-9647
 					</p>
 				</div>
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
