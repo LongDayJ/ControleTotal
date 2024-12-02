@@ -18,17 +18,6 @@
 </head>
 
 <body>
-	<div vw class="enabled">
-		<div vw-access-button class="active"></div>
-			<div vw-plugin-wrapper>
-			<div class="vw-plugin-top-wrapper"></div>
-		</div>
-	</div>
-	
-	<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-	<script>
-		new window.VLibras.Widget('https://vlibras.gov.br/app');
-	</script>
 	<script src="https://cdn.jsdelivr.net/npm/mousetrap@1.6.5/mousetrap.min.js"></script>
 	<script>
 		Mousetrap.bind('d', function() {
@@ -134,16 +123,6 @@
 					</li>
 					@endif
 				</ul>
-				<div class="size-controller mb-3">
-					<label for="sizeRange" class="text-light d-block mb-2">Ajustar tamanho da fonte:</label>
-						<div class="d-flex justify-content-center">
-							<button id="decreaseFont" class="btn btn-secondary mx-1" aria-label="Diminuir tamanho da fonte">A-</button>
-							<button id="resetFont" class="btn btn-secondary mx-1" aria-label="Redefinir tamanho da fonte">A</button>
-							<button id="increaseFont" class="btn btn-secondary mx-1" aria-label="Aumentar tamanho da fonte">A+</button>
-						</div>
-				</div>
-
-
 				<hr>
 				<div class="">
 					<p class="text-light text-center">{{ \Carbon\Carbon::now()->setTimezone('America/Sao_Paulo')->format('d/m/Y') }}</p>
@@ -226,41 +205,6 @@
 			background-color: #0154a2 !important;
 		}
 	</style>
-	<script>
-		document.addEventListener('DOMContentLoaded', () => {
-			const decreaseButton = document.getElementById('decreaseFont');
-			const resetButton = document.getElementById('resetFont');
-			const increaseButton = document.getElementById('increaseFont');
-
-			// Recuperar o tamanho de fonte da sessão, se existir
-			let fontSize = localStorage.getItem('fontSize') ? parseInt(localStorage.getItem('fontSize')) : 16; // 16px como padrão
-
-			// Função para atualizar a fonte
-			const updateFontSize = (newSize) => {
-				fontSize = newSize;
-				// Alterar o tamanho da fonte global
-				document.documentElement.style.fontSize = `${fontSize}px`;
-				// Salvar a preferência no localStorage
-				localStorage.setItem('fontSize', fontSize);
-			};
-
-			// Inicializa a fonte com o tamanho salvo na sessão (se houver)
-			updateFontSize(fontSize);
-
-			// Eventos dos botões
-			decreaseButton.addEventListener('click', () => {
-				if (fontSize > 10) updateFontSize(fontSize - 1); // Limite mínimo
-			});
-
-			resetButton.addEventListener('click', () => {
-				updateFontSize(16); // Resetar para o padrão
-			});
-
-			increaseButton.addEventListener('click', () => {
-				if (fontSize < 24) updateFontSize(fontSize + 1); // Limite máximo
-			});
-		});
-	</script>
 </body>
 
 </html>
