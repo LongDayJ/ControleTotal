@@ -18,12 +18,30 @@
 </head>
 
 <body>
+	<div vw class="enabled">
+		<div vw-access-button class="active"></div>
+		<div vw-plugin-wrapper>
+			<div class="vw-plugin-top-wrapper"></div>
+		</div>
+	</div>
+
+	<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+	<script>
+		new window.VLibras.Widget('https://vlibras.gov.br/app');
+	</script>
 	<header>
 		<nav
 			class="navbar navbar-expand-sm navbar-dark bg-light">
 			<div class="col-12 container-fluid d-flex justify-content-between">
 				<div>
-					<a class="navbar-brand align-items-center" href="/">Controle Total</a>
+					<p class="navbar-brand align-items-center">Controle Total</p>
+				</div>
+				<div class="size-controller mb-3">
+				<div class="d-flex justify-content-center">
+					<button id="decreaseFont" class="btn btn-light mx-1" aria-label="Diminuir tamanho da fonte">A-</button>
+					<button id="resetFont" class="btn btn-light mx-1" aria-label="Redefinir tamanho da fonte">A</button>
+					<button id="increaseFont" class="btn btn-light mx-1" aria-label="Aumentar tamanho da fonte">A+</button>
+				</div>
 				</div>
 				<div>
 					<button
@@ -94,6 +112,35 @@
 			background-color: #0154a2 !important;
 		}
 	</style>
+		<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const decreaseButton = document.getElementById('decreaseFont');
+			const resetButton = document.getElementById('resetFont');
+			const increaseButton = document.getElementById('increaseFont');
+			// Recuperar o tamanho de fonte da sessão, se existir
+			let fontSize = localStorage.getItem('fontSize') ? parseInt(localStorage.getItem('fontSize')) : 16; // 16px como padrão
+			// Função para atualizar a fonte
+			const updateFontSize = (newSize) => {
+				fontSize = newSize;
+				// Alterar o tamanho da fonte global
+				document.documentElement.style.fontSize = `${fontSize}px`;
+				// Salvar a preferência no localStorage
+				localStorage.setItem('fontSize', fontSize);
+			};
+			// Inicializa a fonte com o tamanho salvo na sessão (se houver)
+			updateFontSize(fontSize);
+			// Eventos dos botões
+			decreaseButton.addEventListener('click', () => {
+				if (fontSize > 10) updateFontSize(fontSize - 1); // Limite mínimo
+			});
+			resetButton.addEventListener('click', () => {
+				updateFontSize(16); // Resetar para o padrão
+			});
+			increaseButton.addEventListener('click', () => {
+				if (fontSize < 24) updateFontSize(fontSize + 1); // Limite máximo
+			});
+		});
+	</script>
 </body>
 
 </html>

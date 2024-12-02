@@ -18,7 +18,19 @@
 </head>
 
 <body>
+	<div vw class="enabled">
+		<div vw-access-button class="active"></div>
+		<div vw-plugin-wrapper>
+			<div class="vw-plugin-top-wrapper"></div>
+		</div>
+	</div>
+
+	<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+	<script>
+		new window.VLibras.Widget('https://vlibras.gov.br/app');
+	</script>
 	<script src="https://cdn.jsdelivr.net/npm/mousetrap@1.6.5/mousetrap.min.js"></script>
+	@if (Auth::user()->perfil_id == 1)
 	<script>
 		Mousetrap.bind('d', function() {
 			window.location.href = "{{ route('dashboard.index') }}";
@@ -43,7 +55,56 @@
 		Mousetrap.bind('r', function() {
 			window.location.href = "{{ route('registro.index') }}";
 		});
+
+		Mousetrap.bind('f', function() {
+			window.location.href = "{{ route('financeiro.index') }}";
+		});
 	</script>
+	@endif
+
+	@if (Auth::user()->perfil_id == 2)
+	<script>
+		Mousetrap.bind('d', function() {
+			window.location.href = "{{ route('dashboard.index') }}";
+		});
+
+		Mousetrap.bind('a', function() {
+			window.location.href = "{{ route('agendamento.index') }}";
+		});
+
+		Mousetrap.bind('e', function() {
+			window.location.href = "{{ route('products.index') }}";
+		});
+
+		Mousetrap.bind('p', function() {
+			window.location.href = "{{ route('registerPatient.create') }}";
+		});
+
+		Mousetrap.bind('r', function() {
+			window.location.href = "{{ route('registro.index') }}";
+		});
+	</script>
+	@endif
+
+	@if (Auth::user()->perfil_id == 4)
+	<script>
+		Mousetrap.bind('a', function() {
+			window.location.href = "{{ route('agendamento.index') }}";
+		});
+
+		Mousetrap.bind('e', function() {
+			window.location.href = "{{ route('products.index') }}";
+		});
+
+		Mousetrap.bind('p', function() {
+			window.location.href = "{{ route('registerPatient.create') }}";
+		});
+
+		Mousetrap.bind('r', function() {
+			window.location.href = "{{ route('registro.index') }}";
+		});
+	</script>
+	@endif
 	<main>
 		<div class="d-flex flex-column flex-md-row min-vh-100">
 			<!-- Drawer -->
@@ -59,6 +120,7 @@
 				</a>
 				<hr>
 				<ul class="nav nav-pills flex-column mb-auto">
+					@if (Auth::user()->perfil_id == 1 or Auth::user()->perfil_id == 2)
 					<li>
 						<a href="{{ route('dashboard.index')}}" class="nav-link {{ request()->routeIs('dashboard.index') ? 'active link-dark' : 'link-light' }}">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-speedometer2 m-2" viewBox="0 0 16 16">
@@ -68,6 +130,7 @@
 							Dashboard
 						</a>
 					</li>
+					@endif
 					<li>
 						<a href="{{ route('registerPatient.create') }}" class="nav-link link-light {{ request()->routeIs('registerPatient.create') ? 'active link-dark' : 'link-light' }}">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-add m-2" viewBox="0 0 16 16">
@@ -125,7 +188,14 @@
 				</ul>
 				<hr>
 				<div class="">
-					<p class="text-light text-center">{{ \Carbon\Carbon::now()->setTimezone('America/Sao_Paulo')->format('d/m/Y') }}</p>
+				<div class="size-controller mb-3">
+					<label for="sizeRange" class="text-light d-block mb-2">Ajustar tamanho da fonte:</label>
+						<div class="d-flex justify-content-center">
+							<button id="decreaseFont" class="btn btn-light mx-1" aria-label="Diminuir tamanho da fonte">A-</button>
+							<button id="resetFont" class="btn btn-light mx-1" aria-label="Redefinir tamanho da fonte">A</button>
+							<button id="increaseFont" class="btn btn-light mx-1" aria-label="Aumentar tamanho da fonte">A+</button>
+						</div>
+				</div>
 				</div>
 			</div>
 
@@ -151,12 +221,12 @@
 											<strong>Olá, {{ Auth::user()->name }}</strong>
 										</a>
 										<ul class="dropdown-menu dropdown-menu-end text-small shadow" aria-labelledby="dropdownUser2">
-											<li><a class="dropdown-item" href="#">Settings</a></li>
+											<!-- <li><a class="dropdown-item" href="#">Settings</a></li>
 
 											<li><a class="dropdown-item" href="{{ route('profile.show', ['id' => Auth::user()->id]) }}">Perfil</a></li>
-											<li>
-												<hr class="dropdown-divider">
-											</li>
+											<li> -->
+												<!-- <hr class="dropdown-divider">
+											</li> -->
 											<li>
 												<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
 													@csrf
@@ -205,6 +275,35 @@
 			background-color: #0154a2 !important;
 		}
 	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const decreaseButton = document.getElementById('decreaseFont');
+			const resetButton = document.getElementById('resetFont');
+			const increaseButton = document.getElementById('increaseFont');
+			// Recuperar o tamanho de fonte da sessão, se existir
+			let fontSize = localStorage.getItem('fontSize') ? parseInt(localStorage.getItem('fontSize')) : 16; // 16px como padrão
+			// Função para atualizar a fonte
+			const updateFontSize = (newSize) => {
+				fontSize = newSize;
+				// Alterar o tamanho da fonte global
+				document.documentElement.style.fontSize = `${fontSize}px`;
+				// Salvar a preferência no localStorage
+				localStorage.setItem('fontSize', fontSize);
+			};
+			// Inicializa a fonte com o tamanho salvo na sessão (se houver)
+			updateFontSize(fontSize);
+			// Eventos dos botões
+			decreaseButton.addEventListener('click', () => {
+				if (fontSize > 10) updateFontSize(fontSize - 1); // Limite mínimo
+			});
+			resetButton.addEventListener('click', () => {
+				updateFontSize(16); // Resetar para o padrão
+			});
+			increaseButton.addEventListener('click', () => {
+				if (fontSize < 24) updateFontSize(fontSize + 1); // Limite máximo
+			});
+		});
+	</script>
 </body>
 
 </html>
