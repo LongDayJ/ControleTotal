@@ -41,6 +41,8 @@ class loginController extends Controller
             return to_route('dashboard.index');
         } else if ($user['perfil_id'] == 3) {
             return to_route('patient.show', ['id' => $user['id']]);
+        } else if ($user['perfil_id'] == 4) {
+            return to_route('agendamento.index');
         } else {
             return to_route('login.index');
         }

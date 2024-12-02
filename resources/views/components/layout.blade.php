@@ -33,6 +33,11 @@
 						<span class="fs-4 text-light">Controle Total</span>
 					</a>
 				</div>
+				<div class="d-flex justify-content-center">
+					<button id="decreaseFont" class="btn btn-light mx-1" aria-label="Diminuir tamanho da fonte">A-</button>
+					<button id="resetFont" class="btn btn-light mx-1" aria-label="Redefinir tamanho da fonte">A</button>
+					<button id="increaseFont" class="btn btn-light mx-1" aria-label="Aumentar tamanho da fonte">A+</button>
+				</div>
 				<div>
 					<button
 						class="navbar-toggler d-lg-none"
@@ -71,6 +76,17 @@
 			</div>
 		</nav>
 	</header>
+	<div vw class="enabled">
+		<div vw-access-button class="active"></div>
+			<div vw-plugin-wrapper>
+			<div class="vw-plugin-top-wrapper"></div>
+		</div>
+	</div>
+	
+	<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+	<script>
+		new window.VLibras.Widget('https://vlibras.gov.br/app');
+	</script>
 	<main>
 		{{$slot}}
 	</main>
@@ -81,16 +97,16 @@
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 					<h5 class="text-uppercase">Clínica Thalyta Santos</h5>
 					<p>
-						Endereço: R. Prof. José Dionísio de Barros, 37 - Matriz, Vitória de Santo Antão - PE, 55610-420
+						Endereço: R. Aluizio de Melo Xavier, 37 - Matriz, Vitória de Santo Antão - PE, 55610-420
 					</p>
 					<p>
-						Telefone: (11) 1234-5678[EDITAR O NÚMERO DEPOIS]
+						Telefone: (81) 8529-9647
 					</p>
 				</div>
 				<div class="col-lg-6 col-md-12 mb-4 mb-md-0">
 					<h5 class="text-uppercase">Horário de Funcionamento</h5>
 					<p>
-						Segunda a Sexta: 8:00 - 18:00
+						Segunda a Sexta: 8:00 - 12:00 | 14:00 - 18:00
 					</p>
 					<p>
 						Sábado: 8:00 - 12:00
@@ -117,6 +133,35 @@
 			background-color: #0154a2 !important;
 		}
 	</style>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const decreaseButton = document.getElementById('decreaseFont');
+			const resetButton = document.getElementById('resetFont');
+			const increaseButton = document.getElementById('increaseFont');
+			// Recuperar o tamanho de fonte da sessão, se existir
+			let fontSize = localStorage.getItem('fontSize') ? parseInt(localStorage.getItem('fontSize')) : 16; // 16px como padrão
+			// Função para atualizar a fonte
+			const updateFontSize = (newSize) => {
+				fontSize = newSize;
+				// Alterar o tamanho da fonte global
+				document.documentElement.style.fontSize = `${fontSize}px`;
+				// Salvar a preferência no localStorage
+				localStorage.setItem('fontSize', fontSize);
+			};
+			// Inicializa a fonte com o tamanho salvo na sessão (se houver)
+			updateFontSize(fontSize);
+			// Eventos dos botões
+			decreaseButton.addEventListener('click', () => {
+				if (fontSize > 10) updateFontSize(fontSize - 1); // Limite mínimo
+			});
+			resetButton.addEventListener('click', () => {
+				updateFontSize(16); // Resetar para o padrão
+			});
+			increaseButton.addEventListener('click', () => {
+				if (fontSize < 24) updateFontSize(fontSize + 1); // Limite máximo
+			});
+		});
+	</script>
 </body>
 
 </html>

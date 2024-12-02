@@ -33,6 +33,7 @@
 			<label for="status">Status</label>
 			<select name="status" id="status" class="form-control">
 				<option value="AGENDADO" {{ old('status', $agendamento->status) == 'AGENDADO' ? 'selected' : '' }}>Agendado</option>
+				<option value="CONFIRMADO" {{ old('status', $agendamento->status) == 'CONFIRMADO' ? 'selected' : '' }}>Confirmado</option>
 				<option value="CONCLUIDO" {{ old('status', $agendamento->status) == 'CONCLUIDO' ? 'selected' : '' }}>Concluído</option>
 				<option value="CANCELADO" {{ old('status', $agendamento->status) == 'CANCELADO' ? 'selected' : '' }}>Cancelado</option>
 			</select>
@@ -41,30 +42,67 @@
 			<label for="data">Data</label>
 			<input type="date" name="data" id="data" class="form-control" value="{{ old('data', $agendamento->data) }}">
 		</div>
-		<div class="form-group">
-			<label for="hora">Horário</label>
-			<select class="form-control" id="hora" name="hora" required>
-				@for ($i = 8; $i < 12; $i++)
-					<option value="{{ sprintf('%02d:00', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:00', $i) ? 'selected' : '' }}>
-					{{ sprintf('%02d:00', $i) }}
+		<div class="row">
+			<div class="form-group col-md-6">
+				<label for="eventStartTimeHour">Hora</label>
+				<select class="form-control" id="eventStartTimeHour" name="hora" required>
+					@for ($i = 8; $i < 13; $i++)
+						<option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ old('hora', $agendamento->hora) == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+						{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+						</option>
+						@endfor
+						@for ($i = 14; $i < 19; $i++)
+							<option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}" {{ old('hora', $agendamento->hora) == str_pad($i, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+							{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}
+							</option>
+							@endfor
+				</select>
+			</div>
+			<div class="form-group col-md-6">
+				<label for="eventStartTimeMinute">Minuto</label>
+				<select class="form-control" id="eventStartTimeMinute" name="minuto" required>
+					@foreach ([0, 15, 30, 45] as $minute)
+					<option value="{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}" {{ old('minuto', $agendamento->minuto) == str_pad($minute, 2, '0', STR_PAD_LEFT) ? 'selected' : '' }}>
+						{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}
 					</option>
-					<option value="{{ sprintf('%02d:30', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:30', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:30', $i) }}
-					</option>
-					@endfor
-					@for ($i = 14; $i < 19; $i++)
-						<option value="{{ sprintf('%02d:00', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:00', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:00', $i) }}
-						</option>
-						<option value="{{ sprintf('%02d:15', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:15', $i) ? 'selected' : '' }}>
-						{{ sprintf('%02d:15', $i) }}
-						</option>
-						<option value="{{ sprintf('%02d:30', $i) }}" {{ old('hora', $agendamento->hora) == sprintf('%02d:30', $i) ? 'selected' : '' }}>
-							{{ sprintf('%02d:30', $i) }}
-						</option>
-					@endfor
-			</select>
+					@endforeach
+				</select>
+			</div>
 		</div>
 		<button type="submit" class="btn btn-primary">Salvar</button>
 	</form>
+	@if (Auth::user()->perfil_id == 1 or Auth::user()->perfil_id == 4)
+	<form action="{{ route('prontuario.create') }}" method="GET">
+		<input type="hidden" name="agendamento_id" value="{{ $agendamento->id }}">
+		<input type="hidden" name="user_id" value="{{ $agendamento->user_id }}">
+		<button type="submit" class="btn btn-secondary">Adicionar Prontuário</button>
+	</form>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createConsultaModal">
+		Anamnese
+	</button>
+	@endif
+	<div class="modal fade" id="createConsultaModal" tabindex="-1" role="dialog" aria-labelledby="createConsultaModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="createConsultaModalLabel">Nova Consulta</h5>
+					<button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form id="createConsultaForm" action="{{ route('consultas.store') }}" method="POST">
+						@csrf
+						<input type="hidden" name="agendamento_id" value="{{ $agendamento->id }}">
+						<input type="hidden" name="user_id" value="{{ $agendamento->user_id }}">
+						@includeIf('consultas.form')
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="submit" class="btn btn-primary" form="createConsultaForm">Salvar</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </x-appbarAdmin>

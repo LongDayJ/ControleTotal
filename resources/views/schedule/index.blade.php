@@ -14,8 +14,6 @@
       /* Adicionar uma borda para visualização */
     }
   </style>
-
-  <!-- Div onde o calendário será renderizado -->
   <div id='calendar'></div>
 
   <div id="createEventModal" class="modal" tabindex="1" role="dialog">
@@ -29,99 +27,6 @@
         </div>
         <div class="modal-body">
           <form id="createEventForm">
-            <div class="form-group">
-              <label for="eventTitle">Nome do Paciente</label>
-              <select class="form-control" id="eventTitle">
-                <option value="">Selecione um paciente</option>
-                @foreach($pacientes as $paciente)
-                <option value="{{ $paciente->name }}">{{ $paciente->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="dentistaNome">Nome do Dentista</label>
-              <select class="form-control" id="dentistaNome">
-                <option value="">Selecione um dentista</option>
-                @foreach($medicos as $medico)
-                <option value="{{ $medico->name }}">{{ $medico->name }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="procedimento">Procedimento</label>
-              <select class="form-control" id="procedimento">
-                <option value="">Selecione um procedimento</option>
-                @foreach($procedimentos as $procedimento)
-                <option value="{{ $procedimento->nome }}">{{ $procedimento->nome }}</option>
-                @endforeach
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="eventDescription">Observação</label>
-              <textarea class="form-control" id="eventDescription" rows="2" style="resize: none;" required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="eventDate">Data</label>
-              <input type="date" class="form-control" id="eventDate" required>
-            </div>
-            <div class="form-group">
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="eventStartTimeHour">Horário</label>
-                  <select class="form-control" id="eventStartTimeHour" required>
-                    @for ($i = 8; $i < 13; $i++)
-                      <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                      @endfor
-                      @for ($i = 14; $i < 19; $i++)
-                        <option value="{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($i, 2, '0', STR_PAD_LEFT) }}</option>
-                      @endfor
-                  </select>
-                </div>
-                <div class="form-group col-md-6">
-                  <label for="eventStartTimeMinute">Minuto</label>
-                  <select class="form-control" id="eventStartTimeMinute" required>
-                    @foreach ([0, 15, 30, 45] as $minute)
-                    <option value="{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}">{{ str_pad($minute, 2, '0', STR_PAD_LEFT) }}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="eventColor">Cor do Evento</label>
-              <select class="form-control" id="eventColor">
-                <option value="#ff0000" style="color: #ff0000;">Vermelho</option>
-                <option value="#00ff00" style="color: #00ff00;">Verde</option>
-                <option value="#0000ff" style="color: #0000ff;">Azul</option>
-                <option value="#ffff00" style="color: #ffff00;">Amarelo</option>
-                <option value="#ff00ff" style="color: #ff00ff;">Rosa</option>
-                <option value="#00ffff" style="color: #00ffff;">Ciano</option>
-                <option value="#ff8000" style="color: #ff8000;">Laranja</option>
-                <option value="#8000ff" style="color: #8000ff;">Roxo</option>
-              </select>
-            </div>
-            @csrf
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary" id="saveCreateEvent">Salvar</button>
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="editEventModal" class="modal" tabindex="1" role="dialog">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Editar Evento</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form id="editEventForm">
             <div class="form-group">
               <label for="eventTitle">Nome do Paciente</label>
               <select class="form-control" id="eventTitle">
@@ -198,13 +103,11 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" id="saveCreateEvent">Salvar</button>
-          <button type="button" class="btn btn-danger" id="deleteEvent">Excluir</button>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
         </div>
       </div>
     </div>
   </div>
-
   <!-- Adicionar o JS do jQuery via CDN -->
   <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <!-- Adicionar o JS do Popper.js via CDN -->
@@ -287,9 +190,10 @@
             if (confirm('Deseja realmente excluir este evento?')) {
               $.ajax({
                 url: '/agendamento/' + info.event.id,
-                method: 'DELETE',
+                type: 'DELETE',
                 data: {
                   _token: '{{ csrf_token() }}',
+                  _method: 'DELETE',
                   event: info.event.id
                 },
                 success: function(response) {

@@ -27,18 +27,20 @@
 
 			<!-- TODO Colaboradores -->
 			<div class="row my-5">
+				@if (Auth::user()->perfil_id == 1)
 				<div class="col-4 text-start">
 					<a href="{{ route('registerCollaborator.create') }}" class="btn btn-primary">
 						Registrar Colaborador
 					</a>
 				</div>
-				<div class="col-4 text-center">
+				@endif
+				<div class="col-4 justify-content-center text-center">
 					<h2>Lista de Colaboradores</h2>
 				</div>
 				<div class="col-4 text-end">
 					<form class="d-flex" role="search" method="GET" action="">
 						<input class="form-control me-2" type="search" name="search" placeholder="Digite o nome do Colaborador" aria-label="Search" value="{{ request('search') }}">
-						<button class="btn btn-secondary justify-content-center" type="submit">
+						<button class="btn btn-secondary justify-content-end" type="submit">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 								<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
 							</svg>
@@ -64,6 +66,9 @@
 					@endforeach
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-center mt-4">
+				{{ $colaboradores->links('pagination::bootstrap-5') }}
+			</div>
 		</div>
 
 		<!-- TODO Pacientes -->
@@ -92,6 +97,9 @@
 					@endforeach
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-center mt-4">
+				{{ $pacientes->links('pagination::bootstrap-5') }}
+			</div>
 		</div>
 
 		<div class="tab-pane fade" id="procedimento" role="tabpanel" aria-labelledby="procedimento-tab">
@@ -123,8 +131,8 @@
 									<textarea class="form-control" id="descricao" name="descricao" rows="3" required></textarea>
 								</div>
 								<div class="form-group">
-									<label for="procedimento_pai">Procedimento Pai</label>
-									<select class="form-control" id="procedimento_pai" name="procedimento_pai">
+									<label for="id_procedimento_pai">Procedimento Pai</label>
+									<select class="form-control" id="id_procedimento_pai" name="id_procedimento_pai">
 										<option value="">Nenhum</option>
 										@foreach($procedimentos as $procedimento)
 										<option value="{{ $procedimento->id }}">{{ $procedimento->nome }}</option>
@@ -191,11 +199,6 @@
 						<td>{{ $procedimento->descricao }}</td>
 						<td>{{ $procedimento->nome_procedimento_pai }}</td>
 						<td>
-							<!-- <a href="{{ route('procedimentos.update', $procedimento->id) }}" class="btn btn-warning btn-sm">
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen-fill" viewBox="0 0 16 16">
-									<path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001" />
-								</svg>
-							</a> -->
 							<form action="{{ route('procedimentos.destroy', $procedimento->id) }}" method="POST" style="display:inline;">
 								@csrf
 								@method('DELETE')
@@ -210,6 +213,9 @@
 					@endforeach
 				</tbody>
 			</table>
+			<div class="d-flex justify-content-center mt-4">
+				{{ $procedimentos->links('pagination::bootstrap-5') }}
+			</div>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

@@ -35,12 +35,31 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->input('search');
-        $products = Produto::query()
-            ->when($search, function ($query, $search) {
-                return $query->where('nome', 'like', "%{$search}%");
-            })
-            ->get();
+        $query = Produto::query();
+
+        if ($request->filled('nome')) {
+            $query->where('nome', 'like', '%' . $request->nome . '%');
+        }
+
+        if ($request->filled('quantidade_minima')) {
+            $query->whereHas('estoque', function ($q) use ($request) {
+                $q->where('quantidadeMinima', $request->quantidade_minima);
+            });
+        }
+
+        if ($request->filled('quantidade')) {
+            $query->whereHas('estoque', function ($q) use ($request) {
+                $q->where('quantidade', $request->quantidade);
+            });
+        }
+
+        if ($request->filled('ultimo_restoque')) {
+            $query->whereHas('estoque', function ($q) use ($request) {
+                $q->whereDate('updated_at', $request->ultimo_restoque);
+            });
+        }
+
+        $products = $query->get();
 
         $estoque = Estoque::all(); // Buscar todos os dados da tabela estoque
 
@@ -51,11 +70,12 @@ class ProductController extends Controller
 
         // Ordenar os produtos por ordem alfabética
         $products = $products->sortBy('nome');
-        
+
         // Ordenar os produtos com quantidade igual ou menor à quantidade mínima para o topo
         $products = $products->sortByDesc(function ($product) {
             return $product->estoque && $product->estoque->quantidade <= $product->estoque->quantidadeMinima;
         });
+
         return view('products.index', compact('products')); // Passar os dados compactados para a view
     }
 

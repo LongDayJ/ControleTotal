@@ -78,7 +78,7 @@
 				<p class="description-text mt-3">
 					Na <span class="highlight-text">Clínica Odontológica Thalytta Santos</span>, somos especializados em oferecer tratamentos odontológicos de alta qualidade, sempre com um atendimento acolhedor e personalizado. Nossa missão é cuidar da saúde bucal de nossos pacientes, proporcionando-lhes sorrisos saudáveis e confiantes.
 				</p>
-				<a href="#" class="btn btn-custom mt-4">Marcar uma consulta</a>
+				<a href="#wpp" class="btn btn-custom mt-4">Marcar uma consulta</a>
 			</div>
 			<!-- Imagem com círculo decorativo -->
 			<div class="col-md-6 image-section text-center">
@@ -127,40 +127,40 @@
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone2.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Limpeza Dental</h5>
+					<p>Procedimento preventivo realizado para remover placas bacterianas, tártaros e manchas dos dentes, ajudando a prevenir cáries e doenças gengivais.</p>
 				</div>
 			</div>
 			<!-- Serviço 3 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone3.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Tratamento de Cáries</h5>
+					<p>Processo de remoção do tecido dentário danificado por cáries, seguido do preenchimento do espaço com materiais restauradores para devolver a funcionalidade do dente.</p>
 				</div>
 			</div>
 			<!-- Serviço 4 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone4.png" alt="Ícone Tratamento" class="service-icon">
-					<h5>Tratamento De Canal Dentário</h5>
-					<p>Procedimento essencial para preservar dentes que foram severamente afetados por cáries profundas, traumas ou infecções.</p>
+					<h5>Clareamento Dental</h5>
+					<p>Tratamento estético que utiliza agentes químicos para clarear a coloração dos dentes, proporcionando um sorriso mais branco e brilhante.</p>
 				</div>
 			</div>
 			<!-- Serviço 5 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone5.png" alt="Ícone Aparelhos" class="service-icon">
-					<h5>Aparelhos Dentários</h5>
-					<p>Equipe especializada para corrigindo problemas de alinhamento e mordida que impactam tanto a estética quanto a funcionalidade dos dentes.</p>
+					<h5>Aparelhos Ortodônticos</h5>
+					<p>Dispositivos utilizados para corrigir desalinhamentos dentários e problemas de mordida, melhorando a funcionalidade e a estética do sorriso.</p>
 				</div>
 			</div>
 			<!-- Serviço 6 -->
 			<div class="col-md-4">
 				<div class="service-card">
 					<img src="icone6.png" alt="Ícone Implante" class="service-icon">
-					<h5>Implante Dentário</h5>
-					<p>Solução moderna e eficaz para a reposição de dentes perdidos, proporcionando estética, funcionalidade e conforto semelhantes aos de um dente natural.</p>
+					<h5>Extração Dentária</h5>
+					<p>Procedimento cirúrgico para remover dentes comprometidos, seja por cáries extensas, fraturas ou falta de espaço, como no caso dos sisos.</p>
 				</div>
 			</div>
 		</div>
@@ -175,7 +175,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Jorge Amado</h5>
 						<p class="card-text text-break">
 							Fiquei impressionado com a qualidade do atendimento! O consultório é super limpo e moderno, e o dentista foi muito paciente ao explicar cada etapa do tratamento. Eu estava nervoso com o procedimento, mas tudo foi feito de forma tão tranquila que até esqueci do medo. Definitivamente recomendo!
 						</p>
@@ -187,7 +187,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Mariana Lima</h5>
 						<p class="card-text text-break">
 							Fiz uma restauração e fiquei muito satisfeito com o resultado. Ele foi super detalhista e garantiu que eu saísse do consultório sem dor. Além disso, o horário foi respeitado, e o atendimento foi rápido e eficiente. Excelente trabalho!
 						</p>
@@ -199,7 +199,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Roberto Carlos</h5>
 						<p class="card-text">
 							Se você procura um dentista de confiança, pode marcar aqui sem medo! Fiz extração do siso e o procedimento foi tão rápido e indolor que nem acreditei. Estou me recuperando super bem, sem complicações.
 						</p>
@@ -211,7 +211,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Suzane Almeida</h5>
 						<p class="card-text">
 							Consultório bem localizado, ambiente confortável e uma equipe extremamente educada. Fiz manutenção do aparelho e fui muito bem atendido. Eles explicam tudo de forma clara e tiram todas as dúvidas. Recomendo!
 						</p>
@@ -223,7 +223,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Antonio Mario</h5>
 						<p class="card-text">
 							Melhor experiência com um dentista até agora! Fiz uma limpeza e um clareamento dental, e o resultado foi incrível. O profissional é muito cuidadoso, e toda a equipe é muito simpática. Com certeza voltarei para outros procedimentos.
 						</p>
@@ -235,7 +235,7 @@
 			<div class="col">
 				<div class="card border-0 shadow-sm" style="background-color: #e9f8ff;">
 					<div class="card-body">
-						<h5 class="card-title text-uppercase fw-bold">PACIENTE NOME</h5>
+						<h5 class="card-title text-uppercase fw-bold">Genario Alquime</h5>
 						<p class="card-text">
 						Nunca imaginei que uma consulta ao dentista poderia ser tão tranquila. A equipe é muito profissional, e o ambiente é acolhedor. Fiz uma extração e mal senti desconforto. Com certeza virei cliente fiel!
 						</p>
@@ -244,12 +244,12 @@
 			</div>
 		</div>
 
-		<div class="container col-6 mt-4">
+		<div class="container col-6 mt-4" id="wpp">
 			<div class="card text-center">
 				<div class="card-body">
 					<h5 class="card-title">Entre em contato conosco pelo WhatsApp</h5>
 					<p class="card-text">Clique no botão abaixo para iniciar uma conversa no WhatsApp.</p>
-					<a href="https://wa.me/+5581984088317" class="btn btn-success" target="_blank">
+					<a href="https://wa.me/+558185299647" class="btn btn-success" target="_blank">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
 							<path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
 						</svg> Conversar no WhatsApp
@@ -295,70 +295,38 @@
 			}
 		</style>
 		<div class="container mt-5">
-			<h2 class="section-title text-center">Conheça Nossa <span class="highlight">Equipe Médica</span></h2>
+			<h2 class="section-title text-center">Nossa <span class="highlight">Equipe</span></h2>
 			<div class="row mt-4">
 				<!-- Membro 1 -->
-				<div class="col-md-3 col-sm-6 mb-4-4">
+				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile1.png" alt="Médico 1">
-						<h5>Doutor Kratos Atreus </h5>
+						<img src="{{ asset('css/home/equipe/Depositphotos_13042582_m-2015.jpg-1-700x467.jpeg') }}" alt="Nome do Profissional" style="height: 200px; object-fit: cover;">
+						<h5>Dr Jaime Cabral</h5>
 						<p>Ortodontista</p>
 					</div>
 				</div>
 				<!-- Membro 2 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile2.png" alt="Médico 2">
-						<h5>Doutor Jaime</h5>
-						<p>Odontopediatra</p>
+						<img src="{{ asset('css/home/equipe/como-ser-um-dentista-de-sucesso.png') }}" alt="Nome do Profissional" style="height: 200px; object-fit: cover;">
+						<h5>Dr'a Thalyta Santos</h5>
+						<p>Ortodontista</p>
 					</div>
 				</div>
 				<!-- Membro 3 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile3.png" alt="Médico 3">
-						<h5>Doutor Joao</h5>
-						<p>Implantodentista</p>
+						<img src="{{ asset('css/home/equipe/Ser-proativo-na-profissao-418x400.jpg') }}" alt="Nome do Profissional" style="height: 200px; object-fit: cover;">
+						<h5>Dr Edmilson Zacarias</h5>
+						<p>Dentista Cirurgião</p>
 					</div>
 				</div>
 				<!-- Membro 4 -->
 				<div class="col-md-3 col-sm-6 mb-4">
 					<div class="team-card">
-						<img src="profile4.png" alt="Médico 4">
-						<h5>Doutor Marquinhos</h5>
-						<p>Odontologia estética</p>
-					</div>
-				</div>
-				<!-- Membro 5 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile5.png" alt="Médico 5">
-						<h5>Doutora Lara</h5>
-						<p>Cirurgia e Traumatologia Buco-Maxilo-Facial</p>
-					</div>
-				</div>
-				<!-- Membro 6 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile6.png" alt="Médico 6">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
-					</div>
-				</div>
-				<!-- Membro 7 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile7.png" alt="Médico 7">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
-					</div>
-				</div>
-				<!-- Membro 8 -->
-				<div class="col-md-3 col-sm-6 mb-4">
-					<div class="team-card">
-						<img src="profile8.png" alt="Médico 8">
-						<h5>Kratos</h5>
-						<p>Médico A</p>
+						<img src="{{ asset('css/home/equipe/Especial-Dia-da-Mulher-As-mulheres-na-odontologia.jpg') }}" alt="Nome do Profissional" style="height: 200px; object-fit: cover;">
+						<h5>Dr'a Marina</h5>
+						<p>Ortondontista Pediatra</p>
 					</div>
 				</div>
 			</div>

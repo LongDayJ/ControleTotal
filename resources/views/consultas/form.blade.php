@@ -28,12 +28,30 @@
 </div>
 <div class="form-group">
     <label for="gestante">Gestante</label>
-    <input type="text" class="form-control" id="gestante" name="gestante" value="{{ old('gestante') }}" required>
+    <select class="form-control" id="gestante" name="gestante" required onchange="toggleSemanas(this)">
+        <option value="0" {{ old('gestante') == '0' ? 'selected' : '' }}>Não</option>
+        <option value="1" {{ old('gestante') == '1' ? 'selected' : '' }}>Sim</option>
+    </select>
 </div>
-<div class="form-group">
+<div class="form-group" id="semanas-group" style="display: {{ old('gestante') == '1' ? 'block' : 'none' }}">
     <label for="semanas">Semanas</label>
-    <input type="text" class="form-control" id="semanas" name="semanas" value="{{ old('semanas') }}" required>
+    <input type="text" class="form-control" id="semanas" name="semanas" value="{{ old('semanas', 0) }}" {{ old('gestante') == '1' ? 'required' : '' }}>
 </div>
+
+<script>
+    function toggleSemanas(select) {
+        var semanasGroup = document.getElementById('semanas-group');
+        var semanasInput = document.getElementById('semanas');
+        if (select.value == '1') {
+            semanasGroup.style.display = 'block';
+            semanasInput.required = true;
+        } else {
+            semanasGroup.style.display = 'none';
+            semanasInput.required = false;
+            semanasInput.value = 0;
+        }
+    }
+</script>
 <div class="form-group">
     <label for="observacoes">Observações</label>
     <textarea class="form-control" id="observacoes" name="observacoes" required>{{ old('observacoes') }}</textarea>

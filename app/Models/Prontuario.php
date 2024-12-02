@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Prontuario extends Model
 {
     use HasFactory;
-    protected $table = 'Prontuario';
+    protected $table = 'prontuario';
     protected $fillable = [
         'historico',
         'observacao',

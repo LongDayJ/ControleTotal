@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Consulta;
 use App\Models\User;
 use App\Models\Endereco;
+use App\Models\Prontuario;
 use Illuminate\Http\Request;
 
 class ConsultaController extends Controller
@@ -35,6 +36,20 @@ class ConsultaController extends Controller
             $userInfo['numero'] = $address->numeroCasa;
             $userInfo['complemento'] = $address->complemento;
         }
+        $prontuarios = Prontuario::where('user_id', $paciente_id)->get();
+        $userInfo['prontuarios'] = [];
+        if ($prontuarios) {
+            $userInfo['prontuarios'] = $prontuarios->map(function ($prontuario) {
+                return [
+                    'consulta_id' => $prontuario->consulta_id,
+                    'medicamento' => $prontuario->medicamento,
+                    'metodo' => $prontuario->metodo,
+                    'cuidado' => $prontuario->cuidado,
+                    'created_at' => $prontuario->created_at,
+                    'updated_at' => $prontuario->updated_at,
+                ];
+            })->toArray();
+        }
         return view('consultas.index', compact('consultas', 'userInfo'));
     }
 
@@ -42,9 +57,9 @@ class ConsultaController extends Controller
     {
         $consulta = Consulta::find($id);
         if (!$consulta) {
-            return response()->json(['error' => 'Consulta não encontrada.'], 404);
+            return redirect()->back()->with('error', 'Consulta não encontrada.');
         }
-        return response()->json($consulta);
+        return view('consultas.show', compact('consulta'));
     }
 
     public function create()

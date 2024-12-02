@@ -85,3 +85,4 @@ Route::get('/consultas/{paciente_id}', [ConsultaController::class, 'index'])
     ->name('consultas.index')->middleware(Autenticador::class)->middleware(Autenticador::class);
 Route::resource('financeiro', FinanceiroController::class)->middleware(Autenticador::class);
 Route::resource('consultas', ConsultaController::class)->except('index')->middleware(Autenticador::class);
+Route::resource('prontuario', MrecordController::class)->middleware(Autenticador::class);

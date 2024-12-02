@@ -52,7 +52,7 @@
 				<div class="row justify-content-between mb-3">
 					<div class="col-3">
 						<!-- Botão para abrir o modal -->
-						<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createProductModal">
+						<button type="button" class="btn btn-primary my-5" data-bs-toggle="modal" data-bs-target="#createProductModal">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
 								<path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16" />
 								<path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4" />
@@ -60,10 +60,13 @@
 							Criar Produto
 						</button>
 					</div>
-					<div class="col-4">
-						<form class="d-flex" role="search" method="GET" action="{{ route('products.index') }}">
-							<input class="form-control me-2" type="search" name="search" placeholder="Digite o nome do Produto" aria-label="Search" value="{{ request('search') }}">
-							<button class="btn btn-secondary justify-content-center" type="submit">
+					<div class="col-12">
+						<form class="d-flex mb-4" role="search" method="GET" action="{{ route('products.index') }}">
+							<input class="form-control me-2" type="search" name="nome" placeholder="Nome" aria-label="Search" value="{{ request('nome') }}">
+							<input class="form-control me-2" type="number" name="quantidade_minima" placeholder="Quantidade Mínima" aria-label="Search" value="{{ request('quantidade_minima') }}">
+							<input class="form-control me-2" type="number" name="quantidade" placeholder="Quantidade" aria-label="Search" value="{{ request('quantidade') }}">
+							<input class="form-control me-2" type="date" name="ultimo_restoque" placeholder="Último Reestoque" aria-label="Search" value="{{ request('ultimo_restoque') }}">
+							<button class="btn btn-secondary" type="submit">
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
 								</svg>

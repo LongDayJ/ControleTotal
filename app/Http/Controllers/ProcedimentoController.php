@@ -30,7 +30,6 @@ class ProcedimentoController extends Controller
     public function store(Request $request)
     {
         $existingProcedimento = Procedimento::where('nome', $request->input('nome'))->first();
-
         if ($existingProcedimento) {
             return redirect()->back()->with('procedimento.erro', 'Esse procedimento já está cadastrado.');
         }
